@@ -81,11 +81,12 @@ class MainViewController: UIViewController {
     let goodsCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        layout.minimumLineSpacing = 0
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)
+        layout.minimumLineSpacing = 10
         layout.minimumInteritemSpacing = 0
         
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        cv.showsVerticalScrollIndicator = false
         return cv
     }()
     
@@ -106,7 +107,7 @@ class MainViewController: UIViewController {
 
     func setupContraints() {
         
-        for ui in [filterStackView, brandLabel, lineView, filterLabel, shoppingBagButton, bagCountLabel] {
+        for ui in [filterStackView, brandLabel, lineView, filterLabel, shoppingBagButton, bagCountLabel, goodsCollectionView] {
             view.addSubview(ui)
         }
         
@@ -154,11 +155,21 @@ class MainViewController: UIViewController {
             $0.right.equalToSuperview().inset(10)
         }
         
+        goodsCollectionView.snp.makeConstraints {
+            $0.top.equalTo(filterLabel.snp.bottom).offset(30)
+            $0.left.right.equalToSuperview()
+            $0.bottom.equalToSuperview()
+        }
+        
         
     }
 }
 
-extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource{
+extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: view.frame.width / 2 - 30, height: 210)
+    }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return GoodsArray.count

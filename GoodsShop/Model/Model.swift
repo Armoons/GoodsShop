@@ -49,8 +49,14 @@ struct Colors {
 }
 
 let GoodsArray: [GoodsShowInfo] = [
-    GoodsShowInfo(image: Images.testImage, name: "Товар 1", price: 300.0, description: "Товар 1 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua"),
-    GoodsShowInfo(image: Images.testImage, name: "Товар 2", price: 400, description: "Товар 2 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua")
+    GoodsShowInfo(image: Images.testImage, name: "Товар 1", price: 300.0, description: "Short description"),
+    GoodsShowInfo(image: Images.testImage, name: "Товар 2", price: 400.0, description: "Short description"),
+    GoodsShowInfo(image: Images.testImage, name: "Товар 1", price: 300.0, description: "Short description"),
+    GoodsShowInfo(image: Images.testImage, name: "Товар 2", price: 400.0, description: "Short description"),
+    GoodsShowInfo(image: Images.testImage, name: "Товар 1", price: 300.0, description: "Short description"),
+    GoodsShowInfo(image: Images.testImage, name: "Товар 2", price: 400.0, description: "Short description"),
+    GoodsShowInfo(image: Images.testImage, name: "Товар 1", price: 300.0, description: "Short description"),
+    GoodsShowInfo(image: Images.testImage, name: "Товар 2", price: 400.0, description: "Short description")
 
 ]
 //[GoodsInfo(image: Images.testImage, name: "Товар 1", rating: 400, price: 300.0, id: "wrtwert", description: "Товар 1 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua"),

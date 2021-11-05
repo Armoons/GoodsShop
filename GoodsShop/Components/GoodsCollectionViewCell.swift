@@ -21,9 +21,11 @@ class GoodsCollectionViewCell: UICollectionViewCell {
     
     let imageView: UIImageView = {
         let iv = UIImageView()
-        iv.translatesAutoresizingMaskIntoConstraints = false
-        iv.contentMode = .scaleAspectFill
-        iv.layer.cornerRadius = 8
+//        iv.translatesAutoresizingMaskIntoConstraints = false
+        iv.contentMode = .scaleAspectFit
+//        iv.backgroundColor = .black
+        iv.layer.cornerRadius = 20
+        iv.layer.masksToBounds = true
         return iv
     }()
     
@@ -36,8 +38,9 @@ class GoodsCollectionViewCell: UICollectionViewCell {
     let descriptionLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: Font.sfLight, size: 13)
-        label.textColor = .lightGray
-        label.numberOfLines = 0
+        label.textColor = .black
+        label.numberOfLines = 1
+//        label.backgroundColor = .red
         return label
     }()
     
@@ -74,22 +77,27 @@ class GoodsCollectionViewCell: UICollectionViewCell {
         for view in [imageView, nameLabel, descriptionLabel, priceLabel, plusButton] {
             contentView.addSubview(view)
         }
+    
+        self.layer.cornerRadius = 20
+        self.backgroundColor = .systemGray2
         
         imageView.snp.makeConstraints{
-            $0.top.right.left.equalToSuperview()
+            $0.left.top.right.equalToSuperview()
+            $0.height.equalTo(130)
+            
         }
         
         nameLabel.snp.makeConstraints{
-            $0.top.equalTo(imageView).inset(5)
+            $0.top.equalTo(imageView.snp.bottom).offset(5)
             $0.left.equalToSuperview().inset(5)
             $0.right.equalToSuperview().offset(5)
             $0.height.equalTo(18)
         }
         
         descriptionLabel.snp.makeConstraints{
-            $0.top.equalTo(nameLabel).inset(5)
-            $0.left.equalTo(nameLabel.snp.left)
-            $0.right.equalTo(nameLabel.snp.right)
+            $0.top.equalTo(nameLabel.snp.bottom).offset(10)
+            $0.left.right.equalToSuperview().inset(5)
+            $0.height.equalTo(20)
         }
         
         priceLabel.snp.makeConstraints{
@@ -100,9 +108,10 @@ class GoodsCollectionViewCell: UICollectionViewCell {
         }
         
         plusButton.snp.makeConstraints{
-            $0.left.equalTo(priceLabel.snp.right).inset(10)
+            $0.left.equalTo(priceLabel.snp.right).offset(10)
             $0.height.width.equalTo(21)
             $0.top.equalTo(descriptionLabel.snp.bottom).offset(5)
+            $0.bottom.equalToSuperview().inset(10)
             
         }
     }
