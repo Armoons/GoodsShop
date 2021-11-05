@@ -35,45 +35,50 @@ class MainViewController: UIViewController {
         label.font = UIFont(name: Font.sfLight, size: 9)
         label.textColor = .black
         label.text = "0"
+        label.isHidden = true
         return label
     }()
     
     let lineView: LineUnderBrandLabel = {
         let view = LineUnderBrandLabel()
-        view.backgroundColor = .blue
+        view.backgroundColor = Colors.mainBlue
         return view
     }()
     
     let filterLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: Font.sfBold, size: 14)
-        label.text = "Фильтр:"
+        label.text = "Сортировка:"
         return label
     }()
     
-    let priceButton: DefaultButton = {
-        let button = DefaultButton(title: "Цена уб")
-        button.titleLabel?.font = UIFont(name: Font.sfLight, size: 12)
-        return button
+    let priceArrow: UIImageView = {
+        let iv = UIImageView()
+        iv.image = Images.ChangeSortStatus
+//        iv.isHidden = true
+        return iv
     }()
     
-    let priceButton1: DefaultButton = {
-        let button = DefaultButton(title: "Цена вз")
+    let ratingArrow: UIImageView = {
+        let iv = UIImageView()
+        iv.image = Images.ChangeSortStatus
+//        iv.isHidden = true
+        return iv
+    }()
+    
+    let priceButton: DefaultButton = {
+        let button = DefaultButton(title: "Цена")
         button.titleLabel?.font = UIFont(name: Font.sfLight, size: 12)
         return button
     }()
     
     let ratingButton: DefaultButton = {
-        let button = DefaultButton(title: "Рейтинг уб")
+        let button = DefaultButton(title: "Рейтинг")
         button.titleLabel?.font = UIFont(name: Font.sfLight, size: 12)
         return button
     }()
     
-    let ratingButton1: DefaultButton = {
-        let button = DefaultButton(title: "Рейтинг вз")
-        button.titleLabel?.font = UIFont(name: Font.sfLight, size: 12)
-        return button
-    }()
+    
     
     let filterStackView: UIStackView = {
         let stack = UIStackView()
@@ -93,6 +98,7 @@ class MainViewController: UIViewController {
         
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.showsVerticalScrollIndicator = false
+        cv.backgroundColor = Colors.background
         return cv
     }()
     
@@ -101,7 +107,7 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = Colors.background
         
         goodsCollectionView.delegate = self
         goodsCollectionView.dataSource = self
@@ -114,14 +120,14 @@ class MainViewController: UIViewController {
         bagQuantityLabel.text = "\(newValue)"
     }
 
-
     func setupContraints() {
         
-        for ui in [filterStackView, brandLabel, lineView, filterLabel, shoppingBagButton, bagQuantityLabel, goodsCollectionView] {
+        for ui in [filterStackView, brandLabel, lineView, filterLabel, shoppingBagButton, bagQuantityLabel,
+                   goodsCollectionView, priceArrow, ratingArrow] {
             view.addSubview(ui)
         }
         
-        for ui in [ratingButton, priceButton, ratingButton1, priceButton1] {
+        for ui in [priceButton, ratingButton] {
             filterStackView.addArrangedSubview(ui)
         }
         
@@ -134,7 +140,7 @@ class MainViewController: UIViewController {
         lineView.snp.makeConstraints{
             $0.top.equalTo(brandLabel.snp.bottom).offset(5)
             $0.left.right.equalToSuperview()
-            $0.height.equalTo(1)
+            $0.height.equalTo(2)
         }
         
         bagQuantityLabel.snp.makeConstraints{
@@ -154,19 +160,28 @@ class MainViewController: UIViewController {
 //            $0.left.lessThanOrEqualTo(10)
             $0.left.equalToSuperview().inset(10)
             $0.top.equalTo(lineView).offset(10)
-            
+        }
+        
+        priceArrow.snp.makeConstraints{
+            $0.right.equalTo(priceButton).inset(7)
+            $0.centerY.equalTo(priceButton)
+            $0.width.height.equalTo(15)
+        }
+        
+        ratingArrow.snp.makeConstraints{
+            $0.right.equalTo(ratingButton).inset(3)
+            $0.centerY.equalTo(ratingButton)
+            $0.width.height.equalTo(15)
         }
         
         filterStackView.snp.makeConstraints{
-            $0.top.equalTo(lineView).inset(10)
-            
-            $0.left.greaterThanOrEqualTo(filterLabel.snp.right).inset(10)
-//            $0.left.equalTo(filterLabel.snp.right).offset(10)
-            $0.right.equalToSuperview().inset(10)
+            $0.top.equalTo(lineView).inset(9)
+            $0.centerX.equalToSuperview()
+            $0.width.equalTo(170)
         }
         
         goodsCollectionView.snp.makeConstraints {
-            $0.top.equalTo(filterLabel.snp.bottom).offset(30)
+            $0.top.equalTo(filterLabel.snp.bottom).offset(12)
             $0.left.right.equalToSuperview()
             $0.bottom.equalToSuperview()
         }
@@ -197,11 +212,13 @@ extension MainViewController: GoodsCollectionViewCellDelegate {
     
     func didAddNewGoods() {
         currentGoodsNumber += 1
+        if currentGoodsNumber > 0 {bagQuantityLabel.isHidden = false}
         updateBagQuantityLabel(newValue: currentGoodsNumber)
     }
     
     func didRemovedGoods() {
         currentGoodsNumber -= 1
+        if currentGoodsNumber == 0 {bagQuantityLabel.isHidden = true}
         updateBagQuantityLabel(newValue: currentGoodsNumber)
     }
     

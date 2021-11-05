@@ -21,6 +21,7 @@ class LineUnderBrandLabel: UIView {
     
     override func draw(_ rect: CGRect) {
         let aPath = UIBezierPath()
+        aPath.lineWidth = 2
         aPath.move(to: CGPoint(x:0, y:0))
         aPath.addLine(to: CGPoint(x:self.frame.width, y:0))
         aPath.close()

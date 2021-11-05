@@ -34,8 +34,8 @@ struct Images {
     static let shoppingBag: UIImage = UIImage(named: "ShoppingBag")!
     static let plus: UIImage = UIImage(named: "PlusButton")!
     static let testImage: UIImage = UIImage(named: "TestImage")!
-
-
+    static let CancelSort: UIImage = UIImage(named: "CancelSort")!
+    static let ChangeSortStatus: UIImage = UIImage(named: "ChangeSortStatus")!
     
 }
 
@@ -46,6 +46,7 @@ struct CellID {
 
 struct Colors {
     static let mainBlue: UIColor = UIColor(red: 39/255, green: 89/255, blue: 156/255, alpha: 1)
+    static let background: UIColor = UIColor(red: 226/255, green: 212/255, blue: 196/255, alpha: 1)
 }
 
 let GoodsArray: [GoodsShowInfo] = [

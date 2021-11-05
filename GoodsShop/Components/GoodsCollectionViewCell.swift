@@ -12,14 +12,16 @@ import UIKit
 class GoodsCollectionViewCell: UICollectionViewCell {
     
     var delegate: GoodsCollectionViewCellDelegate?
-
+    
+    
     var data: GoodsShowInfo? {
         didSet {
             guard let data = data else { return }
             imageView.image = data.image
             nameLabel.text = data.name
             descriptionLabel.text = data.description
-            priceLabel.text = "\(data.price)"
+            let newPrice = forTrailingZero(temp: data.price)
+            priceLabel.text = newPrice + "₽"
         }
     }
     
@@ -27,7 +29,6 @@ class GoodsCollectionViewCell: UICollectionViewCell {
         let iv = UIImageView()
 //        iv.translatesAutoresizingMaskIntoConstraints = false
         iv.contentMode = .scaleAspectFit
-//        iv.backgroundColor = .black
         iv.layer.cornerRadius = 20
         iv.layer.masksToBounds = true
         return iv
@@ -50,7 +51,7 @@ class GoodsCollectionViewCell: UICollectionViewCell {
     
     let priceLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: Font.sfLight, size: 13)
+        label.font = UIFont(name: Font.sfBold, size: 13)
         label.textColor = .black
         label.textAlignment = .center
         label.layer.borderColor = Colors.mainBlue.cgColor
@@ -84,7 +85,7 @@ class GoodsCollectionViewCell: UICollectionViewCell {
     
     @objc func plusTouched(){
         
-
+        
         if !didPlusTouch {
             delegate?.didAddNewGoods()
             UIView.animate(withDuration: 0.3, delay: 0){
@@ -100,20 +101,38 @@ class GoodsCollectionViewCell: UICollectionViewCell {
                 self.priceLabel.textColor = .black
             }
         }
-
+        
         didPlusTouch = !didPlusTouch
-
+        
     }
-
-
-func setupContraints() {
     
-    for view in [imageView, nameLabel, descriptionLabel, priceLabel, plusButton] {
+    func forTrailingZero(temp: Double) -> String {
+        let tempVar = String(format: "%g", temp)
+        return tempVar
+    }
+    
+    
+    func setupContraints() {
+        
+        for view in [imageView, nameLabel, descriptionLabel, priceLabel, plusButton] {
             contentView.addSubview(view)
         }
-    
+        
         self.layer.cornerRadius = 20
-        self.backgroundColor = .systemGray2
+        self.layer.borderWidth = 2
+        self.layer.borderColor = Colors.mainBlue.cgColor
+        
+//        self.backgroundColor = .white
+        
+//        self.layer.cornerRadius = 12
+//        self.layer.backgroundColor = UIColor.white.cgColor
+//        self.layer.backgroundColor = UIColor.white.cgColor
+//        self.layer.shadowColor = Colors.mainBlue.cgColor
+//        self.layer.shadowOffset = CGSize(width: 1, height: 8)
+//        self.layer.shadowRadius = 10.0
+//        self.layer.shadowOpacity = 0.5
+//        self.layer.masksToBounds = false
+        
         
         imageView.snp.makeConstraints{
             $0.left.top.right.equalToSuperview()
