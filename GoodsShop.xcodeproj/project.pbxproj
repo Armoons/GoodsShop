@@ -125,6 +125,7 @@
 		AEDF8E48273409E500F5D977 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				AECDEA6527354D6F00643AAB /* GoodsCollectionViewCell.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -152,7 +153,6 @@
 			children = (
 				AEDF8E54273411AF00F5D977 /* LineUnderBrandLabel.swift */,
 				AEDF8E562734203D00F5D977 /* DefaultButton.swift */,
-				AECDEA6527354D6F00643AAB /* GoodsCollectionViewCell.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";

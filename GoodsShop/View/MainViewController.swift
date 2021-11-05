@@ -8,9 +8,15 @@
 import UIKit
 import SnapKit
 
+protocol GoodsCollectionViewCellDelegate {
+    func didAddNewGoods()
+    func didRemovedGoods()
+}
 
 class MainViewController: UIViewController {
-
+    
+    var currentGoodsNumber = 0
+    
     let brandLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: Font.sfBold, size: 26)
@@ -24,11 +30,11 @@ class MainViewController: UIViewController {
         return button
     }()
     
-    let bagCountLabel: UILabel = {
+    let bagQuantityLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: Font.sfLight, size: 9)
-        label.textColor = .lightGray
-        label.text = "10"
+        label.textColor = .black
+        label.text = "0"
         return label
     }()
     
@@ -103,11 +109,15 @@ class MainViewController: UIViewController {
         
         setupContraints()
     }
+    
+    func updateBagQuantityLabel(newValue: Int) {
+        bagQuantityLabel.text = "\(newValue)"
+    }
 
 
     func setupContraints() {
         
-        for ui in [filterStackView, brandLabel, lineView, filterLabel, shoppingBagButton, bagCountLabel, goodsCollectionView] {
+        for ui in [filterStackView, brandLabel, lineView, filterLabel, shoppingBagButton, bagQuantityLabel, goodsCollectionView] {
             view.addSubview(ui)
         }
         
@@ -127,7 +137,7 @@ class MainViewController: UIViewController {
             $0.height.equalTo(1)
         }
         
-        bagCountLabel.snp.makeConstraints{
+        bagQuantityLabel.snp.makeConstraints{
             $0.right.equalTo(shoppingBagButton.snp.left).offset(-2)
             $0.bottom.equalTo(lineView).inset(10)
         }
@@ -178,8 +188,24 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellID.goodsCellID, for: indexPath) as! GoodsCollectionViewCell
         cell.data = GoodsArray[indexPath.row]
+        cell.delegate = self
         return cell
     }
+}
+
+extension MainViewController: GoodsCollectionViewCellDelegate {
+    
+    func didAddNewGoods() {
+        currentGoodsNumber += 1
+        updateBagQuantityLabel(newValue: currentGoodsNumber)
+    }
+    
+    func didRemovedGoods() {
+        currentGoodsNumber -= 1
+        updateBagQuantityLabel(newValue: currentGoodsNumber)
+    }
+    
+
     
     
 }

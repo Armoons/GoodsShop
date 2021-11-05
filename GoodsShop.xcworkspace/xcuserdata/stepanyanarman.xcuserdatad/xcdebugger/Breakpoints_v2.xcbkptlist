@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "A89FCA70-7ADE-4BD3-BB86-9F20DE2D5A0F"
+   type = "0"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A4E91356-A82C-4CD2-93D6-D6BB0F0371DB"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GoodsShop/Components/GoodsCollectionViewCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
+            landmarkName = "plusTouched()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8706DFC0-BAE6-487E-8397-831307C0F555"
+            shouldBeEnabled = "No"
+            ignoreCount = "10"
+            continueAfterRunningActions = "No"
+            filePath = "GoodsShop/Components/GoodsCollectionViewCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "69"
+            endingLineNumber = "69"
+            landmarkName = "GoodsCollectionViewCell"
+            landmarkType = "3">
+            <Actions>
+               <BreakpointActionProxy
+                  ActionExtensionID = "Xcode.BreakpointAction.DebuggerCommand">
+                  <ActionContent
+                     consoleCommand = "">
+                  </ActionContent>
+               </BreakpointActionProxy>
+            </Actions>
+            <Locations>
+               <Location
+                  uuid = "8706DFC0-BAE6-487E-8397-831307C0F555 - f5aac6806ae0b977"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GoodsShop.GoodsCollectionViewCell.numberSelectedGoods.getter : Swift.Int"
+                  moduleName = "GoodsShop"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/stepanyanarman/Developer/GoodsShop/GoodsShop/Components/GoodsCollectionViewCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "70"
+                  endingLineNumber = "70"
+                  offsetFromSymbolStart = "84">
+               </Location>
+               <Location
+                  uuid = "8706DFC0-BAE6-487E-8397-831307C0F555 - 2efa761aad8fc163"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GoodsShop.GoodsCollectionViewCell.numberSelectedGoods.setter : Swift.Int"
+                  moduleName = "GoodsShop"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/stepanyanarman/Developer/GoodsShop/GoodsShop/Components/GoodsCollectionViewCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "70"
+                  endingLineNumber = "70"
+                  offsetFromSymbolStart = "92">
+               </Location>
+               <Location
+                  uuid = "8706DFC0-BAE6-487E-8397-831307C0F555 - 3873f0c8ca40d478"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GoodsShop.GoodsCollectionViewCell.numberSelectedGoods.modify : Swift.Int"
+                  moduleName = "GoodsShop"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/stepanyanarman/Developer/GoodsShop/GoodsShop/Components/GoodsCollectionViewCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  uuid = "8706DFC0-BAE6-487E-8397-831307C0F555 - 2fa25a27305b9fd7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GoodsShop.GoodsCollectionViewCell.numberSelectedGoods.modify : Swift.Int with unmangled suffix &quot;.resume.0&quot;"
+                  moduleName = "GoodsShop"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/stepanyanarman/Developer/GoodsShop/GoodsShop/Components/GoodsCollectionViewCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "70"
+                  endingLineNumber = "70"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  uuid = "8706DFC0-BAE6-487E-8397-831307C0F555 - a11095a3da782765"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GoodsShop.GoodsCollectionViewCell.init(frame: __C.CGRect) -&gt; GoodsShop.GoodsCollectionViewCell"
+                  moduleName = "GoodsShop"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/stepanyanarman/Developer/GoodsShop/GoodsShop/Components/GoodsCollectionViewCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "70"
+                  endingLineNumber = "70"
+                  offsetFromSymbolStart = "484">
+               </Location>
+               <Location
+                  uuid = "8706DFC0-BAE6-487E-8397-831307C0F555 - a4e59ff6e593a96c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GoodsShop.GoodsCollectionViewCell.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;GoodsShop.GoodsCollectionViewCell&gt;"
+                  moduleName = "GoodsShop"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/stepanyanarman/Developer/GoodsShop/GoodsShop/Components/GoodsCollectionViewCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "70"
+                  endingLineNumber = "70"
+                  offsetFromSymbolStart = "472">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

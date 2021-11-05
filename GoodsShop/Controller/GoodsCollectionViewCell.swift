@@ -7,8 +7,12 @@
 
 import UIKit
 
+
+
 class GoodsCollectionViewCell: UICollectionViewCell {
     
+    var delegate: GoodsCollectionViewCellDelegate?
+
     var data: GoodsShowInfo? {
         didSet {
             guard let data = data else { return }
@@ -48,10 +52,11 @@ class GoodsCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.font = UIFont(name: Font.sfLight, size: 13)
         label.textColor = .black
-        label.layer.borderColor = Colors.mainBlue.cgColor
         label.textAlignment = .center
+        label.layer.borderColor = Colors.mainBlue.cgColor
         label.layer.borderWidth = 1
         label.layer.cornerRadius = 8
+        
         return label
     }()
     
@@ -60,10 +65,12 @@ class GoodsCollectionViewCell: UICollectionViewCell {
         button.setImage(Images.plus, for: .normal)
         return button
     }()
+    var didPlusTouch: Bool = false
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        setupTouches()
         setupContraints()
     }
     
@@ -71,10 +78,37 @@ class GoodsCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func setupTouches() {
+        plusButton.addTarget(self, action: #selector(plusTouched), for: .touchUpInside)
+    }
     
-    func setupContraints() {
+    @objc func plusTouched(){
         
-        for view in [imageView, nameLabel, descriptionLabel, priceLabel, plusButton] {
+
+        if !didPlusTouch {
+            delegate?.didAddNewGoods()
+            UIView.animate(withDuration: 0.3, delay: 0){
+                self.plusButton.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 4)
+                self.priceLabel.layer.backgroundColor = Colors.mainBlue.cgColor
+                self.priceLabel.textColor = .white
+            }
+        } else {
+            delegate?.didRemovedGoods()
+            UIView.animate(withDuration: 0.3, delay: 0){
+                self.plusButton.transform = CGAffineTransform(rotationAngle: 0)
+                self.priceLabel.layer.backgroundColor = .none
+                self.priceLabel.textColor = .black
+            }
+        }
+
+        didPlusTouch = !didPlusTouch
+
+    }
+
+
+func setupContraints() {
+    
+    for view in [imageView, nameLabel, descriptionLabel, priceLabel, plusButton] {
             contentView.addSubview(view)
         }
     
