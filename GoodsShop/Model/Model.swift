@@ -64,4 +64,3 @@ let GoodsArray: [GoodsShowInfo] = [
 // GoodsInfo(image: Images.testImage, name: "Товар 2", rating: 300, price: 205.0, id: "gerge", description: "Товар 2 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua")
 //]
 
-

@@ -30,9 +30,9 @@ class DefaultButton: UIButton {
         self.layer.borderColor = Colors.mainBlue.cgColor
         self.layer.borderWidth = 1
         self.titleLabel?.font = UIFont(name: Font.sfBold, size: 14)
-        self.setTitleColor(.black, for: .normal)
+        self.titleLabel?.textColor = .black
         self.snp.makeConstraints {
-            $0.width.equalTo(72)
+            $0.width.equalTo(75)
             $0.height.equalTo(21)
         }
     }

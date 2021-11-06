@@ -17,6 +17,11 @@ class MainViewController: UIViewController {
     
     var currentGoodsNumber = 0
     
+    var didPriceSortUsed = false
+    var didRateSortUsed = false
+    var priceSortTouchesNumber = 0
+    var rateSortTouchesNumber = 0
+    
     let brandLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: Font.sfBold, size: 26)
@@ -45,38 +50,51 @@ class MainViewController: UIViewController {
         return view
     }()
     
-    let filterLabel: UILabel = {
+    let sortLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: Font.sfBold, size: 14)
         label.text = "Сортировка:"
         return label
     }()
     
+    let cancelSortButton: UIButton = {
+        let button = UIButton()
+        button.setImage(Images.CancelSort, for: .normal)
+        button.isHidden = true
+        return button
+    }()
+    
     let priceArrow: UIImageView = {
         let iv = UIImageView()
         iv.image = Images.ChangeSortStatus
-//        iv.isHidden = true
+        iv.isHidden = true
         return iv
     }()
+    
     
     let ratingArrow: UIImageView = {
         let iv = UIImageView()
         iv.image = Images.ChangeSortStatus
-//        iv.isHidden = true
+        iv.isHidden = true
         return iv
     }()
     
     let priceButton: DefaultButton = {
         let button = DefaultButton(title: "Цена")
         button.titleLabel?.font = UIFont(name: Font.sfLight, size: 12)
+        button.addTarget(self, action: #selector(priceTouched), for: .touchUpInside)
+        button.setTitleColor(.black, for: .normal)
         return button
     }()
     
     let ratingButton: DefaultButton = {
         let button = DefaultButton(title: "Рейтинг")
         button.titleLabel?.font = UIFont(name: Font.sfLight, size: 12)
+        button.setTitleColor(.black, for: .normal)
+        button.addTarget(self, action: #selector(ratingTouched), for: .touchUpInside)
         return button
     }()
+    
     
     
     
@@ -114,16 +132,75 @@ class MainViewController: UIViewController {
         goodsCollectionView.register(GoodsCollectionViewCell.self, forCellWithReuseIdentifier: CellID.goodsCellID)
         
         setupContraints()
+        
+        
     }
     
     func updateBagQuantityLabel(newValue: Int) {
         bagQuantityLabel.text = "\(newValue)"
     }
+    
+    func resetButton(button: UIButton, arrow: UIImageView, unusedStatus: inout Bool, unusedTouchesNumber: inout Int) {
+        UIView.animate(withDuration: 0.2) {
+            button.backgroundColor = .clear
+
+        }
+        arrow.isHidden = true
+        arrow.transform = CGAffineTransform(rotationAngle: 0)
+        button.setTitleColor(.black, for: .normal)
+        button.titleLabel?.font = UIFont(name: Font.sfLight, size: 12)
+        unusedStatus = false
+        unusedTouchesNumber = 0
+
+
+    }
+    
+    func setupButton(button: UIButton, arrow: UIImageView) {
+        UIView.animate(withDuration: 0.2) {
+            button.backgroundColor = Colors.mainBlue
+        }
+        arrow.isHidden = false
+        button.setTitleColor(.white, for: .normal)
+        button.titleLabel?.font = UIFont(name: Font.sfBold, size: 12)
+        
+    }
+    
+    func changeSort(usedStatus: inout Bool, unusedStatus: inout Bool, usedTouchesNumber: inout Int, unusedTouchesNumber: inout Int,usedButton: DefaultButton, usedArrow: UIImageView, unusedButton: DefaultButton, unusedArrow: UIImageView) {
+        if !usedStatus && usedTouchesNumber == 0  {
+            usedTouchesNumber = 1
+            usedStatus = true
+
+            setupButton(button: usedButton, arrow: usedArrow)
+            resetButton(button: unusedButton, arrow: unusedArrow, unusedStatus: &unusedStatus, unusedTouchesNumber: &unusedTouchesNumber)
+            usedButton.titleLabel?.textColor = .black
+        } else if usedStatus && usedTouchesNumber == 1 {
+            usedArrow.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
+            
+            usedTouchesNumber = 2
+            resetButton(button: unusedButton, arrow: unusedArrow, unusedStatus: &unusedStatus, unusedTouchesNumber: &unusedTouchesNumber)
+        } else if usedStatus && usedTouchesNumber == 2 {
+            resetButton(button: usedButton, arrow: usedArrow, unusedStatus: &unusedStatus, unusedTouchesNumber: &usedTouchesNumber)
+            resetButton(button: unusedButton, arrow: unusedArrow, unusedStatus: &unusedStatus, unusedTouchesNumber: &usedTouchesNumber)
+
+            usedTouchesNumber = 0
+            usedStatus = false
+        }
+    }
+    
+    @objc func priceTouched() {
+        changeSort(usedStatus: &didPriceSortUsed, unusedStatus: &didRateSortUsed, usedTouchesNumber: &priceSortTouchesNumber, unusedTouchesNumber: &rateSortTouchesNumber, usedButton: priceButton, usedArrow: priceArrow, unusedButton: ratingButton, unusedArrow: ratingArrow)
+    }
+    
+    @objc func ratingTouched() {
+        changeSort(usedStatus: &didRateSortUsed, unusedStatus: &didPriceSortUsed, usedTouchesNumber: &rateSortTouchesNumber, unusedTouchesNumber: &priceSortTouchesNumber, usedButton: ratingButton, usedArrow: ratingArrow, unusedButton: priceButton, unusedArrow: priceArrow)
+    }
+    
+    
 
     func setupContraints() {
         
-        for ui in [filterStackView, brandLabel, lineView, filterLabel, shoppingBagButton, bagQuantityLabel,
-                   goodsCollectionView, priceArrow, ratingArrow] {
+        for ui in [filterStackView, brandLabel, lineView, sortLabel, shoppingBagButton, bagQuantityLabel,
+                   goodsCollectionView, priceArrow, ratingArrow, cancelSortButton] {
             view.addSubview(ui)
         }
         
@@ -156,10 +233,10 @@ class MainViewController: UIViewController {
 
         }
         
-        filterLabel.snp.makeConstraints{
+        sortLabel.snp.makeConstraints{
 //            $0.left.lessThanOrEqualTo(10)
             $0.left.equalToSuperview().inset(10)
-            $0.top.equalTo(lineView).offset(10)
+            $0.top.equalTo(lineView).offset(12)
         }
         
         priceArrow.snp.makeConstraints{
@@ -177,11 +254,17 @@ class MainViewController: UIViewController {
         filterStackView.snp.makeConstraints{
             $0.top.equalTo(lineView).inset(9)
             $0.centerX.equalToSuperview()
-            $0.width.equalTo(170)
+            $0.width.equalTo(178)
+        }
+        
+        cancelSortButton.snp.makeConstraints{
+            $0.right.equalToSuperview().inset(10)
+            $0.top.equalTo(lineView).inset(9)
+            $0.height.width.equalTo(23)
         }
         
         goodsCollectionView.snp.makeConstraints {
-            $0.top.equalTo(filterLabel.snp.bottom).offset(12)
+            $0.top.equalTo(sortLabel.snp.bottom).offset(12)
             $0.left.right.equalToSuperview()
             $0.bottom.equalToSuperview()
         }

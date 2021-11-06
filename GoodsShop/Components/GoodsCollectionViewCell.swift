@@ -64,6 +64,8 @@ class GoodsCollectionViewCell: UICollectionViewCell {
     let plusButton: UIButton = {
         let button = UIButton()
         button.setImage(Images.plus, for: .normal)
+        button.addTarget(self, action: #selector(plusTouched), for: .touchUpInside)
+
         return button
     }()
     var didPlusTouch: Bool = false
@@ -71,7 +73,6 @@ class GoodsCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        setupTouches()
         setupContraints()
     }
     
@@ -79,9 +80,7 @@ class GoodsCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupTouches() {
-        plusButton.addTarget(self, action: #selector(plusTouched), for: .touchUpInside)
-    }
+    
     
     @objc func plusTouched(){
         
