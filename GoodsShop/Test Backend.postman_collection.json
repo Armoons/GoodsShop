@@ -1,0 +1,536 @@
+{
+	"info": {
+		"_postman_id": "6c9925cd-1e06-4299-b329-e687b6ed55b0",
+		"name": "Test Backend",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "checkUser",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{    \"phone\":\"+79599344544\",    \"id\":\"AIzAUWEvcu6yv446uvcwu6w4ucvywu4\"}"
+				},
+				"url": {
+					"raw": "{{url}}/checkUser",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"checkUser"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Example #1",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{    \"phone\":\"+79599344544\",    \"id\":\"AIzAUWEvcu6yv446uvcwu6w4ucvywu4\"}"
+						},
+						"url": {
+							"raw": "{{url}}/checkUser",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"checkUser"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [],
+					"cookie": [],
+					"body": "{\"phone\":\"+79599344544\",\"id\":\"AIzAUWEvcu6yv446uvcwu6w4ucvywu4\"}"
+				}
+			]
+		},
+		{
+			"name": "updateProfile",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{    \"email\":\"test@wnfx.ru\",    \"firstname\":\"Alex\",    \"lastname\":\"Test\",    \"birthdate\":\"21-01-1980\",    \"preferences\":[\"cars\", \"health\"],    \"organization\":\"Test Inc.\",    \"position\":\"engineer\",    \"birth_place\":\"sweetAlabama\",    \"middlename\":\"Jr.\",    \"id\":\"3cf7ce3909bd132c01df1be2dbb29f26\"}"
+				},
+				"url": {
+					"raw": "{{url}}/updateProfile",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"updateProfile"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Example #1",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{    \"email\":\"test@wnfx.ru\",    \"firstname\":\"Alex\",    \"lastname\":\"Test\",    \"birthdate\":\"21-01-1980\",    \"preferences\":[\"cars\", \"health\"],    \"organization\":\"Test Inc.\",    \"position\":\"engineer\",    \"birth_place\":\"sweetAlabama\",    \"middlename\":\"Jr.\",    \"id\":\"3cf7ce3909bd132c01df1be2dbb29f26\"}"
+						},
+						"url": {
+							"raw": "{{url}}/updateProfile",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"updateProfile"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [],
+					"cookie": [],
+					"body": "{\"email\":\"test@wnfx.ru\",\"firstname\":\"Alex\",\"lastname\":\"Test\",\"birthdate\":\"21-01-1980\",\"preferences\":[\"cars\",\"health\"],\"organization\":\"Test Inc.\",\"position\":\"engineer\",\"birth_place\":\"sweetAlabama\",\"middlename\":\"Jr.\",\"id\":\"3cf7ce3909bd132c01df1be2dbb29f26\"}"
+				}
+			]
+		},
+		{
+			"name": "uploadAvatar",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/Users/sisyandra/Desktop/TestBE/1.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://94.127.67.113:8099/uploadAvatar",
+					"protocol": "http",
+					"host": [
+						"94",
+						"127",
+						"67",
+						"113"
+					],
+					"port": "8099",
+					"path": [
+						"uploadAvatar"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "uploadAvatar",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/sisyandra/Desktop/TestBE/1.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://94.127.67.113:8099/uploadAvatar",
+							"protocol": "http",
+							"host": [
+								"94",
+								"127",
+								"67",
+								"113"
+							],
+							"port": "8099",
+							"path": [
+								"uploadAvatar"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 05 May 2021 07:25:10 GMT"
+						},
+						{
+							"key": "Transfer-encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Content-type",
+							"value": "text/html; charset=UTF-8"
+						}
+					],
+					"cookie": [],
+					"body": "{\"filename\":\"f70b8726cae34c68b41aef6e726b271a.jpg\"}"
+				}
+			]
+		},
+		{
+			"name": "sendCoords",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{    \"latitude\":55.2395345345,    \"longitude\":45.345234953}"
+				},
+				"url": {
+					"raw": "{{url}}/sendCoords",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"sendCoords"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Example #1",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{    \"latitude\":55.2395345345,    \"longitude\":45.345234953}"
+						},
+						"url": {
+							"raw": "{{url}}/sendCoords",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"sendCoords"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [],
+					"cookie": [],
+					"body": "{}"
+				}
+			]
+		},
+		{
+			"name": "getMenu",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"place_id\":\"7388bc70f9b190c4a0f661790540f1db\"}"
+				},
+				"url": {
+					"raw": "{{url}}/getMenu",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"getMenu"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Example #1",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"place_id\":\"7388bc70f9b190c4a0f661790540f1db\"}"
+						},
+						"url": {
+							"raw": "{{url}}/getMenu",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"getMenu"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [],
+					"cookie": [],
+					"body": "[{\"image\":\"http://94.127.67.113:8099/getImage?filename\\u003d1.jpg\",\"price\":200.0,\"name\":\"Блюдо 1\",\"weight\":350.0,\"id\":\"4ada63047c2e44857b6aa477b65c2fba\",\"desc\":\"\\u003ch3\\u003eВкусное блюдо 1\\u003ch3\\u003e\\u003cp\\u003eLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua\\u003c/p\\u003e\"},{\"image\":\"http://94.127.67.113:8099/getImage?filename\\u003d9.jpg\",\"price\":200.0,\"name\":\"Блюдо 9\",\"weight\":350.0,\"id\":\"0350ac1bc5c67c3b96efede1d701c872\",\"desc\":\"\\u003ch3\\u003eВкусное блюдо 9\\u003ch3\\u003e\\u003cp\\u003eLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua\\u003c/p\\u003e\"},{\"image\":\"http://94.127.67.113:8099/getImage?filename\\u003d1.jpg\",\"price\":200.0,\"name\":\"Блюдо 1\",\"weight\":350.0,\"id\":\"68f6be5cd60ae7cec877842c8c8a62a0\",\"desc\":\"\\u003ch3\\u003eВкусное блюдо 1\\u003ch3\\u003e\\u003cp\\u003eLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua\\u003c/p\\u003e\"},{\"image\":\"http://94.127.67.113:8099/getImage?filename\\u003d2.jpg\",\"price\":200.0,\"name\":\"Блюдо 2\",\"weight\":350.0,\"id\":\"1441a59f373131ef5eab4169cf8690a3\",\"desc\":\"\\u003ch3\\u003eВкусное блюдо 2\\u003ch3\\u003e\\u003cp\\u003eLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua\\u003c/p\\u003e\"},{\"image\":\"http://94.127.67.113:8099/getImage?filename\\u003d3.jpg\",\"price\":200.0,\"name\":\"Блюдо 3\",\"weight\":350.0,\"id\":\"61cc72310a2cbe7677825fbc58b007e3\",\"desc\":\"\\u003ch3\\u003eВкусное блюдо 3\\u003ch3\\u003e\\u003cp\\u003eLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua\\u003c/p\\u003e\"},{\"image\":\"http://94.127.67.113:8099/getImage?filename\\u003d4.jpg\",\"price\":200.0,\"name\":\"Блюдо 4\",\"weight\":350.0,\"id\":\"6a23ed14212db34cf10ae94a1cd2ebc6\",\"desc\":\"\\u003ch3\\u003eВкусное блюдо 4\\u003ch3\\u003e\\u003cp\\u003eLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua\\u003c/p\\u003e\"},{\"image\":\"http://94.127.67.113:8099/getImage?filename\\u003d5.jpg\",\"price\":200.0,\"name\":\"Блюдо 5\",\"weight\":350.0,\"id\":\"3a06fc9be6d67008a27271e1867077a4\",\"desc\":\"\\u003ch3\\u003eВкусное блюдо 5\\u003ch3\\u003e\\u003cp\\u003eLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua\\u003c/p\\u003e\"},{\"image\":\"http://94.127.67.113:8099/getImage?filename\\u003d6.jpg\",\"price\":200.0,\"name\":\"Блюдо 6\",\"weight\":350.0,\"id\":\"9d576943db9420138ab408f3d33c6bf8\",\"desc\":\"\\u003ch3\\u003eВкусное блюдо 6\\u003ch3\\u003e\\u003cp\\u003eLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua\\u003c/p\\u003e\"},{\"image\":\"http://94.127.67.113:8099/getImage?filename\\u003d7.jpg\",\"price\":200.0,\"name\":\"Блюдо 7\",\"weight\":350.0,\"id\":\"66f95f5242eef0cb224cc411b6365483\",\"desc\":\"\\u003ch3\\u003eВкусное блюдо 7\\u003ch3\\u003e\\u003cp\\u003eLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua\\u003c/p\\u003e\"},{\"image\":\"http://94.127.67.113:8099/getImage?filename\\u003d8.jpg\",\"price\":200.0,\"name\":\"Блюдо 8\",\"weight\":350.0,\"id\":\"ee1887e8aa008527379668a9f4d510cf\",\"desc\":\"\\u003ch3\\u003eВкусное блюдо 8\\u003ch3\\u003e\\u003cp\\u003eLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua\\u003c/p\\u003e\"},{\"image\":\"http://94.127.67.113:8099/getImage?filename\\u003d9.jpg\",\"price\":200.0,\"name\":\"Блюдо 9\",\"weight\":350.0,\"id\":\"8ad950df7e7705ea979aefb8b53e9452\",\"desc\":\"\\u003ch3\\u003eВкусное блюдо 9\\u003ch3\\u003e\\u003cp\\u003eLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua\\u003c/p\\u003e\"}]"
+				}
+			]
+		},
+		{
+			"name": "getPlaces",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/getPlaces",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"getPlaces"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Example #1",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/getPlaces",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"getPlaces"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [],
+					"cookie": [],
+					"body": "[{\"image\":\"http://94.127.67.113:8099/getImage?filename\\u003d21.jpg\",\"name\":\"Заведение 1\",\"id\":\"7388bc70f9b190c4a0f661790540f1db\",\"latitide\":31.34534534,\"desc\":\"\\u003ch3\\u003eЗаведение 1\\u003ch3\\u003e\\u003cp\\u003eLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua\\u003c/p\\u003e\",\"longitude\":51.23394534},{\"image\":\"http://94.127.67.113:8099/getImage?filename\\u003d22.jpg\",\"name\":\"Заведение 2\",\"id\":\"9bd06420c878476c7fcf2368257858ff\",\"latitide\":32.34534534,\"desc\":\"\\u003ch3\\u003eЗаведение 2\\u003ch3\\u003e\\u003cp\\u003eLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua\\u003c/p\\u003e\",\"longitude\":51.23345534},{\"image\":\"http://94.127.67.113:8099/getImage?filename\\u003d23.jpg\",\"name\":\"Заведение 3\",\"id\":\"39e2089d61b6b0a5cd876714d6c79311\",\"latitide\":31.5467534,\"desc\":\"\\u003ch3\\u003eЗаведение 3\\u003ch3\\u003e\\u003cp\\u003eLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua\\u003c/p\\u003e\",\"longitude\":51.53394534},{\"image\":\"http://94.127.67.113:8099/getImage?filename\\u003d24.jpg\",\"name\":\"Заведение 4\",\"id\":\"e34ef958398827107601550a69cd7070\",\"latitide\":31.5434534,\"desc\":\"\\u003ch3\\u003eЗаведение 4\\u003ch3\\u003e\\u003cp\\u003eLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua\\u003c/p\\u003e\",\"longitude\":51.33394534}]"
+				}
+			]
+		},
+		{
+			"name": "registerUser",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{    \"email\":\"test@wnfx.ru\",    \"firstname\":\"Alex\",    \"lastname\":\"Test\",    \"password\":\"password\"}"
+				},
+				"url": {
+					"raw": "http://94.127.67.113:8099/registerUser",
+					"protocol": "http",
+					"host": [
+						"94",
+						"127",
+						"67",
+						"113"
+					],
+					"port": "8099",
+					"path": [
+						"registerUser"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "registerUser",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{    \"email\":\"test@wnfx.ru\",    \"firstname\":\"Alex\",    \"lastname\":\"Test\",    \"password\":\"password\"}"
+						},
+						"url": {
+							"raw": "http://94.127.67.113:8099/registerUser",
+							"protocol": "http",
+							"host": [
+								"94",
+								"127",
+								"67",
+								"113"
+							],
+							"port": "8099",
+							"path": [
+								"registerUser"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 05 May 2021 07:32:18 GMT"
+						},
+						{
+							"key": "Transfer-encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Content-type",
+							"value": "text/html; charset=UTF-8"
+						}
+					],
+					"cookie": [],
+					"body": "{\"email\":\"test@wnfx.ru\",\"firstname\":\"Alex\",\"lastname\":\"Test\",\"password\":\"password\",\"id\":\"695ce9bf2421bc4f556d00de84ce17c2\"}"
+				}
+			]
+		},
+		{
+			"name": "getGoods",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{}"
+				},
+				"url": {
+					"raw": "http://94.127.67.113:8099/getGoods",
+					"protocol": "http",
+					"host": [
+						"94",
+						"127",
+						"67",
+						"113"
+					],
+					"port": "8099",
+					"path": [
+						"getGoods"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "checkLogin",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{    \"email\":\"test@wnfx.ru\",    \"password\":\"38ofqof36fofv23of6v23ofv\"}"
+				},
+				"url": {
+					"raw": "{{url}}/checkLogin",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"checkLogin"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Example #1",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{    \"email\":\"test@wnfx.ru\",    \"password\":\"38ofqof36fofv23of6v23ofv\"}"
+						},
+						"url": {
+							"raw": "{{url}}/checkLogin",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"checkLogin"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [],
+					"cookie": [],
+					"body": "{\"email\":\"test@wnfx.ru\",\"password\":\"38ofqof36fofv23of6v23ofv\",\"id\":\"3cf7ce3909bd132c01df1be2dbb29f26\"}"
+				}
+			]
+		},
+		{
+			"name": "getImage",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{}"
+				},
+				"url": {
+					"raw": "http://94.127.67.113:8099/getImage?filename="22.jpg",
+					"protocol": "http",
+					"host": [
+						"94",
+						"127",
+						"67",
+						"113"
+					],
+					"port": "8099",
+					"path": [
+						"getImage"
+					],
+					"query": [
+						{
+							"key": "filename",
+							"value": "22.jpg"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": ""
+		}
+	]
+}"

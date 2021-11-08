@@ -15,6 +15,8 @@ protocol GoodsCollectionViewCellDelegate {
 
 class MainViewController: UIViewController {
     
+    var goodsInfoArray: [GoodsInfo] = []
+    
     var currentGoodsNumber = 0
     
     var didPriceSortUsed = false
@@ -103,7 +105,7 @@ class MainViewController: UIViewController {
         stack.axis = .horizontal
         stack.distribution = .equalSpacing
         stack.alignment = .center
-        stack.spacing = 5
+        stack.spacing = 10
         return stack
     }()
     
@@ -132,6 +134,11 @@ class MainViewController: UIViewController {
         goodsCollectionView.register(GoodsCollectionViewCell.self, forCellWithReuseIdentifier: CellID.goodsCellID)
         
         setupContraints()
+        
+//        GoodsLoader().loadInfo()
+        let loader = GoodsLoader()
+        loader.delegate = self
+        loader.loadInfo()
         
         
     }
@@ -236,7 +243,7 @@ class MainViewController: UIViewController {
         sortLabel.snp.makeConstraints{
 //            $0.left.lessThanOrEqualTo(10)
             $0.left.equalToSuperview().inset(10)
-            $0.top.equalTo(lineView).offset(12)
+            $0.top.equalTo(lineView).offset(10)
         }
         
         priceArrow.snp.makeConstraints{
@@ -254,7 +261,7 @@ class MainViewController: UIViewController {
         filterStackView.snp.makeConstraints{
             $0.top.equalTo(lineView).inset(9)
             $0.centerX.equalToSuperview()
-            $0.width.equalTo(178)
+            $0.width.equalTo(180)
         }
         
         cancelSortButton.snp.makeConstraints{
@@ -304,8 +311,16 @@ extension MainViewController: GoodsCollectionViewCellDelegate {
         if currentGoodsNumber == 0 {bagQuantityLabel.isHidden = true}
         updateBagQuantityLabel(newValue: currentGoodsNumber)
     }
-    
+}
 
+extension MainViewController: GoodsLoaderDelegate {
+    func loaded(goodsInfo: [GoodsInfo]) {
+//        print(goodsInfo)
+        print(goodsInfo.first?.name)
+        self.goodsInfoArray = goodsInfo
+        print(self.goodsInfoArray)
+//        goodsCollectionView.reloadData()
+    }
     
     
 }

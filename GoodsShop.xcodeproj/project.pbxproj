@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		54F3E657FAB587B9DB09074B /* Pods_GoodsShop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6946818D540BC5FEA5E785F /* Pods_GoodsShop.framework */; };
+		AE82A8E5273885E500734F3F /* GoodsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE82A8E4273885E500734F3F /* GoodsLoader.swift */; };
+		AE82A8E72738891300734F3F /* Test Backend.postman_collection.json in Resources */ = {isa = PBXBuildFile; fileRef = AE82A8E62738891300734F3F /* Test Backend.postman_collection.json */; };
+		AE82A8EA27388E7A00734F3F /* JsonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE82A8E927388E7A00734F3F /* JsonModel.swift */; };
+		AE82A8EC27393B3E00734F3F /* GetGoodsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE82A8EB27393B3E00734F3F /* GetGoodsModel.swift */; };
 		AECDEA6627354D6F00643AAB /* GoodsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECDEA6527354D6F00643AAB /* GoodsCollectionViewCell.swift */; };
 		AEDF8E312734009000F5D977 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDF8E302734009000F5D977 /* AppDelegate.swift */; };
 		AEDF8E332734009000F5D977 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDF8E322734009000F5D977 /* SceneDelegate.swift */; };
@@ -25,6 +29,10 @@
 /* Begin PBXFileReference section */
 		05C2669D033EB86002227149 /* Pods-GoodsShop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoodsShop.release.xcconfig"; path = "Target Support Files/Pods-GoodsShop/Pods-GoodsShop.release.xcconfig"; sourceTree = "<group>"; };
 		7FED41CD0FA29255EE0C7874 /* Pods-GoodsShop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoodsShop.debug.xcconfig"; path = "Target Support Files/Pods-GoodsShop/Pods-GoodsShop.debug.xcconfig"; sourceTree = "<group>"; };
+		AE82A8E4273885E500734F3F /* GoodsLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsLoader.swift; sourceTree = "<group>"; };
+		AE82A8E62738891300734F3F /* Test Backend.postman_collection.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "Test Backend.postman_collection.json"; sourceTree = "<group>"; };
+		AE82A8E927388E7A00734F3F /* JsonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonModel.swift; sourceTree = "<group>"; };
+		AE82A8EB27393B3E00734F3F /* GetGoodsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetGoodsModel.swift; sourceTree = "<group>"; };
 		AECDEA6527354D6F00643AAB /* GoodsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsCollectionViewCell.swift; sourceTree = "<group>"; };
 		AEDF8E2D2734009000F5D977 /* GoodsShop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoodsShop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AEDF8E302734009000F5D977 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -93,6 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				AEDF8E302734009000F5D977 /* AppDelegate.swift */,
+				AE82A8E62738891300734F3F /* Test Backend.postman_collection.json */,
 				AEDF8E322734009000F5D977 /* SceneDelegate.swift */,
 				AEDF8E5127340E4E00F5D977 /* Components */,
 				AEDF8E48273409E500F5D977 /* Controller */,
@@ -110,6 +119,8 @@
 			isa = PBXGroup;
 			children = (
 				AEDF8E44273409CC00F5D977 /* Model.swift */,
+				AE82A8E927388E7A00734F3F /* JsonModel.swift */,
+				AE82A8EB27393B3E00734F3F /* GetGoodsModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -153,6 +164,7 @@
 				AEDF8E54273411AF00F5D977 /* LineUnderBrandLabel.swift */,
 				AEDF8E562734203D00F5D977 /* DefaultButton.swift */,
 				AECDEA6527354D6F00643AAB /* GoodsCollectionViewCell.swift */,
+				AE82A8E4273885E500734F3F /* GoodsLoader.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -222,6 +234,7 @@
 				AEDF8E4E27340D2300F5D977 /* SFUIDisplay-Regular.ttf in Resources */,
 				AEDF8E3A2734009200F5D977 /* Assets.xcassets in Resources */,
 				AEDF8E4F27340D2300F5D977 /* SFUIDisplay-Light.ttf in Resources */,
+				AE82A8E72738891300734F3F /* Test Backend.postman_collection.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,10 +290,13 @@
 				AEDF8E55273411AF00F5D977 /* LineUnderBrandLabel.swift in Sources */,
 				AEDF8E572734203D00F5D977 /* DefaultButton.swift in Sources */,
 				AEDF8E352734009000F5D977 /* MainViewController.swift in Sources */,
+				AE82A8EC27393B3E00734F3F /* GetGoodsModel.swift in Sources */,
+				AE82A8EA27388E7A00734F3F /* JsonModel.swift in Sources */,
 				AEDF8E312734009000F5D977 /* AppDelegate.swift in Sources */,
 				AECDEA6627354D6F00643AAB /* GoodsCollectionViewCell.swift in Sources */,
 				AEDF8E332734009000F5D977 /* SceneDelegate.swift in Sources */,
 				AEDF8E45273409CC00F5D977 /* Model.swift in Sources */,
+				AE82A8E5273885E500734F3F /* GoodsLoader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

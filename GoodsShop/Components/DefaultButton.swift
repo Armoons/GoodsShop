@@ -32,7 +32,7 @@ class DefaultButton: UIButton {
         self.titleLabel?.font = UIFont(name: Font.sfBold, size: 14)
         self.titleLabel?.textColor = .black
         self.snp.makeConstraints {
-            $0.width.equalTo(75)
+            $0.width.equalTo(80)
             $0.height.equalTo(21)
         }
     }

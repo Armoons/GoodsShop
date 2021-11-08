@@ -8,21 +8,9 @@
 import Foundation
 import UIKit
 
-struct GoodsInfo {
-    let image: UIImage
-    let name: String
-    let rating: Double
-    let price: Double
-    let id: String
-    let description: String
-}
 
-struct GoodsShowInfo {
-    let image: UIImage
-    let name: String
-    let price: Double
-    let description: String
-}
+
+
 
 public struct Font {
     static let sfRegular: String = "SFUIDisplay-Regular"
