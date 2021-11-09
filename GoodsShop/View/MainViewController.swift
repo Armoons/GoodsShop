@@ -15,29 +15,31 @@ protocol GoodsCollectionViewCellDelegate {
 
 class MainViewController: UIViewController {
     
+    let loader = GoodsService()
+
     var goodsInfoArray: [GoodsInfo] = []
     
-    var currentGoodsNumber = 0
+    private var currentGoodsNumber = 0
     
-    var didPriceSortUsed = false
-    var didRateSortUsed = false
-    var priceSortTouchesNumber = 0
-    var rateSortTouchesNumber = 0
+    private var didPriceSortUsed = false
+    private var didRateSortUsed = false
+    private var priceSortTouchesNumber = 0
+    private var rateSortTouchesNumber = 0
     
-    let brandLabel: UILabel = {
+    private let brandLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: Font.sfBold, size: 26)
         label.text = "GOODS"
         return label
     }()
     
-    let shoppingBagButton: UIButton = {
+    private let shoppingBagButton: UIButton = {
         let button = UIButton()
         button.setImage(Images.shoppingBag, for: .normal)
         return button
     }()
     
-    let bagQuantityLabel: UILabel = {
+    private let bagQuantityLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: Font.sfLight, size: 9)
         label.textColor = .black
@@ -46,27 +48,27 @@ class MainViewController: UIViewController {
         return label
     }()
     
-    let lineView: LineUnderBrandLabel = {
+    private let lineView: LineUnderBrandLabel = {
         let view = LineUnderBrandLabel()
         view.backgroundColor = Colors.mainBlue
         return view
     }()
     
-    let sortLabel: UILabel = {
+    private let sortLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: Font.sfBold, size: 14)
         label.text = "Сортировка:"
         return label
     }()
     
-    let cancelSortButton: UIButton = {
+    private let cancelSortButton: UIButton = {
         let button = UIButton()
         button.setImage(Images.CancelSort, for: .normal)
         button.isHidden = true
         return button
     }()
     
-    let priceArrow: UIImageView = {
+    private let priceArrow: UIImageView = {
         let iv = UIImageView()
         iv.image = Images.ChangeSortStatus
         iv.isHidden = true
@@ -74,14 +76,14 @@ class MainViewController: UIViewController {
     }()
     
     
-    let ratingArrow: UIImageView = {
+    private let ratingArrow: UIImageView = {
         let iv = UIImageView()
         iv.image = Images.ChangeSortStatus
         iv.isHidden = true
         return iv
     }()
     
-    let priceButton: DefaultButton = {
+    private let priceButton: DefaultButton = {
         let button = DefaultButton(title: "Цена")
         button.titleLabel?.font = UIFont(name: Font.sfLight, size: 12)
         button.addTarget(self, action: #selector(priceTouched), for: .touchUpInside)
@@ -89,7 +91,7 @@ class MainViewController: UIViewController {
         return button
     }()
     
-    let ratingButton: DefaultButton = {
+    private let ratingButton: DefaultButton = {
         let button = DefaultButton(title: "Рейтинг")
         button.titleLabel?.font = UIFont(name: Font.sfLight, size: 12)
         button.setTitleColor(.black, for: .normal)
@@ -97,10 +99,7 @@ class MainViewController: UIViewController {
         return button
     }()
     
-    
-    
-    
-    let filterStackView: UIStackView = {
+    private let filterStackView: UIStackView = {
         let stack = UIStackView()
         stack.axis = .horizontal
         stack.distribution = .equalSpacing
@@ -109,7 +108,7 @@ class MainViewController: UIViewController {
         return stack
     }()
     
-    let goodsCollectionView: UICollectionView = {
+    private let goodsCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         layout.sectionInset = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)
@@ -122,9 +121,6 @@ class MainViewController: UIViewController {
         return cv
     }()
     
-//    
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Colors.background
@@ -133,15 +129,15 @@ class MainViewController: UIViewController {
         goodsCollectionView.dataSource = self
         goodsCollectionView.register(GoodsCollectionViewCell.self, forCellWithReuseIdentifier: CellID.goodsCellID)
         
-        setupContraints()
-        
-//        GoodsLoader().loadInfo()
-        let loader = GoodsLoader()
         loader.delegate = self
         loader.loadInfo()
         
         
+        setupContraints()
+
     }
+    
+    
     
     func updateBagQuantityLabel(newValue: Int) {
         bagQuantityLabel.text = "\(newValue)"
@@ -280,6 +276,22 @@ class MainViewController: UIViewController {
     }
 }
 
+extension MainViewController: GoodsServiceDelegate {
+
+    func loaded(goodsInfo: [GoodsInfo]) {
+        //        print(goodsInfo)
+        print(goodsInfo.first?.name ?? "")
+        goodsInfoArray = goodsInfo
+        //            self.goodsCollectionView.reloadData()
+        
+        self.goodsCollectionView.reloadData()
+
+        print(self.goodsInfoArray)
+    }
+    
+    
+}
+
 extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -287,12 +299,15 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return GoodsArray.count
+        print(goodsInfoArray)
+//        return GoodsArray.count
+        return goodsInfoArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellID.goodsCellID, for: indexPath) as! GoodsCollectionViewCell
-        cell.data = GoodsArray[indexPath.row]
+//        cell.data = GoodsArray[indexPath.row]
+        cell.data = goodsInfoArray[indexPath.row]
         cell.delegate = self
         return cell
     }
@@ -313,14 +328,4 @@ extension MainViewController: GoodsCollectionViewCellDelegate {
     }
 }
 
-extension MainViewController: GoodsLoaderDelegate {
-    func loaded(goodsInfo: [GoodsInfo]) {
-//        print(goodsInfo)
-        print(goodsInfo.first?.name)
-        self.goodsInfoArray = goodsInfo
-        print(self.goodsInfoArray)
-//        goodsCollectionView.reloadData()
-    }
-    
-    
-}
+

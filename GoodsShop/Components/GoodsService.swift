@@ -7,19 +7,18 @@
 
 import Foundation
 
-protocol GoodsLoaderDelegate {
+protocol GoodsServiceDelegate {
     func loaded(goodsInfo: [GoodsInfo])
 }
 
-class GoodsLoader {
+class GoodsService {
+
+    static let urlString = "http://94.127.67.113:8099/getGoods"
     
-//    var goodsInfoArray = [GoodsInfo]()
-    let urlString = "http://94.127.67.113:8099/getGoods"
-    
-    var delegate: GoodsLoaderDelegate?
+    var delegate: GoodsServiceDelegate?
     
     func loadInfo() {
-        guard let url = URL(string: urlString) else { return }
+        guard let url = URL(string: Self.urlString) else { return }
         URLSession.shared.dataTask(with: url) { [self] data, response, error in
             if let error = error {
                 print(error)
@@ -29,13 +28,12 @@ class GoodsLoader {
 
             do {
                 let lessons = try JSONDecoder().decode([GoodsInfo].self, from: data)
-                delegate?.loaded(goodsInfo: lessons)
-//                print(lessons.first?.name ?? "")
+                DispatchQueue.main.async {
+                    delegate?.loaded(goodsInfo: lessons)
+                }
             }  catch {
                 print(error)
             }
-//            let jsonString = String(data: data, encoding: .utf8)
-//            print(jsonString)
         }.resume()
     }
 }

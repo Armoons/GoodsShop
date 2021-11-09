@@ -8,10 +8,6 @@
 import Foundation
 import UIKit
 
-
-
-
-
 public struct Font {
     static let sfRegular: String = "SFUIDisplay-Regular"
     static let sfBold: String = "SFUIDisplay-Bold"
@@ -37,18 +33,14 @@ struct Colors {
     static let background: UIColor = UIColor(red: 226/255, green: 212/255, blue: 196/255, alpha: 1)
 }
 
-let GoodsArray: [GoodsShowInfo] = [
-    GoodsShowInfo(image: Images.testImage, name: "Товар 1", price: 300.0, description: "Short description"),
-    GoodsShowInfo(image: Images.testImage, name: "Товар 2", price: 400.0, description: "Short description"),
-    GoodsShowInfo(image: Images.testImage, name: "Товар 1", price: 300.0, description: "Short description"),
-    GoodsShowInfo(image: Images.testImage, name: "Товар 2", price: 400.0, description: "Short description"),
-    GoodsShowInfo(image: Images.testImage, name: "Товар 1", price: 300.0, description: "Short description"),
-    GoodsShowInfo(image: Images.testImage, name: "Товар 2", price: 400.0, description: "Short description"),
-    GoodsShowInfo(image: Images.testImage, name: "Товар 1", price: 300.0, description: "Short description"),
-    GoodsShowInfo(image: Images.testImage, name: "Товар 2", price: 400.0, description: "Short description")
-
+let GoodsArray: [GoodsInfo] = [
+    
+    GoodsInfo(image: "rfrf", price: 12, name: "rwfwr", weight: 13, id: "rfrfrfr", desc: "ewrtwrt"),
+    GoodsInfo(image: "rfrf", price: 12, name: "rwfwr", weight: 13, id: "rfrfrfr", desc: "ewrtwrt"),
+    GoodsInfo(image: "rfrf", price: 12, name: "rwfwr", weight: 13, id: "rfrfrfr", desc: "ewrtwrt"),
+    GoodsInfo(image: "rfrf", price: 12, name: "rwfwr", weight: 13, id: "rfrfrfr", desc: "ewrtwrt"),
+    GoodsInfo(image: "rfrf", price: 12, name: "rwfwr", weight: 13, id: "rfrfrfr", desc: "ewrtwrt")
+    
 ]
-//[GoodsInfo(image: Images.testImage, name: "Товар 1", rating: 400, price: 300.0, id: "wrtwert", description: "Товар 1 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua"),
-// GoodsInfo(image: Images.testImage, name: "Товар 2", rating: 300, price: 205.0, id: "gerge", description: "Товар 2 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua")
-//]
+
 

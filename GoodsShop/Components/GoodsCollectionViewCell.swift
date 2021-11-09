@@ -14,14 +14,14 @@ class GoodsCollectionViewCell: UICollectionViewCell {
     var delegate: GoodsCollectionViewCellDelegate?
     
     
-    var data: GoodsShowInfo? {
+    var data: GoodsInfo? {
         didSet {
             guard let data = data else { return }
-            imageView.image = data.image
+//            imageView.image = data.image
             nameLabel.text = data.name
-            descriptionLabel.text = data.description
-            let newPrice = forTrailingZero(temp: data.price)
-            priceLabel.text = newPrice + "₽"
+            descriptionLabel.text = data.desc
+//            let newPrice = forTrailingZero(temp: data.price)
+            priceLabel.text = "\(data.price)₽"
         }
     }
     
@@ -120,19 +120,7 @@ class GoodsCollectionViewCell: UICollectionViewCell {
         self.layer.cornerRadius = 20
         self.layer.borderWidth = 2
         self.layer.borderColor = Colors.mainBlue.cgColor
-        
-//        self.backgroundColor = .white
-        
-//        self.layer.cornerRadius = 12
-//        self.layer.backgroundColor = UIColor.white.cgColor
-//        self.layer.backgroundColor = UIColor.white.cgColor
-//        self.layer.shadowColor = Colors.mainBlue.cgColor
-//        self.layer.shadowOffset = CGSize(width: 1, height: 8)
-//        self.layer.shadowRadius = 10.0
-//        self.layer.shadowOpacity = 0.5
-//        self.layer.masksToBounds = false
-        
-        
+            
         imageView.snp.makeConstraints{
             $0.left.top.right.equalToSuperview()
             $0.height.equalTo(130)
