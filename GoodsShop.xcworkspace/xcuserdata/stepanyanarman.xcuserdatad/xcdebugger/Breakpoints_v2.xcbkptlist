@@ -32,8 +32,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "77"
             endingLineNumber = "77"
-            landmarkName = "init(frame:)"
-            landmarkType = "7">
+            landmarkName = "GoodsCollectionViewCell"
+            landmarkType = "3">
             <Actions>
                <BreakpointActionProxy
                   ActionExtensionID = "Xcode.BreakpointAction.DebuggerCommand">
@@ -370,8 +370,8 @@
             filePath = "GoodsShop/View/MainViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "282"
-            endingLineNumber = "282"
+            startingLineNumber = "290"
+            endingLineNumber = "290"
             landmarkName = "loaded(goodsInfo:)"
             landmarkType = "7">
          </BreakpointContent>

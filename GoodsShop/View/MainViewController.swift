@@ -18,6 +18,7 @@ class MainViewController: UIViewController {
     let loader = GoodsService()
 
     var goodsInfoArray: [GoodsInfo] = []
+    var defaultGoodsInfoArray: [GoodsInfo] = []
     
     private var currentGoodsNumber = 0
     
@@ -59,13 +60,6 @@ class MainViewController: UIViewController {
         label.font = UIFont(name: Font.sfBold, size: 14)
         label.text = "Сортировка:"
         return label
-    }()
-    
-    private let cancelSortButton: UIButton = {
-        let button = UIButton()
-        button.setImage(Images.CancelSort, for: .normal)
-        button.isHidden = true
-        return button
     }()
     
     private let priceArrow: UIImageView = {
@@ -168,7 +162,7 @@ class MainViewController: UIViewController {
         
     }
     
-    func changeSort(usedStatus: inout Bool, unusedStatus: inout Bool, usedTouchesNumber: inout Int, unusedTouchesNumber: inout Int,usedButton: DefaultButton, usedArrow: UIImageView, unusedButton: DefaultButton, unusedArrow: UIImageView) {
+    func changeSort(sortType: String,usedStatus: inout Bool, unusedStatus: inout Bool, usedTouchesNumber: inout Int, unusedTouchesNumber: inout Int,usedButton: DefaultButton, usedArrow: UIImageView, unusedButton: DefaultButton, unusedArrow: UIImageView) {
         if !usedStatus && usedTouchesNumber == 0  {
             usedTouchesNumber = 1
             usedStatus = true
@@ -176,26 +170,47 @@ class MainViewController: UIViewController {
             setupButton(button: usedButton, arrow: usedArrow)
             resetButton(button: unusedButton, arrow: unusedArrow, unusedStatus: &unusedStatus, unusedTouchesNumber: &unusedTouchesNumber)
             usedButton.titleLabel?.textColor = .black
+            
+            if sortType == "rating" {
+                goodsInfoArray.sort(by: {$0.weight > $1.weight })
+                goodsCollectionView.reloadData()
+            } else if sortType == "price" {
+                goodsInfoArray.sort(by: {$0.price > $1.price })
+                goodsCollectionView.reloadData()
+
+            }
         } else if usedStatus && usedTouchesNumber == 1 {
             usedArrow.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
             
             usedTouchesNumber = 2
             resetButton(button: unusedButton, arrow: unusedArrow, unusedStatus: &unusedStatus, unusedTouchesNumber: &unusedTouchesNumber)
+            
+            if sortType == "rating" {
+                goodsInfoArray.sort(by: {$0.weight < $1.weight })
+                goodsCollectionView.reloadData()
+            } else if sortType == "price" {
+                goodsInfoArray.sort(by: {$0.price < $1.price })
+                goodsCollectionView.reloadData()
+            }
         } else if usedStatus && usedTouchesNumber == 2 {
             resetButton(button: usedButton, arrow: usedArrow, unusedStatus: &unusedStatus, unusedTouchesNumber: &usedTouchesNumber)
             resetButton(button: unusedButton, arrow: unusedArrow, unusedStatus: &unusedStatus, unusedTouchesNumber: &usedTouchesNumber)
 
             usedTouchesNumber = 0
             usedStatus = false
+            
+            goodsInfoArray = defaultGoodsInfoArray
+            goodsCollectionView.reloadData()
         }
     }
     
     @objc func priceTouched() {
-        changeSort(usedStatus: &didPriceSortUsed, unusedStatus: &didRateSortUsed, usedTouchesNumber: &priceSortTouchesNumber, unusedTouchesNumber: &rateSortTouchesNumber, usedButton: priceButton, usedArrow: priceArrow, unusedButton: ratingButton, unusedArrow: ratingArrow)
+        changeSort(sortType: "price", usedStatus: &didPriceSortUsed, unusedStatus: &didRateSortUsed, usedTouchesNumber: &priceSortTouchesNumber, unusedTouchesNumber: &rateSortTouchesNumber, usedButton: priceButton, usedArrow: priceArrow, unusedButton: ratingButton, unusedArrow: ratingArrow)
+        
     }
     
     @objc func ratingTouched() {
-        changeSort(usedStatus: &didRateSortUsed, unusedStatus: &didPriceSortUsed, usedTouchesNumber: &rateSortTouchesNumber, unusedTouchesNumber: &priceSortTouchesNumber, usedButton: ratingButton, usedArrow: ratingArrow, unusedButton: priceButton, unusedArrow: priceArrow)
+        changeSort(sortType: "rating", usedStatus: &didRateSortUsed, unusedStatus: &didPriceSortUsed, usedTouchesNumber: &rateSortTouchesNumber, unusedTouchesNumber: &priceSortTouchesNumber, usedButton: ratingButton, usedArrow: ratingArrow, unusedButton: priceButton, unusedArrow: priceArrow)
     }
     
     
@@ -203,7 +218,7 @@ class MainViewController: UIViewController {
     func setupContraints() {
         
         for ui in [filterStackView, brandLabel, lineView, sortLabel, shoppingBagButton, bagQuantityLabel,
-                   goodsCollectionView, priceArrow, ratingArrow, cancelSortButton] {
+                   goodsCollectionView, priceArrow, ratingArrow] {
             view.addSubview(ui)
         }
         
@@ -260,12 +275,6 @@ class MainViewController: UIViewController {
             $0.width.equalTo(180)
         }
         
-        cancelSortButton.snp.makeConstraints{
-            $0.right.equalToSuperview().inset(10)
-            $0.top.equalTo(lineView).inset(9)
-            $0.height.width.equalTo(23)
-        }
-        
         goodsCollectionView.snp.makeConstraints {
             $0.top.equalTo(sortLabel.snp.bottom).offset(12)
             $0.left.right.equalToSuperview()
@@ -277,9 +286,9 @@ class MainViewController: UIViewController {
 }
 
 extension MainViewController: GoodsServiceDelegate {
-
     func loaded(goodsInfo: [GoodsInfo]) {
         goodsInfoArray = goodsInfo
+        defaultGoodsInfoArray = goodsInfo
     
         self.goodsCollectionView.reloadData()
 
