@@ -33,14 +33,14 @@ struct Colors {
     static let background: UIColor = UIColor(red: 226/255, green: 212/255, blue: 196/255, alpha: 1)
 }
 
-let GoodsArray: [GoodsInfo] = [
-    
-    GoodsInfo(image: "rfrf", price: 12, name: "rwfwr", weight: 13, id: "rfrfrfr", desc: "ewrtwrt"),
-    GoodsInfo(image: "rfrf", price: 12, name: "rwfwr", weight: 13, id: "rfrfrfr", desc: "ewrtwrt"),
-    GoodsInfo(image: "rfrf", price: 12, name: "rwfwr", weight: 13, id: "rfrfrfr", desc: "ewrtwrt"),
-    GoodsInfo(image: "rfrf", price: 12, name: "rwfwr", weight: 13, id: "rfrfrfr", desc: "ewrtwrt"),
-    GoodsInfo(image: "rfrf", price: 12, name: "rwfwr", weight: 13, id: "rfrfrfr", desc: "ewrtwrt")
-    
-]
+//let GoodsArray: [GoodsInfo] = [
+//    
+//    GoodsInfo(image: "rfrf", price: 12, name: "rwfwr", weight: 13, id: "rfrfrfr", desc: "ewrtwrt"),
+//    GoodsInfo(image: "rfrf", price: 12, name: "rwfwr", weight: 13, id: "rfrfrfr", desc: "ewrtwrt"),
+//    GoodsInfo(image: "rfrf", price: 12, name: "rwfwr", weight: 13, id: "rfrfrfr", desc: "ewrtwrt"),
+//    GoodsInfo(image: "rfrf", price: 12, name: "rwfwr", weight: 13, id: "rfrfrfr", desc: "ewrtwrt"),
+//    GoodsInfo(image: "rfrf", price: 12, name: "rwfwr", weight: 13, id: "rfrfrfr", desc: "ewrtwrt")
+//    
+//]
 
 

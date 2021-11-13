@@ -7,24 +7,30 @@
 
 import UIKit
 
-
-
 class GoodsCollectionViewCell: UICollectionViewCell {
     
     var delegate: GoodsCollectionViewCellDelegate?
-    
     
     var data: GoodsInfo? {
         didSet {
             guard let data = data else { return }
             imageView.loadImage(urlString: data.image)
             nameLabel.text = data.name
-            descriptionLabel.text = data.desc
             priceLabel.text = "\(data.price)₽"
+            
+            if data.name.count == 7 {
+                let text = String(data.desc.replacingOccurrences(of: "<h3>Товар 1<h3><p>", with: "").dropLast(2))
+                descriptionLabel.text = text
+            } else {
+                let text = String(data.desc.dropFirst(data.name.count + 10).dropLast(2))
+                descriptionLabel.text = text
+            }
         }
     }
     
-    let imageView: UIImageView = {
+    
+    
+    private let imageView: UIImageView = {
         let iv = UIImageView()
         iv.translatesAutoresizingMaskIntoConstraints = false
         iv.contentMode = .scaleToFill
@@ -33,13 +39,13 @@ class GoodsCollectionViewCell: UICollectionViewCell {
         return iv
     }()
     
-    let nameLabel: UILabel = {
+    private let nameLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: Font.sfBold, size: 17)
         return label
     }()
     
-    let descriptionLabel: UILabel = {
+    private let descriptionLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: Font.sfLight, size: 13)
         label.textColor = .black
@@ -48,7 +54,7 @@ class GoodsCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    let priceLabel: UILabel = {
+    private let priceLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: Font.sfBold, size: 13)
         label.textColor = .black
@@ -60,14 +66,14 @@ class GoodsCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    let plusButton: UIButton = {
+    private let plusButton: UIButton = {
         let button = UIButton()
         button.setImage(Images.plus, for: .normal)
         button.addTarget(self, action: #selector(plusTouched), for: .touchUpInside)
 
         return button
     }()
-    var didPlusTouch: Bool = false
+    private var didPlusTouch: Bool = false
     
     override init(frame: CGRect) {
         super.init(frame: frame)
