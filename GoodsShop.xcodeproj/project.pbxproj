@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		54F3E657FAB587B9DB09074B /* Pods_GoodsShop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6946818D540BC5FEA5E785F /* Pods_GoodsShop.framework */; };
+		AE5C5AA4274014E7000C319D /* ImageView+Ext..swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5C5AA3274014E7000C319D /* ImageView+Ext..swift */; };
 		AE82A8E5273885E500734F3F /* GoodsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE82A8E4273885E500734F3F /* GoodsService.swift */; };
 		AE82A8E72738891300734F3F /* Test Backend.postman_collection.json in Resources */ = {isa = PBXBuildFile; fileRef = AE82A8E62738891300734F3F /* Test Backend.postman_collection.json */; };
 		AE82A8EC27393B3E00734F3F /* GetGoodsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE82A8EB27393B3E00734F3F /* GetGoodsModel.swift */; };
@@ -28,6 +29,7 @@
 /* Begin PBXFileReference section */
 		05C2669D033EB86002227149 /* Pods-GoodsShop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoodsShop.release.xcconfig"; path = "Target Support Files/Pods-GoodsShop/Pods-GoodsShop.release.xcconfig"; sourceTree = "<group>"; };
 		7FED41CD0FA29255EE0C7874 /* Pods-GoodsShop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoodsShop.debug.xcconfig"; path = "Target Support Files/Pods-GoodsShop/Pods-GoodsShop.debug.xcconfig"; sourceTree = "<group>"; };
+		AE5C5AA3274014E7000C319D /* ImageView+Ext..swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ImageView+Ext..swift"; sourceTree = "<group>"; };
 		AE82A8E4273885E500734F3F /* GoodsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsService.swift; sourceTree = "<group>"; };
 		AE82A8E62738891300734F3F /* Test Backend.postman_collection.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "Test Backend.postman_collection.json"; sourceTree = "<group>"; };
 		AE82A8EB27393B3E00734F3F /* GetGoodsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetGoodsModel.swift; sourceTree = "<group>"; };
@@ -80,9 +82,27 @@
 		AE05E053273AC708007F9E35 /* JSON */ = {
 			isa = PBXGroup;
 			children = (
+				AE82A8E4273885E500734F3F /* GoodsService.swift */,
 				AE82A8E62738891300734F3F /* Test Backend.postman_collection.json */,
 			);
 			path = JSON;
+			sourceTree = "<group>";
+		};
+		AE05E054273AE67C007F9E35 /* XcodeFiles */ = {
+			isa = PBXGroup;
+			children = (
+				AEDF8E322734009000F5D977 /* SceneDelegate.swift */,
+				AEDF8E302734009000F5D977 /* AppDelegate.swift */,
+			);
+			path = XcodeFiles;
+			sourceTree = "<group>";
+		};
+		AE5C5AA2274014BA000C319D /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				AE5C5AA3274014E7000C319D /* ImageView+Ext..swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		AEDF8E242734009000F5D977 = {
@@ -106,16 +126,14 @@
 		AEDF8E2F2734009000F5D977 /* GoodsShop */ = {
 			isa = PBXGroup;
 			children = (
+				AE05E054273AE67C007F9E35 /* XcodeFiles */,
 				AE05E053273AC708007F9E35 /* JSON */,
-				AEDF8E302734009000F5D977 /* AppDelegate.swift */,
-				AEDF8E322734009000F5D977 /* SceneDelegate.swift */,
 				AEDF8E5127340E4E00F5D977 /* Components */,
-				AEDF8E48273409E500F5D977 /* Controller */,
 				AEDF8E47273409DB00F5D977 /* View */,
 				AEDF8E46273409D300F5D977 /* Model */,
-				AEDF8E392734009200F5D977 /* Assets.xcassets */,
 				AEDF8E4927340CEE00F5D977 /* Resources */,
 				AEDF8E3B2734009200F5D977 /* LaunchScreen.storyboard */,
+				AEDF8E392734009200F5D977 /* Assets.xcassets */,
 				AEDF8E3E2734009200F5D977 /* Info.plist */,
 			);
 			path = GoodsShop;
@@ -138,16 +156,10 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		AEDF8E48273409E500F5D977 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
 		AEDF8E4927340CEE00F5D977 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				AE5C5AA2274014BA000C319D /* Extension */,
 				AEDF8E4A27340CFE00F5D977 /* Font */,
 			);
 			path = Resources;
@@ -166,10 +178,9 @@
 		AEDF8E5127340E4E00F5D977 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				AEDF8E54273411AF00F5D977 /* LineUnderBrandLabel.swift */,
 				AEDF8E562734203D00F5D977 /* DefaultButton.swift */,
+				AEDF8E54273411AF00F5D977 /* LineUnderBrandLabel.swift */,
 				AECDEA6527354D6F00643AAB /* GoodsCollectionViewCell.swift */,
-				AE82A8E4273885E500734F3F /* GoodsService.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -295,6 +306,7 @@
 				AEDF8E55273411AF00F5D977 /* LineUnderBrandLabel.swift in Sources */,
 				AEDF8E572734203D00F5D977 /* DefaultButton.swift in Sources */,
 				AEDF8E352734009000F5D977 /* MainViewController.swift in Sources */,
+				AE5C5AA4274014E7000C319D /* ImageView+Ext..swift in Sources */,
 				AE82A8EC27393B3E00734F3F /* GetGoodsModel.swift in Sources */,
 				AEDF8E312734009000F5D977 /* AppDelegate.swift in Sources */,
 				AECDEA6627354D6F00643AAB /* GoodsCollectionViewCell.swift in Sources */,

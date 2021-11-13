@@ -279,10 +279,8 @@ class MainViewController: UIViewController {
 extension MainViewController: GoodsServiceDelegate {
 
     func loaded(goodsInfo: [GoodsInfo]) {
-        //        print(goodsInfo)
         print(goodsInfo.first?.name ?? "")
         goodsInfoArray = goodsInfo
-        //            self.goodsCollectionView.reloadData()
         
         self.goodsCollectionView.reloadData()
 

@@ -16,3 +16,4 @@ struct GoodsInfo: Decodable{
     let id: String
     let desc: String
 }
+

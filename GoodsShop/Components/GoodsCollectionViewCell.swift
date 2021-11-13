@@ -17,18 +17,17 @@ class GoodsCollectionViewCell: UICollectionViewCell {
     var data: GoodsInfo? {
         didSet {
             guard let data = data else { return }
-//            imageView.image = data.image
+            imageView.loadImage(urlString: data.image)
             nameLabel.text = data.name
             descriptionLabel.text = data.desc
-//            let newPrice = forTrailingZero(temp: data.price)
             priceLabel.text = "\(data.price)₽"
         }
     }
     
     let imageView: UIImageView = {
         let iv = UIImageView()
-//        iv.translatesAutoresizingMaskIntoConstraints = false
-        iv.contentMode = .scaleAspectFit
+        iv.translatesAutoresizingMaskIntoConstraints = false
+        iv.contentMode = .scaleToFill
         iv.layer.cornerRadius = 20
         iv.layer.masksToBounds = true
         return iv
