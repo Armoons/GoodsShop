@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class GoodsCollectionViewCell: UICollectionViewCell {
     
@@ -14,7 +15,8 @@ class GoodsCollectionViewCell: UICollectionViewCell {
     var data: GoodsInfo? {
         didSet {
             guard let data = data else { return }
-            imageView.loadImage(urlString: data.image)
+            let imageURL = URL(string: data.image)
+            imageView.kf.setImage(with: imageURL)
             nameLabel.text = data.name
             priceLabel.text = "\(data.price)₽"
             
@@ -27,8 +29,6 @@ class GoodsCollectionViewCell: UICollectionViewCell {
             }
         }
     }
-    
-    
     
     private let imageView: UIImageView = {
         let iv = UIImageView()

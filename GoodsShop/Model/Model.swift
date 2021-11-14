@@ -8,6 +8,11 @@
 import Foundation
 import UIKit
 
+enum SortType {
+    case price
+    case rating
+}
+
 public struct Font {
     static let sfRegular: String = "SFUIDisplay-Regular"
     static let sfBold: String = "SFUIDisplay-Bold"
