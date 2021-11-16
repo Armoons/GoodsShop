@@ -21,7 +21,8 @@ public struct Font {
 
 struct Images {
     static let shoppingBag: UIImage = UIImage(named: "ShoppingBag")!
-    static let plus: UIImage = UIImage(named: "PlusButton")!
+    static let plus: UIImage = UIImage(named: "PlusImagee")!
+    static let minus: UIImage = UIImage(named: "MinusImage")!
     static let testImage: UIImage = UIImage(named: "TestImage")!
     static let CancelSort: UIImage = UIImage(named: "CancelSort")!
     static let ChangeSortStatus: UIImage = UIImage(named: "ChangeSortStatus")!
