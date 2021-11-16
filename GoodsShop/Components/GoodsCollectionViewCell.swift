@@ -8,6 +8,11 @@
 import UIKit
 import Kingfisher
 
+protocol GoodsCollectionViewCellDelegate {
+    func didAddNewGoods()
+    func didRemovedGoods()
+}
+
 class GoodsCollectionViewCell: UICollectionViewCell {
     
     var delegate: GoodsCollectionViewCellDelegate?
@@ -50,7 +55,6 @@ class GoodsCollectionViewCell: UICollectionViewCell {
         label.font = UIFont(name: Font.sfLight, size: 13)
         label.textColor = .black
         label.numberOfLines = 1
-//        label.backgroundColor = .red
         return label
     }()
     
@@ -89,7 +93,6 @@ class GoodsCollectionViewCell: UICollectionViewCell {
     
     @objc func plusTouched(){
         
-        
         if !didPlusTouch {
             delegate?.didAddNewGoods()
             UIView.animate(withDuration: 0.3, delay: 0){
@@ -105,16 +108,13 @@ class GoodsCollectionViewCell: UICollectionViewCell {
                 self.priceLabel.textColor = .black
             }
         }
-        
         didPlusTouch = !didPlusTouch
-        
     }
     
     func forTrailingZero(temp: Double) -> String {
         let tempVar = String(format: "%g", temp)
         return tempVar
     }
-    
     
     func setupContraints() {
         
@@ -128,8 +128,6 @@ class GoodsCollectionViewCell: UICollectionViewCell {
             
         imageView.snp.makeConstraints{
             $0.left.top.right.equalToSuperview()
-            $0.height.equalTo(130)
-            
         }
         
         nameLabel.snp.makeConstraints{
@@ -140,7 +138,7 @@ class GoodsCollectionViewCell: UICollectionViewCell {
         }
         
         descriptionLabel.snp.makeConstraints{
-            $0.top.equalTo(nameLabel.snp.bottom).offset(10)
+            $0.top.equalTo(nameLabel.snp.bottom).offset(5)
             $0.left.right.equalToSuperview().inset(5)
             $0.height.equalTo(20)
         }

@@ -12,6 +12,7 @@
 		AE82A8E72738891300734F3F /* Test Backend.postman_collection.json in Resources */ = {isa = PBXBuildFile; fileRef = AE82A8E62738891300734F3F /* Test Backend.postman_collection.json */; };
 		AE82A8EC27393B3E00734F3F /* GetGoodsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE82A8EB27393B3E00734F3F /* GetGoodsModel.swift */; };
 		AECDEA6627354D6F00643AAB /* GoodsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECDEA6527354D6F00643AAB /* GoodsCollectionViewCell.swift */; };
+		AEDF5BE12742928E004D165D /* SortView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDF5BE02742928E004D165D /* SortView.swift */; };
 		AEDF8E312734009000F5D977 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDF8E302734009000F5D977 /* AppDelegate.swift */; };
 		AEDF8E332734009000F5D977 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDF8E322734009000F5D977 /* SceneDelegate.swift */; };
 		AEDF8E352734009000F5D977 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDF8E342734009000F5D977 /* MainViewController.swift */; };
@@ -35,6 +36,7 @@
 		AE82A8E62738891300734F3F /* Test Backend.postman_collection.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "Test Backend.postman_collection.json"; sourceTree = "<group>"; };
 		AE82A8EB27393B3E00734F3F /* GetGoodsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetGoodsModel.swift; sourceTree = "<group>"; };
 		AECDEA6527354D6F00643AAB /* GoodsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsCollectionViewCell.swift; sourceTree = "<group>"; };
+		AEDF5BE02742928E004D165D /* SortView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortView.swift; sourceTree = "<group>"; };
 		AEDF8E2D2734009000F5D977 /* GoodsShop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoodsShop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AEDF8E302734009000F5D977 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AEDF8E322734009000F5D977 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -181,6 +183,7 @@
 				AEDF8E562734203D00F5D977 /* DefaultButton.swift */,
 				AEDF8E54273411AF00F5D977 /* LineUnderBrandLabel.swift */,
 				AECDEA6527354D6F00643AAB /* GoodsCollectionViewCell.swift */,
+				AEDF5BE02742928E004D165D /* SortView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -307,6 +310,7 @@
 				AEDF8E572734203D00F5D977 /* DefaultButton.swift in Sources */,
 				AEDF8E352734009000F5D977 /* MainViewController.swift in Sources */,
 				AE5C5AA4274014E7000C319D /* ImageView+Ext..swift in Sources */,
+				AEDF5BE12742928E004D165D /* SortView.swift in Sources */,
 				AE82A8EC27393B3E00734F3F /* GetGoodsModel.swift in Sources */,
 				AEDF8E312734009000F5D977 /* AppDelegate.swift in Sources */,
 				AECDEA6627354D6F00643AAB /* GoodsCollectionViewCell.swift in Sources */,

@@ -36,5 +36,4 @@ class DefaultButton: UIButton {
             $0.height.equalTo(21)
         }
     }
-    
 }
