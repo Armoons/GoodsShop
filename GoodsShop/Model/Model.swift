@@ -21,7 +21,8 @@ public struct Font {
 
 struct Images {
     static let shoppingBag: UIImage = UIImage(named: "ShoppingBag")!
-    static let plus: UIImage = UIImage(named: "PlusImagee")!
+    static let plusWhite: UIImage = UIImage(named: "PlusImageWhite")!
+    static let plusBlack: UIImage = UIImage(named: "PlusImageBlack")!
     static let minus: UIImage = UIImage(named: "MinusImage")!
     static let testImage: UIImage = UIImage(named: "TestImage")!
     static let CancelSort: UIImage = UIImage(named: "CancelSort")!
@@ -31,6 +32,7 @@ struct Images {
 
 struct CellID {
     static let goodsCellID: String = "goodsCell"
+    static let shoppingCartCellID: String = "shoppingCartCell"
 }
 
 
@@ -43,14 +45,5 @@ struct loadedInfo {
     static var array: [GoodsInfo] = []
 }
 
-//let GoodsArray: [GoodsInfo] = [
-//    
-//    GoodsInfo(image: "rfrf", price: 12, name: "rwfwr", weight: 13, id: "rfrfrfr", desc: "ewrtwrt"),
-//    GoodsInfo(image: "rfrf", price: 12, name: "rwfwr", weight: 13, id: "rfrfrfr", desc: "ewrtwrt"),
-//    GoodsInfo(image: "rfrf", price: 12, name: "rwfwr", weight: 13, id: "rfrfrfr", desc: "ewrtwrt"),
-//    GoodsInfo(image: "rfrf", price: 12, name: "rwfwr", weight: 13, id: "rfrfrfr", desc: "ewrtwrt"),
-//    GoodsInfo(image: "rfrf", price: 12, name: "rwfwr", weight: 13, id: "rfrfrfr", desc: "ewrtwrt")
-//    
-//]
 
 

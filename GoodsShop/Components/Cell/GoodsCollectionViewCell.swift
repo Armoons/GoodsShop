@@ -72,7 +72,7 @@ class GoodsCollectionViewCell: UICollectionViewCell {
     
     private let plusButton: UIButton = {
         let button = UIButton()
-        button.setImage(Images.plus, for: .normal)
+        button.setImage(Images.plusBlack, for: .normal)
         button.addTarget(self, action: #selector(plusTouched), for: .touchUpInside)
 
         return button
@@ -111,12 +111,12 @@ class GoodsCollectionViewCell: UICollectionViewCell {
         didPlusTouch = !didPlusTouch
     }
     
-    func forTrailingZero(temp: Double) -> String {
-        let tempVar = String(format: "%g", temp)
-        return tempVar
-    }
+//    func forTrailingZero(temp: Double) -> String {
+//        let tempVar = String(format: "%g", temp)
+//        return tempVar
+//    }
     
-    func setupContraints() {
+    private func setupContraints() {
         
         for view in [imageView, nameLabel, descriptionLabel, priceLabel, plusButton] {
             contentView.addSubview(view)

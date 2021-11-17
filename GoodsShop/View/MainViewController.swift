@@ -11,6 +11,7 @@ import SnapKit
 class MainViewController: UIViewController {
     
     private let loader = GoodsService()
+    private let shoppingCartVC = ShoppingCartViewController()
 
     private var goodsInfoArray: [GoodsInfo] = []
     private var currentGoodsNumber = 0
@@ -27,6 +28,7 @@ class MainViewController: UIViewController {
     private let shoppingBagButton: UIButton = {
         let button = UIButton()
         button.setImage(Images.shoppingBag, for: .normal)
+        button.addTarget(self, action: #selector(shoppingBagTouched), for: .touchUpInside)
         return button
     }()
     
@@ -78,7 +80,13 @@ class MainViewController: UIViewController {
         bagQuantityLabel.text = "\(newValue)"
     }
     
-    func setupContraints() {
+    @objc func shoppingBagTouched() {
+        show(shoppingCartVC, sender: self)
+    }
+    
+    
+    
+    private func setupContraints() {
         
         for ui in [brandLabel, lineView, shoppingBagButton, bagQuantityLabel, goodsCollectionView, sortView] {
             view.addSubview(ui)
@@ -117,8 +125,7 @@ class MainViewController: UIViewController {
         
         goodsCollectionView.snp.makeConstraints {
             $0.top.equalTo(sortView.snp.bottom).offset(10)
-            $0.left.right.equalToSuperview()
-            $0.bottom.equalToSuperview()
+            $0.left.right.bottom.equalToSuperview()
         }
     }
 }

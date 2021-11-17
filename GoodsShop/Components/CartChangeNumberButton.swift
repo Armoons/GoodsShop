@@ -19,7 +19,7 @@ class CartChangeNumberButton: UIButton {
     
     private let plus: UIImageView = {
         let iv = UIImageView()
-        iv.image = Images.plus
+        iv.image = Images.plusWhite
         return iv
     }()
     
@@ -27,6 +27,7 @@ class CartChangeNumberButton: UIButton {
         let label = UILabel()
         label.font = UIFont(name: Font.sfBold, size: 22)
         label.textColor = .white
+        label.text = "1"
         return label
     }()
     
@@ -40,7 +41,7 @@ class CartChangeNumberButton: UIButton {
         super.init(coder: coder)
     }
     
-    func setupUI() {
+    private func setupUI() {
         self.backgroundColor = Colors.mainBlue
         self.layer.cornerRadius = 8
         
@@ -51,6 +52,7 @@ class CartChangeNumberButton: UIButton {
         minus.snp.makeConstraints{
             $0.left.equalToSuperview()
             $0.centerY.equalToSuperview()
+            $0.width.height.equalTo(21)
         }
         
         number.snp.makeConstraints{
@@ -60,12 +62,7 @@ class CartChangeNumberButton: UIButton {
         plus.snp.makeConstraints{
             $0.right.equalToSuperview()
             $0.centerY.equalToSuperview()
+            $0.width.height.equalTo(21)
         }
-        
-        self.snp.makeConstraints{
-            $0.height.equalTo(25)
-            $0.width.equalTo(90)
-        }
-        
     }
 }
