@@ -21,10 +21,10 @@ class ShoppingCartViewCell: UICollectionViewCell {
             priceLabel.text = "\(data.price)₽"
             
             if data.name.count == 7 {
-                let text = String(data.desc.replacingOccurrences(of: "<h3>Товар 1<h3><p>", with: "").dropLast(2))
+                let text = String(data.desc.replacingOccurrences(of: "<h3>Товар 1<h3><p>", with: "").dropLast(4))
                 descriptionLabel.text = text
             } else {
-                let text = String(data.desc.dropFirst(data.name.count + 10))
+                let text = String(data.desc.dropFirst(data.name.count + 10).dropLast(4))
                 descriptionLabel.text = text
             }
         }
@@ -34,22 +34,22 @@ class ShoppingCartViewCell: UICollectionViewCell {
         let iv = UIImageView()
         iv.translatesAutoresizingMaskIntoConstraints = false
         iv.contentMode = .scaleToFill
-        iv.layer.cornerRadius = 20
         iv.layer.masksToBounds = true
         return iv
     }()
     
     private let nameLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont(name: Font.sfBold, size: 17)
-        return label
-    }()
+        $0.font = UIFont(name: Font.sfBold, size: 17)
+        return $0
+    }(UILabel())
     
     private let descriptionLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: Font.sfLight, size: 13)
         label.textColor = .black
         label.numberOfLines = 0
+        label.sizeToFit()
+        
         return label
     }()
     
@@ -63,8 +63,6 @@ class ShoppingCartViewCell: UICollectionViewCell {
     }()
     
     private let changeNumberButton = CartChangeNumberButton()
-    
-    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -86,14 +84,14 @@ class ShoppingCartViewCell: UICollectionViewCell {
         imageView.snp.makeConstraints{
             $0.centerY.equalToSuperview()
             $0.top.equalToSuperview().inset(12)
-            $0.left.equalToSuperview().inset(12)
-            $0.width.equalTo(160)
+            $0.left.equalToSuperview().inset(10)
+            $0.width.equalTo(180)
         }
         
         nameLabel.snp.makeConstraints{
             $0.top.equalToSuperview().inset(12)
             $0.left.equalTo(imageView.snp.right).offset(12)
-            $0.height.equalTo(27)
+            $0.height.equalTo(20)
             $0.right.equalToSuperview().inset(20)
         }
         
@@ -101,7 +99,6 @@ class ShoppingCartViewCell: UICollectionViewCell {
             $0.top.equalTo(nameLabel.snp.bottom).offset(5)
             $0.left.equalTo(imageView.snp.right).offset(12)
             $0.right.equalToSuperview().inset(20)
-//            $0.bottom.equalTo(priceLabel.snp.top).offset(20)
         }
         
         priceLabel.snp.makeConstraints{

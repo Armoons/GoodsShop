@@ -27,9 +27,9 @@ class ShoppingCartViewController: UIViewController {
     private let shoppingListCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)
         layout.minimumLineSpacing = 10
         layout.minimumInteritemSpacing = 0
+        layout.estimatedItemSize = .zero
         
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.showsVerticalScrollIndicator = false
@@ -41,9 +41,12 @@ class ShoppingCartViewController: UIViewController {
     
     private let buyButton: UIButton = {
         let button = UIButton()
-        button.titleLabel?.textColor = Colors.mainBlue
+        button.setTitle("Buy", for: .normal)
+        button.setTitleColor(Colors.mainBlue, for: .normal)
         button.backgroundColor = .white
-        button.titleLabel?.text = "Buy"
+        button.layer.cornerRadius = 8
+        button.titleLabel?.font = UIFont(name: Font.sfBold, size: 30)
+
         return button
     }()
         
@@ -80,18 +83,19 @@ class ShoppingCartViewController: UIViewController {
         shoppingListCollectionView.snp.makeConstraints{
             $0.top.equalTo(lineView.snp.bottom).offset(10)
             $0.left.right.equalToSuperview()
-            $0.bottom.equalTo(subtotalVew.snp.top).offset(10)
+            $0.bottom.equalTo(subtotalVew.snp.top).inset(-10)
+//            $0.height.equalTo(400)
         }
         
         subtotalVew.snp.makeConstraints{
-            $0.left.right.equalToSuperview().inset(10)
-            $0.bottom.equalTo(buyButton).inset(25)
-            $0.height.equalTo(25)
-            $0.width.equalTo(90)
+            $0.centerX.equalToSuperview()
+            $0.bottom.equalTo(buyButton.snp.top).inset(-15)
+            $0.height.equalTo(90)
+            $0.width.equalTo(350)
         }
         
         buyButton.snp.makeConstraints{
-            $0.bottom.equalToSuperview().inset(20)
+            $0.bottom.equalToSuperview().inset(30)
             $0.centerX.equalToSuperview()
             $0.width.equalTo(200)
             $0.height.equalTo(70)

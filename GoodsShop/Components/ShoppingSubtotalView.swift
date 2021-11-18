@@ -22,6 +22,7 @@ class ShoppingSubtotalView: UIView {
         let label = UILabel()
         label.font = UIFont(name: Font.sfBold, size: 26)
         label.textColor = .white
+        label.text = "234" + "₽"
         label.textAlignment = .right
         return label
     }()
@@ -38,6 +39,8 @@ class ShoppingSubtotalView: UIView {
         let label = UILabel()
         label.font = UIFont(name: Font.sfBold, size: 26)
         label.text = "Free"
+        label.textAlignment = .right
+
         label.textColor = .white
         return label
     }()
@@ -62,28 +65,28 @@ class ShoppingSubtotalView: UIView {
         
         subtotalLabel.snp.makeConstraints{
             $0.left.equalToSuperview().inset(10)
-            $0.top.equalToSuperview().inset(10)
+            $0.top.equalToSuperview().inset(5)
             $0.width.equalTo(121)
             $0.height.equalTo(36)
         }
         
         subtotalPriceLabel.snp.makeConstraints{
-            $0.right.equalToSuperview().offset(40)
-            $0.top.equalToSuperview().inset(10)
+            $0.right.equalToSuperview().inset(10)
+            $0.top.equalToSuperview().inset(5)
             $0.width.equalTo(100)
             $0.height.equalTo(36)
         }
         
         deliveryLabel.snp.makeConstraints{
             $0.left.equalToSuperview().inset(10)
-            $0.bottom.equalToSuperview().offset(10)
+            $0.bottom.equalToSuperview().inset(5)
             $0.width.equalTo(121)
             $0.height.equalTo(36)
         }
         
         deliveryStatusLabel.snp.makeConstraints{
-            $0.right.equalToSuperview().offset(40)
-            $0.bottom.equalToSuperview().offset(10)
+            $0.right.equalToSuperview().inset(10)
+            $0.bottom.equalToSuperview().inset(5)
             $0.width.equalTo(60)
             $0.height.equalTo(38)
         }
