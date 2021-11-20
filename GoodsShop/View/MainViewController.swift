@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 class MainViewController: UIViewController {
-    
+        
     private let loader = GoodsService()
     private let shoppingCartVC = ShoppingCartViewController()
 
@@ -73,6 +73,7 @@ class MainViewController: UIViewController {
 
         sortView.delegate = self
         
+        
         setupContraints()
     }
 
@@ -81,6 +82,7 @@ class MainViewController: UIViewController {
     }
     
     @objc func shoppingBagTouched() {
+        shoppingCartVC.updateUI()
         show(shoppingCartVC, sender: self)
     }
     

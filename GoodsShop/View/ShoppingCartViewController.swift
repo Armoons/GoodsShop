@@ -24,7 +24,7 @@ class ShoppingCartViewController: UIViewController {
         return view
     }()
     
-    private let shoppingListCollectionView: UICollectionView = {
+    let shoppingListCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         layout.minimumLineSpacing = 10
@@ -54,6 +54,14 @@ class ShoppingCartViewController: UIViewController {
         super.viewDidLoad()
         
         setupUI()
+        updateUI()
+        
+    }
+    
+    func updateUI() {
+        shoppingListCollectionView.reloadData()
+        subtotalVew.subtotalPriceLabel.text = "\(selectedGoods.array.reduce(0, {$0 + $1.price}))"
+        
     }
     
     private func setupUI() {
@@ -110,15 +118,13 @@ extension ShoppingCartViewController: UICollectionViewDelegate, UICollectionView
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return loadedInfo.array.count
+        return selectedGoods.array.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellID.shoppingCartCellID, for: indexPath) as! ShoppingCartViewCell
-        cell.data = loadedInfo.array[indexPath.row]
+        cell.data = selectedGoods.array[indexPath.row]
         return cell
-
     }
-    
     
 }

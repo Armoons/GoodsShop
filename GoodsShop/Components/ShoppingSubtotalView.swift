@@ -18,11 +18,11 @@ class ShoppingSubtotalView: UIView {
         return label
     }()
     
-    private let subtotalPriceLabel: UILabel = {
+    var subtotalPriceLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: Font.sfBold, size: 26)
         label.textColor = .white
-        label.text = "234" + "₽"
+        label.text = "0" + "₽"
         label.textAlignment = .right
         return label
     }()

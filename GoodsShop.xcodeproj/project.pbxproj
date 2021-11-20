@@ -161,7 +161,6 @@
 		AEDF8E46273409D300F5D977 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				AEDF5BE02742928E004D165D /* SortView.swift */,
 				AEDF8E44273409CC00F5D977 /* Model.swift */,
 				AE82A8EB27393B3E00734F3F /* GetGoodsModel.swift */,
 			);
@@ -199,6 +198,7 @@
 		AEDF8E5127340E4E00F5D977 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				AEDF5BE02742928E004D165D /* SortView.swift */,
 				AEDF8E562734203D00F5D977 /* DefaultButton.swift */,
 				AECF1C39274517AE00B2FA41 /* ShoppingSubtotalView.swift */,
 				AEC7DBF727442022006F8427 /* CartChangeNumberButton.swift */,

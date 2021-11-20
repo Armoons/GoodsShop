@@ -100,12 +100,16 @@ class GoodsCollectionViewCell: UICollectionViewCell {
                 self.priceLabel.layer.backgroundColor = Colors.mainBlue.cgColor
                 self.priceLabel.textColor = .white
             }
+            selectedGoods.array.append(data!)
         } else {
             delegate?.didRemovedGoods()
             UIView.animate(withDuration: 0.3, delay: 0){
                 self.plusButton.transform = CGAffineTransform(rotationAngle: 0)
                 self.priceLabel.layer.backgroundColor = .none
                 self.priceLabel.textColor = .black
+            }
+            selectedGoods.array.removeAll {
+                $0.id == data?.id
             }
         }
         didPlusTouch = !didPlusTouch

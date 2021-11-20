@@ -338,8 +338,8 @@
             filePath = "GoodsShop/Components/Cell/GoodsCollectionViewCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "118"
-            endingLineNumber = "118"
+            startingLineNumber = "122"
+            endingLineNumber = "122"
             landmarkName = "GoodsCollectionViewCell"
             landmarkType = "3">
          </BreakpointContent>
@@ -354,8 +354,8 @@
             filePath = "GoodsShop/Components/Cell/GoodsCollectionViewCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "124"
-            endingLineNumber = "124"
+            startingLineNumber = "128"
+            endingLineNumber = "128"
             landmarkName = "setupContraints()"
             landmarkType = "7">
          </BreakpointContent>
@@ -402,8 +402,8 @@
             filePath = "GoodsShop/View/ShoppingCartViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "70"
-            endingLineNumber = "70"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
             landmarkName = "setupUI()"
             landmarkType = "7">
          </BreakpointContent>
@@ -422,54 +422,6 @@
             endingLineNumber = "15"
             landmarkName = "brandLabel"
             landmarkType = "24">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "03B1F56A-10C1-4252-B322-BC69B38216D6"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GoodsShop/View/MainViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "13"
-            endingLineNumber = "13"
-            landmarkName = "MainViewController"
-            landmarkType = "3">
-            <Locations>
-               <Location
-                  uuid = "03B1F56A-10C1-4252-B322-BC69B38216D6 - 392ab8fdd039e752"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "GoodsShop.MainViewController.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; GoodsShop.MainViewController"
-                  moduleName = "GoodsShop"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/stepanyanarman/Developer/GoodsShop/GoodsShop/View/MainViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "13"
-                  endingLineNumber = "13"
-                  offsetFromSymbolStart = "148">
-               </Location>
-               <Location
-                  uuid = "03B1F56A-10C1-4252-B322-BC69B38216D6 - df94e92cdd5131c9"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "GoodsShop.MainViewController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;GoodsShop.MainViewController&gt;"
-                  moduleName = "GoodsShop"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/stepanyanarman/Developer/GoodsShop/GoodsShop/View/MainViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "13"
-                  endingLineNumber = "13"
-                  offsetFromSymbolStart = "124">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -700,8 +652,8 @@
             filePath = "GoodsShop/View/ShoppingCartViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "61"
-            endingLineNumber = "61"
+            startingLineNumber = "69"
+            endingLineNumber = "69"
             landmarkName = "setupUI()"
             landmarkType = "7">
          </BreakpointContent>
