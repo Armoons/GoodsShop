@@ -86,8 +86,6 @@ class MainViewController: UIViewController {
         show(shoppingCartVC, sender: self)
     }
     
-    
-    
     private func setupContraints() {
         
         for ui in [brandLabel, lineView, shoppingBagButton, bagQuantityLabel, goodsCollectionView, sortView] {

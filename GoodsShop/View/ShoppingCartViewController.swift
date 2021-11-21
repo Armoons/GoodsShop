@@ -7,9 +7,14 @@
 
 import Foundation
 import UIKit
+import SwiftUI
 
 
 class ShoppingCartViewController: UIViewController {
+    
+    var subtotalValue: Int?
+    var changedSubtotalValue: Int?
+    var cellPrice: Int?
     
     private let brandLabel: UILabel = {
         let label = UILabel()
@@ -55,13 +60,19 @@ class ShoppingCartViewController: UIViewController {
         
         setupUI()
         updateUI()
-        
     }
     
     func updateUI() {
         shoppingListCollectionView.reloadData()
-        subtotalVew.subtotalPriceLabel.text = "\(selectedGoods.array.reduce(0, {$0 + $1.price}))"
         
+        subtotalValue = selectedGoods.array.reduce(0, {$0 + $1.price})
+        
+        changedSubtotalValue = subtotalValue
+        subtotalVew.subtotalPriceLabel.text = "\(subtotalValue!)"
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        subtotalValue = changedSubtotalValue
     }
     
     private func setupUI() {
@@ -92,7 +103,6 @@ class ShoppingCartViewController: UIViewController {
             $0.top.equalTo(lineView.snp.bottom).offset(10)
             $0.left.right.equalToSuperview()
             $0.bottom.equalTo(subtotalVew.snp.top).inset(-10)
-//            $0.height.equalTo(400)
         }
         
         subtotalVew.snp.makeConstraints{
@@ -124,7 +134,25 @@ extension ShoppingCartViewController: UICollectionViewDelegate, UICollectionView
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellID.shoppingCartCellID, for: indexPath) as! ShoppingCartViewCell
         cell.data = selectedGoods.array[indexPath.row]
+        cell.delegate = self
         return cell
     }
-    
 }
+
+extension ShoppingCartViewController: ShoppingCartViewCellDelegate {
+    func plusTouchedFromCell(newPrice: Int) {
+        changedSubtotalValue! += newPrice
+//        subtotalValue! += newPrice
+        subtotalVew.subtotalPriceLabel.text = "\(changedSubtotalValue!)"
+        return
+    }
+    
+    func minusTouchedFromCell(newPrice: Int) {
+        changedSubtotalValue! -= newPrice
+
+//        subtotalValue! -= newPrice
+        subtotalVew.subtotalPriceLabel.text = "\(changedSubtotalValue!)"
+        return
+    }
+}
+

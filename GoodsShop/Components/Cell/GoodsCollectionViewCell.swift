@@ -115,11 +115,6 @@ class GoodsCollectionViewCell: UICollectionViewCell {
         didPlusTouch = !didPlusTouch
     }
     
-//    func forTrailingZero(temp: Double) -> String {
-//        let tempVar = String(format: "%g", temp)
-//        return tempVar
-//    }
-    
     private func setupContraints() {
         
         for view in [imageView, nameLabel, descriptionLabel, priceLabel, plusButton] {
@@ -159,7 +154,6 @@ class GoodsCollectionViewCell: UICollectionViewCell {
             $0.height.width.equalTo(21)
             $0.top.equalTo(descriptionLabel.snp.bottom).offset(5)
             $0.bottom.equalToSuperview().inset(10)
-            
         }
     }
 }

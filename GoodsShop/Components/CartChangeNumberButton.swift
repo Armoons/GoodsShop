@@ -9,18 +9,28 @@ import Foundation
 import UIKit
 import SnapKit
 
+protocol CartChangeNumberButtonDelegate {
+    func plusTouched()
+    func minusTouched()
+}
+
 class CartChangeNumberButton: UIButton {
     
-    private let minus: UIImageView = {
-        let iv = UIImageView()
-        iv.image = Images.minus
-        return iv
+    
+    var delegate: CartChangeNumberButtonDelegate?
+    
+    private let minus: UIButton = {
+        let button = UIButton()
+        button.addTarget(self, action: #selector(minusTouched), for: .touchUpInside)
+        button.setImage(Images.minus, for: .normal)
+        return button
     }()
     
-    private let plus: UIImageView = {
-        let iv = UIImageView()
-        iv.image = Images.plusWhite
-        return iv
+    private let plus: UIButton = {
+        let button = UIButton()
+        button.addTarget(self, action: #selector(plusTouched), for: .touchUpInside)
+        button.setImage(Images.plusWhite, for: .normal)
+        return button
     }()
     
     private let number: UILabel = {
@@ -39,6 +49,20 @@ class CartChangeNumberButton: UIButton {
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+    }
+    
+    @objc func minusTouched() {
+        
+        if number.text != "1"{
+            number.text = "\(Int(number.text!)! - 1)"
+            delegate?.minusTouched()
+        } else { return }
+    }
+    
+    @objc func plusTouched() {
+        delegate?.plusTouched()
+        number.text = "\(Int(number.text!)! + 1)"
+
     }
     
     private func setupUI() {

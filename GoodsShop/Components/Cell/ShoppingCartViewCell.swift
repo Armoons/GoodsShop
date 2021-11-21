@@ -9,6 +9,11 @@ import Foundation
 import UIKit
 import Kingfisher
 
+protocol ShoppingCartViewCellDelegate {
+    func plusTouchedFromCell(newPrice: Int)
+    func minusTouchedFromCell(newPrice: Int)
+}
+
 
 class ShoppingCartViewCell: UICollectionViewCell {
     
@@ -20,6 +25,7 @@ class ShoppingCartViewCell: UICollectionViewCell {
             nameLabel.text = data.name
             priceLabel.text = "\(data.price)₽"
             
+            
             if data.name.count == 7 {
                 let text = String(data.desc.replacingOccurrences(of: "<h3>Товар 1<h3><p>", with: "").dropLast(4))
                 descriptionLabel.text = text
@@ -29,6 +35,8 @@ class ShoppingCartViewCell: UICollectionViewCell {
             }
         }
     }
+    
+    var delegate: ShoppingCartViewCellDelegate?
     
     private let imageView: UIImageView = {
         let iv = UIImageView()
@@ -76,6 +84,8 @@ class ShoppingCartViewCell: UICollectionViewCell {
     
     private func setupContraints() {
         
+        changeNumberButton.delegate = self
+        
         for ui in [imageView, nameLabel, descriptionLabel, priceLabel, changeNumberButton] {
             self.addSubview(ui)
         }
@@ -118,3 +128,16 @@ class ShoppingCartViewCell: UICollectionViewCell {
     }
 }
 
+extension ShoppingCartViewCell: CartChangeNumberButtonDelegate {
+
+
+    func plusTouched() {
+        delegate?.plusTouchedFromCell(newPrice: (data?.price) ?? 0)
+    }
+
+    func minusTouched() {
+        delegate?.minusTouchedFromCell(newPrice: (data?.price) ?? 0)
+    }
+
+
+}
