@@ -27,9 +27,9 @@ class GoodsService {
             guard let data = data else { return }
 
             do {
-                let lessons = try JSONDecoder().decode([GoodsInfo].self, from: data)
+                let goodsArray = try JSONDecoder().decode([GoodsInfo].self, from: data)
                 DispatchQueue.main.async {
-                    delegate?.loaded(goodsInfo: lessons)
+                    delegate?.loaded(goodsInfo: goodsArray)
                 }
             }  catch {
                 print(error)

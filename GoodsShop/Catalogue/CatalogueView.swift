@@ -1,19 +1,23 @@
 //
-//  ViewController.swift
+//  CatalogueView.swift
 //  GoodsShop
 //
-//  Created by Stepanyan Arman  on 04.11.2021.
+//  Created by Stepanyan Arman  on 24.11.2021.
 //
 
+import Foundation
 import UIKit
-import SnapKit
 
-class MainViewController: UIViewController {
-        
-    private let loader = GoodsService()
-    private let shoppingCartVC = ShoppingCartViewController()
+protocol CatalogueViewDelegate {
+    func cartTouch()
+}
 
-    private var goodsInfoArray: [GoodsInfo] = []
+class CatalogueView: UIView {
+    
+//    private let catalogueVC = CatalogueViewController()
+    var delegate: CatalogueViewDelegate?
+    
+    var goodsInfoArray: [GoodsInfo] = []
     private var currentGoodsNumber = 0
     
     private let sortView = SortView()
@@ -60,36 +64,32 @@ class MainViewController: UIViewController {
         return cv
     }()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = Colors.background
-        
-        goodsCollectionView.delegate = self
-        goodsCollectionView.dataSource = self
-        goodsCollectionView.register(GoodsCollectionViewCell.self, forCellWithReuseIdentifier: CellID.goodsCellID)
-        
-        loader.delegate = self
-        loader.loadInfo()
+    override init(frame: CGRect) {
+        super.init(frame: frame)
 
+        self.goodsCollectionView.delegate = self
+        self.goodsCollectionView.dataSource = self
         sortView.delegate = self
-        
-        
-        setupContraints()
-    }
 
-    func updateBagQuantityLabel(newValue: Int) {
-        bagQuantityLabel.text = "\(newValue)"
+        setupUI()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     @objc func shoppingBagTouched() {
-        shoppingCartVC.updateUI()
-        show(shoppingCartVC, sender: self)
+        
     }
     
-    private func setupContraints() {
+    private func setupUI() {
+        goodsCollectionView.register(GoodsCollectionViewCell.self, forCellWithReuseIdentifier: CellID.goodsCellID)
+
+        
+        self.backgroundColor = Colors.background
         
         for ui in [brandLabel, lineView, shoppingBagButton, bagQuantityLabel, goodsCollectionView, sortView] {
-            view.addSubview(ui)
+            self.addSubview(ui)
         }
         
         sortView.snp.makeConstraints{
@@ -130,17 +130,17 @@ class MainViewController: UIViewController {
     }
 }
 
-extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
-    
+extension CatalogueView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width / 2 - 30, height: 210)
+        return CGSize(width: self.frame.width / 2 - 30, height: 210)
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         print(goodsInfoArray)
         return goodsInfoArray.count
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellID.goodsCellID, for: indexPath) as! GoodsCollectionViewCell
         cell.data = goodsInfoArray[indexPath.row]
@@ -149,38 +149,39 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
 }
 
-extension MainViewController: GoodsServiceDelegate {
-    func loaded(goodsInfo: [GoodsInfo]) {
-        goodsInfoArray = goodsInfo
-        loadedInfo.array = goodsInfo
-        self.goodsCollectionView.reloadData()
+extension CatalogueView: CatalogueViewControllerDelegate {
+    func getGoodsArray(array: [GoodsInfo]) {
+        goodsInfoArray = array
+        sortView.getGoodsArray(array: array)
+        goodsCollectionView.reloadData()
     }
 }
-
-extension MainViewController: GoodsCollectionViewCellDelegate {
     
-    func didAddNewGoods() {
-        currentGoodsNumber += 1
-        if currentGoodsNumber > 0 {bagQuantityLabel.isHidden = false}
-        updateBagQuantityLabel(newValue: currentGoodsNumber)
-    }
-    
-    func didRemovedGoods() {
-        currentGoodsNumber -= 1
-        if currentGoodsNumber == 0 {bagQuantityLabel.isHidden = true}
-        updateBagQuantityLabel(newValue: currentGoodsNumber)
-    }
-}
-
-extension MainViewController: SortViewDelegate {
+extension CatalogueView: SortViewDelegate {
     func priceSort(newGoodsArray: [GoodsInfo]) {
         goodsInfoArray = newGoodsArray
         goodsCollectionView.reloadData()
     }
-    
+
     func ratingSort(newGoodsArray: [GoodsInfo]) {
         goodsInfoArray = newGoodsArray
         goodsCollectionView.reloadData()
     }
 }
 
+extension CatalogueView: GoodsCollectionViewCellDelegate {
+
+    func didAddNewGoods() {
+        currentGoodsNumber += 1
+        if currentGoodsNumber > 0 {bagQuantityLabel.isHidden = false}
+        bagQuantityLabel.text = "\(currentGoodsNumber)"
+    }
+
+    func didRemovedGoods() {
+        currentGoodsNumber -= 1
+        if currentGoodsNumber == 0 {bagQuantityLabel.isHidden = true}
+        bagQuantityLabel.text = "\(currentGoodsNumber)"
+    }
+}
+    
+    

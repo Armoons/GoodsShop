@@ -16,6 +16,7 @@ protocol SortViewDelegate {
 class SortView: UIView {
     
     var goodsInfoArray: [GoodsInfo] = []
+    var goodsInfoArrayChanged: [GoodsInfo] = []
     
     var delegate:SortViewDelegate?
     
@@ -81,6 +82,10 @@ class SortView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func getGoodsArray(array: [GoodsInfo]) {
+        goodsInfoArray = array
+    }
+    
     func setupConstraints() {
         
         
@@ -139,11 +144,10 @@ class SortView: UIView {
         
     }
     
-    func changeSort(sortType: SortType,usedStatus: inout Bool, unusedStatus: inout Bool, usedTouchesNumber: inout Int,
+    func changeSort(sortType: SortType, usedStatus: inout Bool, unusedStatus: inout Bool, usedTouchesNumber: inout Int,
                     unusedTouchesNumber: inout Int,usedButton: DefaultButton, usedArrow: UIImageView,
                     unusedButton: DefaultButton, unusedArrow: UIImageView){
-        
-        goodsInfoArray = loadedInfo.array
+        goodsInfoArrayChanged = goodsInfoArray
         
         if !usedStatus && usedTouchesNumber == 0  {
             usedTouchesNumber = 1
@@ -155,9 +159,9 @@ class SortView: UIView {
             
             switch sortType {
             case .rating:
-                goodsInfoArray.sort(by: {$0.weight > $1.weight })
+                goodsInfoArrayChanged.sort(by: {$0.weight > $1.weight })
             case .price:
-                goodsInfoArray.sort(by: {$0.price > $1.price })
+                goodsInfoArrayChanged.sort(by: {$0.price > $1.price })
             }
 
         } else if usedStatus && usedTouchesNumber == 1 {
@@ -168,9 +172,9 @@ class SortView: UIView {
             
             switch sortType {
             case .rating:
-                goodsInfoArray.sort(by: {$0.weight < $1.weight })
+                goodsInfoArrayChanged.sort(by: {$0.weight < $1.weight })
             case .price:
-                goodsInfoArray.sort(by: {$0.price < $1.price })
+                goodsInfoArrayChanged.sort(by: {$0.price < $1.price })
             }
             
         } else if usedStatus && usedTouchesNumber == 2 {
@@ -180,21 +184,22 @@ class SortView: UIView {
             usedTouchesNumber = 0
             usedStatus = false
             
-            goodsInfoArray = loadedInfo.array
+            goodsInfoArrayChanged = goodsInfoArray
         }
         
-        print("SORT:\(goodsInfoArray)")
+        
+        print("SORT:\(goodsInfoArrayChanged)")
        
     }
     
     @objc func priceTouched() {
         changeSort(sortType: .price, usedStatus: &didPriceSortUsed, unusedStatus: &didRateSortUsed, usedTouchesNumber: &priceSortTouchesNumber, unusedTouchesNumber: &rateSortTouchesNumber, usedButton: priceButton, usedArrow: priceArrow, unusedButton: ratingButton, unusedArrow: ratingArrow)
-        delegate?.priceSort(newGoodsArray: goodsInfoArray)
+        delegate?.priceSort(newGoodsArray: goodsInfoArrayChanged)
     }
     
     @objc func ratingTouched() {
         changeSort(sortType: .rating, usedStatus: &didRateSortUsed, unusedStatus: &didPriceSortUsed, usedTouchesNumber: &rateSortTouchesNumber, unusedTouchesNumber: &priceSortTouchesNumber, usedButton: ratingButton, usedArrow: ratingArrow, unusedButton: priceButton, unusedArrow: priceArrow)
-        delegate?.ratingSort(newGoodsArray: goodsInfoArray)
+        delegate?.ratingSort(newGoodsArray: goodsInfoArrayChanged)
     }
 }
 

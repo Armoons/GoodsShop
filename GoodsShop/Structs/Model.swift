@@ -13,8 +13,6 @@ enum SortType {
     case rating
 }
 
-
-
 public struct Font {
     static let sfRegular: String = "SFUIDisplay-Regular"
     static let sfBold: String = "SFUIDisplay-Bold"
@@ -49,6 +47,13 @@ struct loadedInfo {
 
 struct selectedGoods {
     static var array: [GoodsInfo] = []
+}
+
+struct mok {
+    static var array: [GoodsInfo] =
+    [GoodsInfo(image: "rge", price: 123, name: "efef", weight: 123, id: "efrr", desc: "erwerw"),
+     GoodsInfo(image: "rge", price: 1234, name: "ef2ef", weight: 123, id: "e4rr", desc: "erwerw"),
+     GoodsInfo(image: "rge", price: 123, name: "efef", weight: 123, id: "efrrr", desc: "erwerw2")]
 }
 
 

@@ -1,20 +1,14 @@
 //
-//  ShoppingCartViewController.swift
+//  ShoppingCartView.swift
 //  GoodsShop
 //
-//  Created by Stepanyan Arman  on 16.11.2021.
+//  Created by Stepanyan Arman  on 26.11.2021.
 //
 
 import Foundation
 import UIKit
-import SwiftUI
 
-
-class ShoppingCartViewController: UIViewController {
-    
-    var subtotalValue: Int?
-    var changedSubtotalValue: Int?
-    var cellPrice: Int?
+class ShoppingCartView: UIView {
     
     private let brandLabel: UILabel = {
         let label = UILabel()
@@ -54,37 +48,27 @@ class ShoppingCartViewController: UIViewController {
 
         return button
     }()
-        
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         
         setupUI()
-        updateUI()
     }
     
-    func updateUI() {
-        shoppingListCollectionView.reloadData()
-        
-        subtotalValue = selectedGoods.array.reduce(0, {$0 + $1.price})
-        
-        changedSubtotalValue = subtotalValue
-        subtotalVew.subtotalPriceLabel.text = "\(subtotalValue!)"
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        subtotalValue = changedSubtotalValue
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     private func setupUI() {
         
         shoppingListCollectionView.register(ShoppingCartViewCell.self, forCellWithReuseIdentifier: CellID.shoppingCartCellID)
         
-        shoppingListCollectionView.delegate = self
-        shoppingListCollectionView.dataSource = self
-        view.backgroundColor = Colors.background
+//        shoppingListCollectionView.delegate = self
+//        shoppingListCollectionView.dataSource = self
+        self.backgroundColor = Colors.background
         
         for ui in [brandLabel, lineView, shoppingListCollectionView, subtotalVew, buyButton] {
-            view.addSubview(ui)
+            self.addSubview(ui)
         }
         
         brandLabel.snp.makeConstraints{
@@ -121,38 +105,20 @@ class ShoppingCartViewController: UIViewController {
     }
 }
 
-extension ShoppingCartViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width, height: 150)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return selectedGoods.array.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellID.shoppingCartCellID, for: indexPath) as! ShoppingCartViewCell
-        cell.data = selectedGoods.array[indexPath.row]
-        cell.delegate = self
-        return cell
-    }
-}
-
-extension ShoppingCartViewController: ShoppingCartViewCellDelegate {
-    func plusTouchedFromCell(newPrice: Int) {
-        changedSubtotalValue! += newPrice
-//        subtotalValue! += newPrice
-        subtotalVew.subtotalPriceLabel.text = "\(changedSubtotalValue!)"
-        return
-    }
-    
-    func minusTouchedFromCell(newPrice: Int) {
-        changedSubtotalValue! -= newPrice
-
-//        subtotalValue! -= newPrice
-        subtotalVew.subtotalPriceLabel.text = "\(changedSubtotalValue!)"
-        return
-    }
-}
-
+//extension ShoppingCartView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
+//    
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//        return CGSize(width: self.frame.width, height: 150)
+//    }
+//    
+//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+//        return selectedGoods.array.count
+//    }
+//    
+//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellID.shoppingCartCellID, for: indexPath) as! ShoppingCartViewCell
+//        cell.data = selectedGoods.array[indexPath.row]
+////        cell.delegate = self
+//        return cell
+//    }
+//}

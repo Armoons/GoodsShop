@@ -17,11 +17,15 @@ class GoodsCollectionViewCell: UICollectionViewCell {
     
     var delegate: GoodsCollectionViewCellDelegate?
     
+    private var didPlusTouch: Bool = false
+
+    
     var data: GoodsInfo? {
         didSet {
             guard let data = data else { return }
             let imageURL = URL(string: data.image)
             imageView.kf.setImage(with: imageURL)
+
             nameLabel.text = data.name
             priceLabel.text = "\(data.price)₽"
             
@@ -73,11 +77,10 @@ class GoodsCollectionViewCell: UICollectionViewCell {
     private let plusButton: UIButton = {
         let button = UIButton()
         button.setImage(Images.plusBlack, for: .normal)
-        button.addTarget(self, action: #selector(plusTouched), for: .touchUpInside)
+        button.addTarget(self, action: #selector(plusTouch), for: .touchUpInside)
 
         return button
     }()
-    private var didPlusTouch: Bool = false
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -89,9 +92,7 @@ class GoodsCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
-    
-    @objc func plusTouched(){
+    @objc func plusTouch(){
         
         if !didPlusTouch {
             delegate?.didAddNewGoods()
