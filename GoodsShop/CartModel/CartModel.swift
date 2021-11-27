@@ -8,13 +8,24 @@
 import Foundation
 
 class CartModel {
-    var selectedGoods: [String:Int] = [:]
     
-    func append(goods: GoodsInfo) {
-        selectedGoods[goods.id] = 1
+    private var selectedGoods: [String:Int] = [:]
+    
+}
+
+extension CartModel: CatalogueViewControllerDelegateForModel {
+    func getSelectedID(id: String) ->  [String:Int] {
+        selectedGoods[id] = 1
+        print("SELECT:", selectedGoods)
+        return (selectedGoods)
+
     }
     
-    func remove(goods: GoodsInfo) {
-        selectedGoods.removeValue(forKey: goods.id)
+    func getDeselectedID(id: String) ->  [String:Int] {
+        selectedGoods.removeValue(forKey: "\(id)")
+        print("DESELECT:", selectedGoods)
+        return (selectedGoods)
     }
+    
+    
 }

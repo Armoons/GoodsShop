@@ -7,16 +7,28 @@
 
 import UIKit
 
-protocol CatalogueViewControllerDelegate {
+protocol CatalogueViewControllerDelegateForView {
     func getGoodsArray(array: [GoodsInfo])
 }
+
+protocol CatalogueViewControllerDelegateForModel {
+    func getSelectedID(id: String) ->  [String:Int]
+    func getDeselectedID(id: String) ->  [String:Int]
+
+}
+
 
 class CatalogueViewController: UIViewController {
         
     private let loader = GoodsService()
     private var catalogueView = CatalogueView()
     private var goodsArray: [GoodsInfo] = []
-    var delegate: CatalogueViewControllerDelegate?
+    var viewDelegate: CatalogueViewControllerDelegateForView?
+    var modelDelegate: CatalogueViewControllerDelegateForModel?
+    private var selectedGoodsDict: [String:Int] = [:]
+    
+    private let cartModel = CartModel()
+
     private let shoppingCartVC = ShoppingCartViewController()
 //
 //    private var goodsInfoArray: [GoodsInfo] = []
@@ -28,22 +40,34 @@ class CatalogueViewController: UIViewController {
         super.loadView()
         
         self.view = catalogueView
-        self.delegate = catalogueView
+        self.viewDelegate = catalogueView
         catalogueView.delegate = self
         
         loader.delegate = self
         loader.loadInfo()
+        
+        self.modelDelegate = cartModel
+        
     }
 }
 
 extension CatalogueViewController: GoodsServiceDelegate {
     func loaded(goodsInfo: [GoodsInfo]) {
         goodsArray = goodsInfo
-        delegate?.getGoodsArray(array: goodsArray)
+        viewDelegate?.getGoodsArray(array: goodsArray)
     }
 }
 
 extension CatalogueViewController: CatalogueViewDelegate {
+    
+    func goodsSelect(id: String) {
+        selectedGoodsDict = (modelDelegate?.getSelectedID(id: id))!
+    }
+    
+    func goodsDeselect(id: String) {
+        selectedGoodsDict = (modelDelegate?.getDeselectedID(id: id))!
+    }
+    
     func cartTouch() {
         show(shoppingCartVC, sender: self)
     }

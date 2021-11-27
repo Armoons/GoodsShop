@@ -9,8 +9,8 @@ import UIKit
 import Kingfisher
 
 protocol GoodsCollectionViewCellDelegate {
-    func didAddNewGoods()
-    func didRemovedGoods()
+    func didSelectNewGoods(id: String)
+    func didDeselectGoods(id: String)
 }
 
 class GoodsCollectionViewCell: UICollectionViewCell {
@@ -95,23 +95,23 @@ class GoodsCollectionViewCell: UICollectionViewCell {
     @objc func plusTouch(){
         
         if !didPlusTouch {
-            delegate?.didAddNewGoods()
+            delegate?.didSelectNewGoods(id: data!.id)
             UIView.animate(withDuration: 0.3, delay: 0){
                 self.plusButton.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 4)
                 self.priceLabel.layer.backgroundColor = Colors.mainBlue.cgColor
                 self.priceLabel.textColor = .white
             }
-            selectedGoods.array.append(data!)
+//            selectedGoods.array.append(data!)
         } else {
-            delegate?.didRemovedGoods()
+            delegate?.didDeselectGoods(id: data!.id)
             UIView.animate(withDuration: 0.3, delay: 0){
                 self.plusButton.transform = CGAffineTransform(rotationAngle: 0)
                 self.priceLabel.layer.backgroundColor = .none
                 self.priceLabel.textColor = .black
             }
-            selectedGoods.array.removeAll {
-                $0.id == data?.id
-            }
+//            selectedGoods.array.removeAll {
+//                $0.id == data?.id
+//            }
         }
         didPlusTouch = !didPlusTouch
     }

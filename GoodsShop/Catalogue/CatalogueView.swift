@@ -10,6 +10,8 @@ import UIKit
 
 protocol CatalogueViewDelegate {
     func cartTouch()
+    func goodsSelect(id: String)
+    func goodsDeselect(id: String)
 }
 
 class CatalogueView: UIView {
@@ -18,6 +20,8 @@ class CatalogueView: UIView {
     var delegate: CatalogueViewDelegate?
     
     var goodsInfoArray: [GoodsInfo] = []
+    var selectedGoodsArray: [GoodsInfo] = []
+    
     private var currentGoodsNumber = 0
     
     private let sortView = SortView()
@@ -149,13 +153,7 @@ extension CatalogueView: UICollectionViewDelegate, UICollectionViewDataSource, U
     }
 }
 
-extension CatalogueView: CatalogueViewControllerDelegate {
-    func getGoodsArray(array: [GoodsInfo]) {
-        goodsInfoArray = array
-        sortView.getGoodsArray(array: array)
-        goodsCollectionView.reloadData()
-    }
-}
+
     
 extension CatalogueView: SortViewDelegate {
     func priceSort(newGoodsArray: [GoodsInfo]) {
@@ -170,18 +168,34 @@ extension CatalogueView: SortViewDelegate {
 }
 
 extension CatalogueView: GoodsCollectionViewCellDelegate {
-
-    func didAddNewGoods() {
+    
+    func didSelectNewGoods(id: String) {
         currentGoodsNumber += 1
         if currentGoodsNumber > 0 {bagQuantityLabel.isHidden = false}
         bagQuantityLabel.text = "\(currentGoodsNumber)"
+        
+        selectedGoodsArray.append(goodsInfoArray.first(where: {$0.id == id})!)
+        delegate?.goodsSelect(id: id)
     }
-
-    func didRemovedGoods() {
+    
+    func didDeselectGoods(id: String) {
         currentGoodsNumber -= 1
         if currentGoodsNumber == 0 {bagQuantityLabel.isHidden = true}
         bagQuantityLabel.text = "\(currentGoodsNumber)"
+        
+        selectedGoodsArray.append(goodsInfoArray.first(where: {$0.id == id})!)
+        delegate?.goodsDeselect(id: id)
     }
 }
     
+extension CatalogueView: CatalogueViewControllerDelegateForView {
+    
+    
+    func getGoodsArray(array: [GoodsInfo]) {
+        goodsInfoArray = array
+        sortView.getGoodsArray(array: array)
+        goodsCollectionView.reloadData()
+    }
+    
+}
     
