@@ -84,7 +84,7 @@ class ShoppingCartViewCell: UICollectionViewCell {
     
     private func setupContraints() {
         
-        changeNumberButton.delegate = self
+//        changeNumberButton.delegate = self
         
         for ui in [imageView, nameLabel, descriptionLabel, priceLabel, changeNumberButton] {
             self.addSubview(ui)
@@ -128,16 +128,16 @@ class ShoppingCartViewCell: UICollectionViewCell {
     }
 }
 
-extension ShoppingCartViewCell: CartChangeNumberButtonDelegate {
-
-
-    func plusTouched() {
-        delegate?.plusTouchedFromCell(newPrice: (data?.price) ?? 0)
-    }
-
-    func minusTouched() {
-        delegate?.minusTouchedFromCell(newPrice: (data?.price) ?? 0)
-    }
-
-
-}
+//extension ShoppingCartViewCell: CartChangeNumberButtonDelegate {
+//
+//
+//    func plusTouched() {
+//        delegate?.plusTouchedFromCell(newPrice: (data?.price) ?? 0)
+//    }
+//
+//    func minusTouched() {
+//        delegate?.minusTouchedFromCell(newPrice: (data?.price) ?? 0)
+//    }
+//
+//
+//}

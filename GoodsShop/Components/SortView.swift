@@ -187,7 +187,6 @@ class SortView: UIView {
             goodsInfoArrayChanged = goodsInfoArray
         }
         
-        
         print("SORT:\(goodsInfoArrayChanged)")
        
     }

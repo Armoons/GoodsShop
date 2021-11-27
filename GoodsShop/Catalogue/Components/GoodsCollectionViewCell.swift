@@ -92,27 +92,50 @@ class GoodsCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    @objc func plusTouch(){
+    func cellSelected(animation: Bool) {
         
-        if !didPlusTouch {
-            delegate?.didSelectNewGoods(id: data!.id)
+        if animation {
             UIView.animate(withDuration: 0.3, delay: 0){
                 self.plusButton.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 4)
                 self.priceLabel.layer.backgroundColor = Colors.mainBlue.cgColor
                 self.priceLabel.textColor = .white
             }
-//            selectedGoods.array.append(data!)
         } else {
-            delegate?.didDeselectGoods(id: data!.id)
+            self.plusButton.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 4)
+            self.priceLabel.layer.backgroundColor = Colors.mainBlue.cgColor
+            self.priceLabel.textColor = .white
+        }
+    }
+    
+    func cellDeselected(animation: Bool) {
+        if animation {
             UIView.animate(withDuration: 0.3, delay: 0){
                 self.plusButton.transform = CGAffineTransform(rotationAngle: 0)
                 self.priceLabel.layer.backgroundColor = .none
                 self.priceLabel.textColor = .black
             }
-//            selectedGoods.array.removeAll {
-//                $0.id == data?.id
-//            }
+        } else {
+            self.plusButton.transform = CGAffineTransform(rotationAngle: 0)
+            self.priceLabel.layer.backgroundColor = .none
+            self.priceLabel.textColor = .black
         }
+    }
+    
+
+    
+    @objc func plusTouch(){
+        
+        if self.priceLabel.textColor == .black {didPlusTouch = false} else {didPlusTouch = true}
+
+        
+        if !didPlusTouch {
+            delegate?.didSelectNewGoods(id: data!.id)
+            cellSelected(animation: true)
+        } else {
+            delegate?.didDeselectGoods(id: data!.id)
+            cellDeselected(animation: true)
+        }
+        
         didPlusTouch = !didPlusTouch
     }
     

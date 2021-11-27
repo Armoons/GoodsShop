@@ -16,11 +16,12 @@ protocol CatalogueViewDelegate {
 
 class CatalogueView: UIView {
     
-//    private let catalogueVC = CatalogueViewController()
     var delegate: CatalogueViewDelegate?
     
     var goodsInfoArray: [GoodsInfo] = []
     var selectedGoodsArray: [GoodsInfo] = []
+    var selectedGoodsIDArray: [String] = []
+
     
     private var currentGoodsNumber = 0
     
@@ -148,6 +149,11 @@ extension CatalogueView: UICollectionViewDelegate, UICollectionViewDataSource, U
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellID.goodsCellID, for: indexPath) as! GoodsCollectionViewCell
         cell.data = goodsInfoArray[indexPath.row]
+        
+        if selectedGoodsIDArray.contains(cell.data!.id) {
+            cell.cellSelected(animation: false)
+        } else { cell.cellDeselected(animation: false) }
+        
         cell.delegate = self
         return cell
     }
@@ -175,6 +181,10 @@ extension CatalogueView: GoodsCollectionViewCellDelegate {
         bagQuantityLabel.text = "\(currentGoodsNumber)"
         
         selectedGoodsArray.append(goodsInfoArray.first(where: {$0.id == id})!)
+        selectedGoodsIDArray.append(id)
+        print("AAAA2", selectedGoodsIDArray)
+
+        
         delegate?.goodsSelect(id: id)
     }
     
@@ -184,6 +194,9 @@ extension CatalogueView: GoodsCollectionViewCellDelegate {
         bagQuantityLabel.text = "\(currentGoodsNumber)"
         
         selectedGoodsArray.append(goodsInfoArray.first(where: {$0.id == id})!)
+        selectedGoodsIDArray.remove(at: selectedGoodsIDArray.firstIndex(where: {$0 == id})!)
+        print("BBBB", selectedGoodsIDArray)
+
         delegate?.goodsDeselect(id: id)
     }
 }
