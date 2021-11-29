@@ -10,6 +10,8 @@ import UIKit
 
 class ShoppingCartView: UIView {
     
+    var selectedGoodsArray: [GoodsInfo] = []
+    
     private let brandLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: Font.sfBold, size: 26)
@@ -52,6 +54,8 @@ class ShoppingCartView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+//        ShoppingCartViewController().delegate = self
+        
         setupUI()
     }
     
@@ -63,8 +67,8 @@ class ShoppingCartView: UIView {
         
         shoppingListCollectionView.register(ShoppingCartViewCell.self, forCellWithReuseIdentifier: CellID.shoppingCartCellID)
         
-//        shoppingListCollectionView.delegate = self
-//        shoppingListCollectionView.dataSource = self
+        shoppingListCollectionView.delegate = self
+        shoppingListCollectionView.dataSource = self
         self.backgroundColor = Colors.background
         
         for ui in [brandLabel, lineView, shoppingListCollectionView, subtotalVew, buyButton] {
@@ -105,20 +109,29 @@ class ShoppingCartView: UIView {
     }
 }
 
-//extension ShoppingCartView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
-//    
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        return CGSize(width: self.frame.width, height: 150)
-//    }
-//    
-//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        return selectedGoods.array.count
-//    }
-//    
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellID.shoppingCartCellID, for: indexPath) as! ShoppingCartViewCell
-//        cell.data = selectedGoods.array[indexPath.row]
-////        cell.delegate = self
-//        return cell
-//    }
-//}
+extension ShoppingCartView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: self.frame.width, height: 150)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return selectedGoodsArray.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellID.shoppingCartCellID, for: indexPath) as! ShoppingCartViewCell
+        cell.data = selectedGoodsArray[indexPath.row]
+//        cell.delegate = self
+        return cell
+    }
+}
+
+extension ShoppingCartView: ShoppingCartViewControllerDelegate {
+    
+    func getSelectedGoods(array: [GoodsInfo]) {
+        selectedGoodsArray = array
+        print(selectedGoodsArray)
+        shoppingListCollectionView.reloadData()
+    }
+}

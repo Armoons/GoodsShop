@@ -7,9 +7,13 @@
 
 import Foundation
 
+protocol CartModelDelegate {
+    func getSelectedGoodsDict(dict: [String:Int])
+}
+
 class CartModel {
-    
     private var selectedGoods: [String:Int] = [:]
+    var delegate: CartModelDelegate?
     
 }
 
@@ -27,5 +31,7 @@ extension CartModel: CatalogueViewControllerDelegateForModel {
         return (selectedGoods)
     }
     
-    
+    func cartTouched() {
+        delegate?.getSelectedGoodsDict(dict: selectedGoods)
+    }
 }

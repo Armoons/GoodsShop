@@ -186,9 +186,7 @@ class SortView: UIView {
             
             goodsInfoArrayChanged = goodsInfoArray
         }
-        
-        print("SORT:\(goodsInfoArrayChanged)")
-       
+               
     }
     
     @objc func priceTouched() {

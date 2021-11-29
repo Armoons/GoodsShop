@@ -14,8 +14,11 @@ protocol CatalogueViewControllerDelegateForView {
 protocol CatalogueViewControllerDelegateForModel {
     func getSelectedID(id: String) ->  [String:Int]
     func getDeselectedID(id: String) ->  [String:Int]
-
+    func cartTouched()
 }
+
+//protocol CatalogueViewControllerDelegateForShoppingVC {
+//}
 
 
 class CatalogueViewController: UIViewController {
@@ -25,6 +28,7 @@ class CatalogueViewController: UIViewController {
     private var goodsArray: [GoodsInfo] = []
     var viewDelegate: CatalogueViewControllerDelegateForView?
     var modelDelegate: CatalogueViewControllerDelegateForModel?
+//    var shoppigDelegate: CatalogueViewControllerDelegateForShoppingVC?
     private var selectedGoodsDict: [String:Int] = [:]
     
     private let cartModel = CartModel()
@@ -43,15 +47,20 @@ class CatalogueViewController: UIViewController {
         self.viewDelegate = catalogueView
         catalogueView.delegate = self
         
-        loader.delegate = self
+        loader.delegateCatalogue = self
+        loader.delegateShopping = shoppingCartVC
         loader.loadInfo()
+        
+        cartModel.delegate = shoppingCartVC
         
         self.modelDelegate = cartModel
         
     }
+    
+    
 }
 
-extension CatalogueViewController: GoodsServiceDelegate {
+extension CatalogueViewController: GoodsServiceDelegateForCatalogue {
     func loaded(goodsInfo: [GoodsInfo]) {
         goodsArray = goodsInfo
         viewDelegate?.getGoodsArray(array: goodsArray)
@@ -70,7 +79,10 @@ extension CatalogueViewController: CatalogueViewDelegate {
     
     func cartTouch() {
         show(shoppingCartVC, sender: self)
+        modelDelegate?.cartTouched()
     }
+    
+   
 }
 
 

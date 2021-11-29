@@ -84,7 +84,7 @@ class CatalogueView: UIView {
     }
     
     @objc func shoppingBagTouched() {
-        
+        delegate?.cartTouch()
     }
     
     private func setupUI() {
@@ -142,7 +142,6 @@ extension CatalogueView: UICollectionViewDelegate, UICollectionViewDataSource, U
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print(goodsInfoArray)
         return goodsInfoArray.count
     }
 
@@ -182,7 +181,7 @@ extension CatalogueView: GoodsCollectionViewCellDelegate {
         
         selectedGoodsArray.append(goodsInfoArray.first(where: {$0.id == id})!)
         selectedGoodsIDArray.append(id)
-        print("AAAA2", selectedGoodsIDArray)
+        print("selectedID", selectedGoodsIDArray)
 
         
         delegate?.goodsSelect(id: id)
