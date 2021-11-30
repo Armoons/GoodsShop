@@ -22,25 +22,26 @@ class ShoppingCartViewController: UIViewController {
     private let cartModel = CartModel()
 //    private let catalogueVC = CatalogueViewController()
     private let loader = GoodsService()
-//    private let cartView = ShoppingCartView()
+    private let cartView = ShoppingCartView()
         
     var delegate: ShoppingCartViewControllerDelegate?
     
     override func loadView() {
-        super.loadView()
-        self.view = ShoppingCartView()
-        
-        self.delegate = ShoppingCartView()
+        self.view = cartView
 
+    }
     
-        
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.delegate = cartView
+
     }
     
     func createSelectedGoodsArray() {
         let keys = Array(selectedGoodsDict.keys)
         
         selectedGoodsArray = goodsArray.filter{keys.contains($0.id)}
-        print("CHECKKEYS:", selectedGoodsArray.first?.id)
+//        print("CHECKKEYS:", selectedGoodsArray.first?.id)
         delegate?.getSelectedGoods(array: selectedGoodsArray)
         
     }
@@ -56,12 +57,15 @@ extension ShoppingCartViewController: CartModelDelegate {
     }
 }
 
-extension ShoppingCartViewController: GoodsServiceDelegateForShopping {
-    func loaded(goodsInfo: [GoodsInfo]) {
-        goodsArray = goodsInfo
+extension ShoppingCartViewController: GoodsServiceDelegate {
+    var id: String {
+        "ShoppingCartVC"
     }
     
     
+    func loaded(goodsInfo: [GoodsInfo]) {
+        goodsArray = goodsInfo
+    }  
 }
 
 

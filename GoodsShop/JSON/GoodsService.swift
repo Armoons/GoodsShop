@@ -7,21 +7,28 @@
 
 import Foundation
 
-protocol GoodsServiceDelegateForCatalogue {
+protocol GoodsServiceDelegate {
     func loaded(goodsInfo: [GoodsInfo])
+    var id: String {get}
 }
 
-protocol GoodsServiceDelegateForShopping {
-    func loaded(goodsInfo: [GoodsInfo])
-}
+//protocol GoodsServiceDelegateForShopping {
+//    func loaded(goodsInfo: [GoodsInfo])
+//}
 
 class GoodsService {
 
     static let urlString = "http://94.127.67.113:8099/getGoods"
     
-    var delegateCatalogue: GoodsServiceDelegateForCatalogue?
-    var delegateShopping: GoodsServiceDelegateForShopping?
+    private var delegates: [GoodsServiceDelegate] = []
 
+    func addDelegate(delegate: GoodsServiceDelegate) {
+        delegates.append(delegate)
+    }
+    
+    func removeDelegate(delegate: GoodsServiceDelegate) {
+        delegates.removeAll(where: {$0.id == delegate.id})
+    }
     
     func loadInfo() {
         guard let url = URL(string: Self.urlString) else { return }
@@ -35,8 +42,7 @@ class GoodsService {
             do {
                 let goodsArray = try JSONDecoder().decode([GoodsInfo].self, from: data)
                 DispatchQueue.main.async {
-                    delegateShopping?.loaded(goodsInfo: goodsArray)
-                    delegateCatalogue?.loaded(goodsInfo: goodsArray)
+                    delegates.forEach {$0.loaded(goodsInfo: goodsArray)}
                 }
             }  catch {
                 print(error)

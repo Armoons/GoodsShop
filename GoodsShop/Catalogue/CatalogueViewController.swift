@@ -35,32 +35,40 @@ class CatalogueViewController: UIViewController {
 
     private let shoppingCartVC = ShoppingCartViewController()
 //
-//    private var goodsInfoArray: [GoodsInfo] = []
-//    private var currentGoodsNumber = 0
-//
-//
+
     
     override func loadView() {
-        super.loadView()
-        
         self.view = catalogueView
+        
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
         self.viewDelegate = catalogueView
         catalogueView.delegate = self
         
-        loader.delegateCatalogue = self
-        loader.delegateShopping = shoppingCartVC
+//        loader.delegateCatalogue = self
+//        loader.delegateShopping = shoppingCartVC
+        
+        loader.addDelegate(delegate: self)
+        loader.addDelegate(delegate: shoppingCartVC)
+        
         loader.loadInfo()
         
         cartModel.delegate = shoppingCartVC
         
         self.modelDelegate = cartModel
-        
     }
     
     
 }
 
-extension CatalogueViewController: GoodsServiceDelegateForCatalogue {
+extension CatalogueViewController: GoodsServiceDelegate {
+    var id: String {
+        "CatalogueVC"
+    }
+    
     func loaded(goodsInfo: [GoodsInfo]) {
         goodsArray = goodsInfo
         viewDelegate?.getGoodsArray(array: goodsArray)

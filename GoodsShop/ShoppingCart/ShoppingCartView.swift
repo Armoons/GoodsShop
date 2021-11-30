@@ -65,8 +65,8 @@ class ShoppingCartView: UIView {
         
 //        shoppingListCollectionView.delegate = self
 //        shoppingListCollectionView.dataSource = self
-        shoppingListTableView.delegate = self
-        shoppingListTableView.dataSource = self
+        self.shoppingListTableView.delegate = self
+        self.shoppingListTableView.dataSource = self
         
 //        ShoppingCartViewController().delegate = self
         

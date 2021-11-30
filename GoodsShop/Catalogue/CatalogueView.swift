@@ -194,7 +194,7 @@ extension CatalogueView: GoodsCollectionViewCellDelegate {
         
         selectedGoodsArray.append(goodsInfoArray.first(where: {$0.id == id})!)
         selectedGoodsIDArray.remove(at: selectedGoodsIDArray.firstIndex(where: {$0 == id})!)
-        print("BBBB", selectedGoodsIDArray)
+        print("deselectedID", selectedGoodsIDArray)
 
         delegate?.goodsDeselect(id: id)
     }
