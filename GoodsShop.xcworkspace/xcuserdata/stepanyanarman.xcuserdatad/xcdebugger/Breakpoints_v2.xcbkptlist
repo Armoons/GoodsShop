@@ -588,7 +588,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "BEFA2112-C2A1-4CCB-9C65-6CF2A44652BB"
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GoodsShop/ShoppingCart/ShoppingCartViewController.swift"
@@ -1098,7 +1098,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "B6B7FDE0-3BCA-45F1-A172-454F771AC59B"
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GoodsShop/ShoppingCart/ShoppingCartViewController.swift"
@@ -1114,15 +1114,15 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "1957316B-38F7-4C4E-B8F8-EA9CC25D8B96"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GoodsShop/ShoppingCart/ShoppingCartView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "135"
-            endingLineNumber = "135"
-            landmarkName = "collectionView(_:cellForItemAt:)"
+            startingLineNumber = "172"
+            endingLineNumber = "172"
+            landmarkName = "getSelectedGoods(array:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1152,9 +1152,9 @@
             filePath = "GoodsShop/ShoppingCart/ShoppingCartView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "133"
-            endingLineNumber = "133"
-            landmarkName = "collectionView(_:cellForItemAt:)"
+            startingLineNumber = "170"
+            endingLineNumber = "170"
+            landmarkName = "getSelectedGoods(array:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1177,32 +1177,80 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "A4363F29-39CE-41D3-9419-31D107DC5EAE"
-            shouldBeEnabled = "Yes"
+            uuid = "29C204C3-580A-43FD-82A8-52038ABF451D"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GoodsShop/ShoppingCart/ShoppingCartView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "71"
-            endingLineNumber = "71"
-            landmarkName = "init?(coder:)"
+            startingLineNumber = "161"
+            endingLineNumber = "161"
+            landmarkName = "unknown"
+            landmarkType = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A5C022E3-1405-4C83-A231-A18A670600A6"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GoodsShop/ShoppingCart/ShoppingCartView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
+            landmarkName = "init(frame:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "29C204C3-580A-43FD-82A8-52038ABF451D"
+            uuid = "70C06125-5644-46D3-86F2-9C025F33B31C"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GoodsShop/ShoppingCart/ShoppingCartView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "124"
-            endingLineNumber = "124"
-            landmarkName = "collectionView(_:layout:sizeForItemAt:)"
+            startingLineNumber = "173"
+            endingLineNumber = "173"
+            landmarkName = "getSelectedGoods(array:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4A0BCD7F-BB60-4DA3-A77F-BBAF60199D66"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GoodsShop/ShoppingCart/ShoppingCartView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "69"
+            endingLineNumber = "69"
+            landmarkName = "init(frame:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CA87EC23-8F65-472E-AE5D-69044EDE9499"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GoodsShop/ShoppingCart/ShoppingCartViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
+            landmarkName = "createSelectedGoodsArray()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

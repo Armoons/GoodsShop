@@ -1,27 +1,22 @@
 //
-//  ShoppingCartViewCell.swift
+//  ShoppingCartTableCell.swift
 //  GoodsShop
 //
-//  Created by Stepanyan Arman  on 16.11.2021.
+//  Created by Stepanyan Arman  on 30.11.2021.
 //
 
 import Foundation
 import UIKit
 import Kingfisher
 
-protocol ShoppingCartViewCellDelegate {
-    func plusTouchedFromCell(newPrice: Int)
-    func minusTouchedFromCell(newPrice: Int)
-}
 
-
-class ShoppingCartViewCell: UICollectionViewCell {
+class ShoppingCartTableCell: UITableViewCell {
     
     var data: GoodsInfo? {
         didSet {
             guard let data = data else { return }
             let imageURL = URL(string: data.image)
-            imageView.kf.setImage(with: imageURL)
+            imageV.kf.setImage(with: imageURL)
             nameLabel.text = data.name
             priceLabel.text = "\(data.price)₽"
             
@@ -36,15 +31,22 @@ class ShoppingCartViewCell: UICollectionViewCell {
         }
     }
     
-    var delegate: ShoppingCartViewCellDelegate?
+//    var delegate: ShoppingCartViewCellDelegate?
     
-    private let imageView: UIImageView = {
+    private let imageV: UIImageView = {
         let iv = UIImageView()
         iv.translatesAutoresizingMaskIntoConstraints = false
         iv.contentMode = .scaleToFill
         iv.layer.masksToBounds = true
         return iv
     }()
+//    private let imageView: UIImageView = {
+//        let iv = UIImageView()
+//        iv.translatesAutoresizingMaskIntoConstraints = false
+//        iv.contentMode = .scaleToFill
+//        iv.layer.masksToBounds = true
+//        return iv
+//    }()
     
     private let nameLabel: UILabel = {
         $0.font = UIFont(name: Font.sfBold, size: 17)
@@ -72,8 +74,8 @@ class ShoppingCartViewCell: UICollectionViewCell {
     
     private let changeNumberButton = CartChangeNumberButton()
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         setupContraints()
     }
@@ -85,13 +87,14 @@ class ShoppingCartViewCell: UICollectionViewCell {
     private func setupContraints() {
         
 //        changeNumberButton.delegate = self
+        self.backgroundColor = Colors.background
         
-        for ui in [imageView, nameLabel, descriptionLabel, priceLabel, changeNumberButton] {
+        for ui in [imageV, nameLabel, descriptionLabel, priceLabel, changeNumberButton] {
             self.addSubview(ui)
         }
         
         
-        imageView.snp.makeConstraints{
+        imageV.snp.makeConstraints{
             $0.centerY.equalToSuperview()
             $0.top.equalToSuperview().inset(12)
             $0.left.equalToSuperview().inset(10)
@@ -100,19 +103,19 @@ class ShoppingCartViewCell: UICollectionViewCell {
         
         nameLabel.snp.makeConstraints{
             $0.top.equalToSuperview().inset(12)
-            $0.left.equalTo(imageView.snp.right).offset(12)
+            $0.left.equalTo(imageV.snp.right).offset(12)
             $0.height.equalTo(20)
             $0.right.equalToSuperview().inset(20)
         }
         
         descriptionLabel.snp.makeConstraints{
             $0.top.equalTo(nameLabel.snp.bottom).offset(5)
-            $0.left.equalTo(imageView.snp.right).offset(12)
+            $0.left.equalTo(imageV.snp.right).offset(12)
             $0.right.equalToSuperview().inset(20)
         }
         
         priceLabel.snp.makeConstraints{
-            $0.left.equalTo(imageView.snp.right).offset(12)
+            $0.left.equalTo(imageV.snp.right).offset(12)
             $0.bottom.equalToSuperview().inset(12)
             $0.width.equalTo(50)
             $0.height.equalTo(30)
@@ -127,17 +130,3 @@ class ShoppingCartViewCell: UICollectionViewCell {
         }
     }
 }
-
-//extension ShoppingCartViewCell: CartChangeNumberButtonDelegate {
-//
-//
-//    func plusTouched() {
-//        delegate?.plusTouchedFromCell(newPrice: (data?.price) ?? 0)
-//    }
-//
-//    func minusTouched() {
-//        delegate?.minusTouchedFromCell(newPrice: (data?.price) ?? 0)
-//    }
-//
-//
-//}

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AE05DDE227565D7100147BDA /* ShoppingCartTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE05DDE127565D7100147BDA /* ShoppingCartTableCell.swift */; };
 		AE5C5AA4274014E7000C319D /* ImageView+Ext..swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5C5AA3274014E7000C319D /* ImageView+Ext..swift */; };
 		AE82A8E5273885E500734F3F /* GoodsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE82A8E4273885E500734F3F /* GoodsService.swift */; };
 		AE82A8E72738891300734F3F /* Test Backend.postman_collection.json in Resources */ = {isa = PBXBuildFile; fileRef = AE82A8E62738891300734F3F /* Test Backend.postman_collection.json */; };
@@ -15,7 +16,6 @@
 		AEC7C22827514376002E7ADB /* ShoppingCartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC7C22727514376002E7ADB /* ShoppingCartView.swift */; };
 		AEC7C22A27514EF8002E7ADB /* CartModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC7C22927514EF8002E7ADB /* CartModel.swift */; };
 		AEC7DBF3274417DA006F8427 /* ShoppingCartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC7DBF2274417DA006F8427 /* ShoppingCartViewController.swift */; };
-		AEC7DBF527441BF9006F8427 /* ShoppingCartViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC7DBF427441BF9006F8427 /* ShoppingCartViewCell.swift */; };
 		AEC7DBF827442022006F8427 /* CartChangeNumberButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC7DBF727442022006F8427 /* CartChangeNumberButton.swift */; };
 		AECDEA6627354D6F00643AAB /* GoodsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECDEA6527354D6F00643AAB /* GoodsCollectionViewCell.swift */; };
 		AECF1C3A274517AE00B2FA41 /* ShoppingSubtotalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECF1C39274517AE00B2FA41 /* ShoppingSubtotalView.swift */; };
@@ -38,6 +38,7 @@
 		182F3C0C2C65C86B1FF44DC9 /* Pods-GoodsShop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoodsShop.debug.xcconfig"; path = "Target Support Files/Pods-GoodsShop/Pods-GoodsShop.debug.xcconfig"; sourceTree = "<group>"; };
 		2221501935048268D506452F /* Pods-GoodsShop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoodsShop.release.xcconfig"; path = "Target Support Files/Pods-GoodsShop/Pods-GoodsShop.release.xcconfig"; sourceTree = "<group>"; };
 		83F759013D2734A52F08710F /* Pods_GoodsShop.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GoodsShop.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AE05DDE127565D7100147BDA /* ShoppingCartTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCartTableCell.swift; sourceTree = "<group>"; };
 		AE5C5AA3274014E7000C319D /* ImageView+Ext..swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ImageView+Ext..swift"; sourceTree = "<group>"; };
 		AE82A8E4273885E500734F3F /* GoodsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsService.swift; sourceTree = "<group>"; };
 		AE82A8E62738891300734F3F /* Test Backend.postman_collection.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "Test Backend.postman_collection.json"; sourceTree = "<group>"; };
@@ -46,7 +47,6 @@
 		AEC7C22727514376002E7ADB /* ShoppingCartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCartView.swift; sourceTree = "<group>"; };
 		AEC7C22927514EF8002E7ADB /* CartModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartModel.swift; sourceTree = "<group>"; };
 		AEC7DBF2274417DA006F8427 /* ShoppingCartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCartViewController.swift; sourceTree = "<group>"; };
-		AEC7DBF427441BF9006F8427 /* ShoppingCartViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCartViewCell.swift; sourceTree = "<group>"; };
 		AEC7DBF727442022006F8427 /* CartChangeNumberButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartChangeNumberButton.swift; sourceTree = "<group>"; };
 		AECDEA6527354D6F00643AAB /* GoodsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsCollectionViewCell.swift; sourceTree = "<group>"; };
 		AECF1C39274517AE00B2FA41 /* ShoppingSubtotalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingSubtotalView.swift; sourceTree = "<group>"; };
@@ -160,7 +160,7 @@
 		AECF1C38274514CA00B2FA41 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				AEC7DBF427441BF9006F8427 /* ShoppingCartViewCell.swift */,
+				AE05DDE127565D7100147BDA /* ShoppingCartTableCell.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -361,7 +361,6 @@
 			files = (
 				AECF1C3A274517AE00B2FA41 /* ShoppingSubtotalView.swift in Sources */,
 				AEC7DBF827442022006F8427 /* CartChangeNumberButton.swift in Sources */,
-				AEC7DBF527441BF9006F8427 /* ShoppingCartViewCell.swift in Sources */,
 				AEC7C22827514376002E7ADB /* ShoppingCartView.swift in Sources */,
 				AEDF8E55273411AF00F5D977 /* LineUnderBrandLabel.swift in Sources */,
 				AEDF8E572734203D00F5D977 /* DefaultButton.swift in Sources */,
@@ -377,6 +376,7 @@
 				AEDF8E45273409CC00F5D977 /* Model.swift in Sources */,
 				AE941B48274ECED00013D620 /* CatalogueView.swift in Sources */,
 				AE82A8E5273885E500734F3F /* GoodsService.swift in Sources */,
+				AE05DDE227565D7100147BDA /* ShoppingCartTableCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

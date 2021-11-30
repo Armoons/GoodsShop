@@ -33,6 +33,7 @@ struct Images {
 struct CellID {
     static let goodsCellID: String = "goodsCell"
     static let shoppingCartCellID: String = "shoppingCartCell"
+
 }
 
 

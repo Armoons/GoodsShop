@@ -25,18 +25,27 @@ class ShoppingCartView: UIView {
         return view
     }()
     
-    let shoppingListCollectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .vertical
-        layout.minimumLineSpacing = 10
-        layout.minimumInteritemSpacing = 0
-        layout.estimatedItemSize = .zero
+    let shoppingListTableView: UITableView = {
+        let tv = UITableView()
+        tv.showsVerticalScrollIndicator = false
+        tv.rowHeight = 150
         
-        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        cv.showsVerticalScrollIndicator = false
-        cv.backgroundColor = Colors.background
-        return cv
+        tv.backgroundColor = Colors.background
+        return tv
     }()
+
+//    let shoppingListCollectionView: UICollectionView = {
+//        let layout = UICollectionViewFlowLayout()
+//        layout.scrollDirection = .vertical
+//        layout.minimumLineSpacing = 10
+//        layout.minimumInteritemSpacing = 0
+//        layout.estimatedItemSize = .zero
+//
+//        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
+//        cv.showsVerticalScrollIndicator = false
+//        cv.backgroundColor = Colors.background
+//        return cv
+//    }()
     
     private let subtotalVew = ShoppingSubtotalView()
     
@@ -54,6 +63,11 @@ class ShoppingCartView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+//        shoppingListCollectionView.delegate = self
+//        shoppingListCollectionView.dataSource = self
+        shoppingListTableView.delegate = self
+        shoppingListTableView.dataSource = self
+        
 //        ShoppingCartViewController().delegate = self
         
         setupUI()
@@ -65,13 +79,14 @@ class ShoppingCartView: UIView {
     
     private func setupUI() {
         
-        shoppingListCollectionView.register(ShoppingCartViewCell.self, forCellWithReuseIdentifier: CellID.shoppingCartCellID)
-        
-        shoppingListCollectionView.delegate = self
-        shoppingListCollectionView.dataSource = self
+//        shoppingListCollectionView.register(ShoppingCartViewCell.self, forCellWithReuseIdentifier: CellID.shoppingCartCellID)
+//        shoppingListTableView.register(ShoppingCartTableCell.self, forCellWithReuseIdentifier: CellID.shoppingCartCellID)
+        shoppingListTableView.register(ShoppingCartTableCell.self, forCellReuseIdentifier: CellID.shoppingCartCellID)
+
+
         self.backgroundColor = Colors.background
         
-        for ui in [brandLabel, lineView, shoppingListCollectionView, subtotalVew, buyButton] {
+        for ui in [brandLabel, lineView, shoppingListTableView, subtotalVew, buyButton] {
             self.addSubview(ui)
         }
         
@@ -87,7 +102,7 @@ class ShoppingCartView: UIView {
             $0.height.equalTo(2)
         }
         
-        shoppingListCollectionView.snp.makeConstraints{
+        shoppingListTableView.snp.makeConstraints{
             $0.top.equalTo(lineView.snp.bottom).offset(10)
             $0.left.right.equalToSuperview()
             $0.bottom.equalTo(subtotalVew.snp.top).inset(-10)
@@ -109,29 +124,51 @@ class ShoppingCartView: UIView {
     }
 }
 
-extension ShoppingCartView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
+extension ShoppingCartView: UITableViewDelegate, UITableViewDataSource {
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: self.frame.width, height: 150)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        return mok.array.count
         return selectedGoodsArray.count
+
+        
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellID.shoppingCartCellID, for: indexPath) as! ShoppingCartViewCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: CellID.shoppingCartCellID, for: indexPath) as! ShoppingCartTableCell
+
         cell.data = selectedGoodsArray[indexPath.row]
+//        cell.data = mok.array[indexPath.row]
+
 //        cell.delegate = self
         return cell
     }
+    
+    
 }
+
+//extension ShoppingCartView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
+//
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//        return CGSize(width: self.frame.width, height: 150)
+//    }
+//
+//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+//        return selectedGoodsArray.count
+//    }
+//
+//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellID.shoppingCartCellID, for: indexPath) as! ShoppingCartViewCell
+//        cell.data = selectedGoodsArray[indexPath.row]
+////        cell.delegate = self
+//        return cell
+//    }
+//}
 
 extension ShoppingCartView: ShoppingCartViewControllerDelegate {
     
     func getSelectedGoods(array: [GoodsInfo]) {
         selectedGoodsArray = array
         print(selectedGoodsArray)
-        shoppingListCollectionView.reloadData()
+        shoppingListTableView.reloadData()
     }
 }
