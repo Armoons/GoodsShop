@@ -62,22 +62,12 @@ extension ShoppingCartViewController: GoodsServiceDelegate {
         "ShoppingCartVC"
     }
     
-    
     func loaded(goodsInfo: [GoodsInfo]) {
         goodsArray = goodsInfo
-    }  
+//        goodsArray.indices.forEach { goodsArray[$0].count = 1 }
+
+    }
 }
-
-
-//    func updateUI() {
-//        shoppingListCollectionView.reloadData()
-//
-//        subtotalValue = selectedGoods.array.reduce(0, {$0 + $1.price})
-//
-//        changedSubtotalValue = subtotalValue
-//        subtotalVew.subtotalPriceLabel.text = "\(subtotalValue!)"
-//    }
-
 
 //extension ShoppingCartViewController: ShoppingCartViewCellDelegate {
 //    func plusTouchedFromCell(newPrice: Int) {

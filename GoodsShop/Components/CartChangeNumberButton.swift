@@ -33,7 +33,7 @@ class CartChangeNumberButton: UIButton {
         return button
     }()
     
-    private let number: UILabel = {
+    let number: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: Font.sfBold, size: 22)
         label.textColor = .white
@@ -51,6 +51,12 @@ class CartChangeNumberButton: UIButton {
         super.init(coder: coder)
     }
     
+    @objc func plusTouched() {
+        delegate?.plusTouched()
+        number.text = "\(Int(number.text!)! + 1)"
+
+    }
+    
     @objc func minusTouched() {
         
         if number.text != "1"{
@@ -59,11 +65,7 @@ class CartChangeNumberButton: UIButton {
         } else { return }
     }
     
-    @objc func plusTouched() {
-        delegate?.plusTouched()
-        number.text = "\(Int(number.text!)! + 1)"
 
-    }
     
     private func setupUI() {
         self.backgroundColor = Colors.mainBlue

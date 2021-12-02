@@ -9,6 +9,10 @@ import Foundation
 import UIKit
 import Kingfisher
 
+protocol ShoppingCartTableCellDelegate {
+    func plusTouched(id: String)
+    func minusTouched(id: String)
+}
 
 class ShoppingCartTableCell: UITableViewCell {
     
@@ -31,7 +35,7 @@ class ShoppingCartTableCell: UITableViewCell {
         }
     }
     
-//    var delegate: ShoppingCartViewCellDelegate?
+    var delegate: ShoppingCartTableCellDelegate?
     
     private let imageV: UIImageView = {
         let iv = UIImageView()
@@ -40,13 +44,6 @@ class ShoppingCartTableCell: UITableViewCell {
         iv.layer.masksToBounds = true
         return iv
     }()
-//    private let imageView: UIImageView = {
-//        let iv = UIImageView()
-//        iv.translatesAutoresizingMaskIntoConstraints = false
-//        iv.contentMode = .scaleToFill
-//        iv.layer.masksToBounds = true
-//        return iv
-//    }()
     
     private let nameLabel: UILabel = {
         $0.font = UIFont(name: Font.sfBold, size: 17)
@@ -86,11 +83,12 @@ class ShoppingCartTableCell: UITableViewCell {
     
     private func setupContraints() {
         
-//        changeNumberButton.delegate = self
-        self.backgroundColor = Colors.background
         
+        
+        changeNumberButton.delegate = self
+        self.backgroundColor = Colors.background
         for ui in [imageV, nameLabel, descriptionLabel, priceLabel, changeNumberButton] {
-            self.addSubview(ui)
+            contentView.addSubview(ui)
         }
         
         
@@ -129,4 +127,17 @@ class ShoppingCartTableCell: UITableViewCell {
             
         }
     }
+}
+
+extension ShoppingCartTableCell: CartChangeNumberButtonDelegate {
+    
+    func plusTouched() {
+        delegate?.plusTouched(id: data?.id ?? "")
+    }
+    
+    func minusTouched() {
+        delegate?.minusTouched(id: data?.id ?? "")
+    }
+    
+    
 }

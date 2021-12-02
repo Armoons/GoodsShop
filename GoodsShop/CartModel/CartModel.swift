@@ -20,6 +20,7 @@ class CartModel {
 extension CartModel: CatalogueViewControllerDelegateForModel {
     func getSelectedID(id: String) ->  [String:Int] {
         selectedGoods[id] = 1
+        
         print("SELECT:", selectedGoods)
         return (selectedGoods)
 

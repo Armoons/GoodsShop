@@ -11,8 +11,8 @@
 		AE5C5AA4274014E7000C319D /* ImageView+Ext..swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5C5AA3274014E7000C319D /* ImageView+Ext..swift */; };
 		AE82A8E5273885E500734F3F /* GoodsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE82A8E4273885E500734F3F /* GoodsService.swift */; };
 		AE82A8E72738891300734F3F /* Test Backend.postman_collection.json in Resources */ = {isa = PBXBuildFile; fileRef = AE82A8E62738891300734F3F /* Test Backend.postman_collection.json */; };
-		AE82A8EC27393B3E00734F3F /* GetGoodsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE82A8EB27393B3E00734F3F /* GetGoodsModel.swift */; };
 		AE941B48274ECED00013D620 /* CatalogueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE941B47274ECED00013D620 /* CatalogueView.swift */; };
+		AEA08C5E27594DA3003B378F /* GetGoodsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA08C5D27594DA3003B378F /* GetGoodsModel.swift */; };
 		AEC7C22827514376002E7ADB /* ShoppingCartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC7C22727514376002E7ADB /* ShoppingCartView.swift */; };
 		AEC7C22A27514EF8002E7ADB /* CartModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC7C22927514EF8002E7ADB /* CartModel.swift */; };
 		AEC7DBF3274417DA006F8427 /* ShoppingCartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC7DBF2274417DA006F8427 /* ShoppingCartViewController.swift */; };
@@ -42,8 +42,8 @@
 		AE5C5AA3274014E7000C319D /* ImageView+Ext..swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ImageView+Ext..swift"; sourceTree = "<group>"; };
 		AE82A8E4273885E500734F3F /* GoodsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodsService.swift; sourceTree = "<group>"; };
 		AE82A8E62738891300734F3F /* Test Backend.postman_collection.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "Test Backend.postman_collection.json"; sourceTree = "<group>"; };
-		AE82A8EB27393B3E00734F3F /* GetGoodsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetGoodsModel.swift; sourceTree = "<group>"; };
 		AE941B47274ECED00013D620 /* CatalogueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogueView.swift; sourceTree = "<group>"; };
+		AEA08C5D27594DA3003B378F /* GetGoodsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetGoodsModel.swift; sourceTree = "<group>"; };
 		AEC7C22727514376002E7ADB /* ShoppingCartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCartView.swift; sourceTree = "<group>"; };
 		AEC7C22927514EF8002E7ADB /* CartModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartModel.swift; sourceTree = "<group>"; };
 		AEC7DBF2274417DA006F8427 /* ShoppingCartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCartViewController.swift; sourceTree = "<group>"; };
@@ -205,7 +205,7 @@
 			isa = PBXGroup;
 			children = (
 				AEDF8E44273409CC00F5D977 /* Model.swift */,
-				AE82A8EB27393B3E00734F3F /* GetGoodsModel.swift */,
+				AEA08C5D27594DA3003B378F /* GetGoodsModel.swift */,
 			);
 			path = Structs;
 			sourceTree = "<group>";
@@ -368,13 +368,13 @@
 				AE5C5AA4274014E7000C319D /* ImageView+Ext..swift in Sources */,
 				AEDF5BE12742928E004D165D /* SortView.swift in Sources */,
 				AEC7C22A27514EF8002E7ADB /* CartModel.swift in Sources */,
-				AE82A8EC27393B3E00734F3F /* GetGoodsModel.swift in Sources */,
 				AEDF8E312734009000F5D977 /* AppDelegate.swift in Sources */,
 				AECDEA6627354D6F00643AAB /* GoodsCollectionViewCell.swift in Sources */,
 				AEC7DBF3274417DA006F8427 /* ShoppingCartViewController.swift in Sources */,
 				AEDF8E332734009000F5D977 /* SceneDelegate.swift in Sources */,
 				AEDF8E45273409CC00F5D977 /* Model.swift in Sources */,
 				AE941B48274ECED00013D620 /* CatalogueView.swift in Sources */,
+				AEA08C5E27594DA3003B378F /* GetGoodsModel.swift in Sources */,
 				AE82A8E5273885E500734F3F /* GoodsService.swift in Sources */,
 				AE05DDE227565D7100147BDA /* ShoppingCartTableCell.swift in Sources */,
 			);

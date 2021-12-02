@@ -202,7 +202,6 @@ extension CatalogueView: GoodsCollectionViewCellDelegate {
     
 extension CatalogueView: CatalogueViewControllerDelegateForView {
     
-    
     func getGoodsArray(array: [GoodsInfo]) {
         goodsInfoArray = array
         sortView.getGoodsArray(array: array)

@@ -11,6 +11,10 @@ import UIKit
 class ShoppingCartView: UIView {
     
     var selectedGoodsArray: [GoodsInfo] = []
+    var priceArray: [Int] = []
+    var priceByArray: Int = 0
+    var priceByChanged: Int = 0
+
     
     private let brandLabel: UILabel = {
         let label = UILabel()
@@ -28,26 +32,14 @@ class ShoppingCartView: UIView {
     let shoppingListTableView: UITableView = {
         let tv = UITableView()
         tv.showsVerticalScrollIndicator = false
+        tv.register(ShoppingCartTableCell.self, forCellReuseIdentifier: CellID.shoppingCartCellID)
         tv.rowHeight = 150
         
         tv.backgroundColor = Colors.background
         return tv
     }()
-
-//    let shoppingListCollectionView: UICollectionView = {
-//        let layout = UICollectionViewFlowLayout()
-//        layout.scrollDirection = .vertical
-//        layout.minimumLineSpacing = 10
-//        layout.minimumInteritemSpacing = 0
-//        layout.estimatedItemSize = .zero
-//
-//        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
-//        cv.showsVerticalScrollIndicator = false
-//        cv.backgroundColor = Colors.background
-//        return cv
-//    }()
     
-    private let subtotalVew = ShoppingSubtotalView()
+    private let subtotalView = ShoppingSubtotalView()
     
     private let buyButton: UIButton = {
         let button = UIButton()
@@ -62,13 +54,11 @@ class ShoppingCartView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
-//        shoppingListCollectionView.delegate = self
-//        shoppingListCollectionView.dataSource = self
+
         self.shoppingListTableView.delegate = self
         self.shoppingListTableView.dataSource = self
         
-//        ShoppingCartViewController().delegate = self
+        
         
         setupUI()
     }
@@ -79,14 +69,11 @@ class ShoppingCartView: UIView {
     
     private func setupUI() {
         
-//        shoppingListCollectionView.register(ShoppingCartViewCell.self, forCellWithReuseIdentifier: CellID.shoppingCartCellID)
-//        shoppingListTableView.register(ShoppingCartTableCell.self, forCellWithReuseIdentifier: CellID.shoppingCartCellID)
-        shoppingListTableView.register(ShoppingCartTableCell.self, forCellReuseIdentifier: CellID.shoppingCartCellID)
 
 
         self.backgroundColor = Colors.background
         
-        for ui in [brandLabel, lineView, shoppingListTableView, subtotalVew, buyButton] {
+        for ui in [brandLabel, lineView, shoppingListTableView, subtotalView, buyButton] {
             self.addSubview(ui)
         }
         
@@ -105,10 +92,10 @@ class ShoppingCartView: UIView {
         shoppingListTableView.snp.makeConstraints{
             $0.top.equalTo(lineView.snp.bottom).offset(10)
             $0.left.right.equalToSuperview()
-            $0.bottom.equalTo(subtotalVew.snp.top).inset(-10)
+            $0.bottom.equalTo(subtotalView.snp.top).inset(-10)
         }
         
-        subtotalVew.snp.makeConstraints{
+        subtotalView.snp.makeConstraints{
             $0.centerX.equalToSuperview()
             $0.bottom.equalTo(buyButton.snp.top).inset(-15)
             $0.height.equalTo(90)
@@ -121,6 +108,13 @@ class ShoppingCartView: UIView {
             $0.width.equalTo(200)
             $0.height.equalTo(70)
         }
+    }
+    
+    func calculateSubtotal() {
+        priceArray = selectedGoodsArray.map {$0.price}
+        priceByArray = priceArray.reduce(0, +)
+        subtotalView.subtotalPriceLabel.text = "\(priceByArray + priceByChanged)"
+        
     }
 }
 
@@ -135,40 +129,36 @@ extension ShoppingCartView: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CellID.shoppingCartCellID, for: indexPath) as! ShoppingCartTableCell
-
+        cell.delegate = self
         cell.data = selectedGoodsArray[indexPath.row]
 //        cell.data = mok.array[indexPath.row]
 
-//        cell.delegate = self
         return cell
     }
-    
-    
 }
-
-//extension ShoppingCartView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
-//
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        return CGSize(width: self.frame.width, height: 150)
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        return selectedGoodsArray.count
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellID.shoppingCartCellID, for: indexPath) as! ShoppingCartViewCell
-//        cell.data = selectedGoodsArray[indexPath.row]
-////        cell.delegate = self
-//        return cell
-//    }
-//}
 
 extension ShoppingCartView: ShoppingCartViewControllerDelegate {
     
     func getSelectedGoods(array: [GoodsInfo]) {
         selectedGoodsArray = array
-        print(selectedGoodsArray)
+        calculateSubtotal()
+//        print(selectedGoodsArray)
         shoppingListTableView.reloadData()
+        
     }
 }
+
+extension ShoppingCartView: ShoppingCartTableCellDelegate {
+    
+    func plusTouched(id: String) {
+        priceByChanged += selectedGoodsArray.first(where: {$0.id == id})!.price
+        
+        calculateSubtotal()
+    }
+    
+    func minusTouched(id: String) {
+        priceByChanged -= selectedGoodsArray.first(where: {$0.id == id})!.price
+        calculateSubtotal()
+    }
+}
+
