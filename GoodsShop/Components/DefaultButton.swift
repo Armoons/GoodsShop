@@ -9,17 +9,7 @@ import UIKit
 
 class DefaultButton: UIButton {
 
-//    override init(frame: CGRect) {
-//        super.init(frame: frame)
-//        setupUI()
-//    }
-//
-//    required init?(coder: NSCoder) {
-//        super.init(coder: coder)
-//        setupUI()
-//    }
-    
-    required init(title: String) {
+     init(title: String) {
         super.init(frame: .zero)
         self.setTitle(title, for: .normal)
         setupUI()
@@ -28,11 +18,7 @@ class DefaultButton: UIButton {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-//    convenience init(title: String) {
-//        self.init()
-//        self.setTitle(title, for: .normal)
-//    }
+
     
     private func setupUI(){
         

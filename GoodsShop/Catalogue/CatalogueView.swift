@@ -9,9 +9,7 @@ import Foundation
 import UIKit
 
 protocol CatalogueViewDelegate {
-    func cartTouch()
-    func goodsSelect(id: String)
-    func goodsDeselect(id: String)
+    func cartTouch(array: [GoodsInfo])
 }
 
 class CatalogueView: UIView {
@@ -19,8 +17,8 @@ class CatalogueView: UIView {
     var delegate: CatalogueViewDelegate?
     
     var goodsInfoArray: [GoodsInfo] = []
-    var selectedGoodsArray: [GoodsInfo] = []
-    var selectedGoodsIDArray: [String] = []
+//    var selectedGoodsArray: [GoodsInfo] = []
+//    var selectedGoodsIDArray: [String] = []
 
     
     private var currentGoodsNumber = 0
@@ -65,6 +63,7 @@ class CatalogueView: UIView {
         
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.showsVerticalScrollIndicator = false
+        cv.register(GoodsCollectionViewCell.self, forCellWithReuseIdentifier: CellID.goodsCellID)
         cv.backgroundColor = Colors.background
         return cv
     }()
@@ -84,12 +83,10 @@ class CatalogueView: UIView {
     }
     
     @objc func shoppingBagTouched() {
-        delegate?.cartTouch()
+        delegate?.cartTouch(array: goodsInfoArray)
     }
     
     private func setupUI() {
-        goodsCollectionView.register(GoodsCollectionViewCell.self, forCellWithReuseIdentifier: CellID.goodsCellID)
-
         
         self.backgroundColor = Colors.background
         
@@ -148,18 +145,16 @@ extension CatalogueView: UICollectionViewDelegate, UICollectionViewDataSource, U
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellID.goodsCellID, for: indexPath) as! GoodsCollectionViewCell
         cell.data = goodsInfoArray[indexPath.row]
-        
-        if selectedGoodsIDArray.contains(cell.data!.id) {
+
+        if ((cell.data?.selected) != nil) {
             cell.cellSelected(animation: false)
-        } else { cell.cellDeselected(animation: false) }
+        } else {cell.cellDeselected(animation: false)}
         
         cell.delegate = self
         return cell
     }
 }
 
-
-    
 extension CatalogueView: SortViewDelegate {
     func priceSort(newGoodsArray: [GoodsInfo]) {
         goodsInfoArray = newGoodsArray
@@ -169,6 +164,7 @@ extension CatalogueView: SortViewDelegate {
     func ratingSort(newGoodsArray: [GoodsInfo]) {
         goodsInfoArray = newGoodsArray
         goodsCollectionView.reloadData()
+
     }
 }
 
@@ -179,12 +175,8 @@ extension CatalogueView: GoodsCollectionViewCellDelegate {
         if currentGoodsNumber > 0 {bagQuantityLabel.isHidden = false}
         bagQuantityLabel.text = "\(currentGoodsNumber)"
         
-        selectedGoodsArray.append(goodsInfoArray.first(where: {$0.id == id})!)
-        selectedGoodsIDArray.append(id)
-        print("selectedID", selectedGoodsIDArray)
-
-        
-        delegate?.goodsSelect(id: id)
+        goodsInfoArray.first(where: {$0.id == id})!.selected = true
+        goodsInfoArray.first(where: {$0.id == id})!.count = 1
     }
     
     func didDeselectGoods(id: String) {
@@ -192,11 +184,8 @@ extension CatalogueView: GoodsCollectionViewCellDelegate {
         if currentGoodsNumber == 0 {bagQuantityLabel.isHidden = true}
         bagQuantityLabel.text = "\(currentGoodsNumber)"
         
-        selectedGoodsArray.append(goodsInfoArray.first(where: {$0.id == id})!)
-        selectedGoodsIDArray.remove(at: selectedGoodsIDArray.firstIndex(where: {$0 == id})!)
-        print("deselectedID", selectedGoodsIDArray)
-
-        delegate?.goodsDeselect(id: id)
+        goodsInfoArray.first(where: {$0.id == id})!.selected = false
+        goodsInfoArray.first(where: {$0.id == id})!.count = 1
     }
 }
     
@@ -207,6 +196,5 @@ extension CatalogueView: CatalogueViewControllerDelegateForView {
         sortView.getGoodsArray(array: array)
         goodsCollectionView.reloadData()
     }
-    
 }
     

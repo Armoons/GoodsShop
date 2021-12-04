@@ -12,15 +12,9 @@ protocol ShoppingCartViewControllerDelegate {
     func getSelectedGoods(array: [GoodsInfo])
 }
 
-
 class ShoppingCartViewController: UIViewController {
     
     private var goodsArray: [GoodsInfo] = []
-    private var selectedGoodsDict: [String : Int] = [:]
-    private var selectedGoodsArray: [GoodsInfo] = []
-
-    private let cartModel = CartModel()
-//    private let catalogueVC = CatalogueViewController()
     private let loader = GoodsService()
     private let cartView = ShoppingCartView()
         
@@ -28,61 +22,19 @@ class ShoppingCartViewController: UIViewController {
     
     override func loadView() {
         self.view = cartView
-
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.delegate = cartView
-
-    }
-    
-    func createSelectedGoodsArray() {
-        let keys = Array(selectedGoodsDict.keys)
-        
-        selectedGoodsArray = goodsArray.filter{keys.contains($0.id)}
-//        print("CHECKKEYS:", selectedGoodsArray.first?.id)
-        delegate?.getSelectedGoods(array: selectedGoodsArray)
-        
-    }
-
-}
-
-
-
-extension ShoppingCartViewController: CartModelDelegate {
-    func getSelectedGoodsDict(dict: [String : Int]){
-        selectedGoodsDict = dict
-        createSelectedGoodsArray()
     }
 }
 
-extension ShoppingCartViewController: GoodsServiceDelegate {
-    var id: String {
-        "ShoppingCartVC"
-    }
-    
-    func loaded(goodsInfo: [GoodsInfo]) {
-        goodsArray = goodsInfo
-//        goodsArray.indices.forEach { goodsArray[$0].count = 1 }
-
+extension ShoppingCartViewController: CatalogueViewControllerDelegateForShopping {
+    func getGoodsArray(array: [GoodsInfo]) {
+        delegate?.getSelectedGoods(array: array)
     }
 }
 
-//extension ShoppingCartViewController: ShoppingCartViewCellDelegate {
-//    func plusTouchedFromCell(newPrice: Int) {
-//        changedSubtotalValue! += newPrice
-////        subtotalValue! += newPrice
-//        subtotalVew.subtotalPriceLabel.text = "\(changedSubtotalValue!)"
-//        return
-//    }
-//
-//    func minusTouchedFromCell(newPrice: Int) {
-//        changedSubtotalValue! -= newPrice
-//
-////        subtotalValue! -= newPrice
-//        subtotalVew.subtotalPriceLabel.text = "\(changedSubtotalValue!)"
-//        return
-//    }
-//}
+
 

@@ -10,13 +10,13 @@ import UIKit
 import SnapKit
 
 protocol CartChangeNumberButtonDelegate {
-    func plusTouched()
-    func minusTouched()
+    func plusTouched(count: Int)
+    func minusTouched(count: Int)
 }
 
 class CartChangeNumberButton: UIButton {
     
-    
+    var quantity: Int = 1 
     var delegate: CartChangeNumberButtonDelegate?
     
     private let minus: UIButton = {
@@ -37,7 +37,6 @@ class CartChangeNumberButton: UIButton {
         let label = UILabel()
         label.font = UIFont(name: Font.sfBold, size: 22)
         label.textColor = .white
-        label.text = "1"
         return label
     }()
     
@@ -51,23 +50,31 @@ class CartChangeNumberButton: UIButton {
         super.init(coder: coder)
     }
     
+    func changeQuantity(newValue: Int) {
+        quantity = newValue
+        number.text = "\(quantity)"
+    }
+    
     @objc func plusTouched() {
-        delegate?.plusTouched()
-        number.text = "\(Int(number.text!)! + 1)"
-
+        quantity += 1
+        number.text = "\(quantity)"
+        delegate?.plusTouched(count: quantity)
     }
     
     @objc func minusTouched() {
-        
         if number.text != "1"{
-            number.text = "\(Int(number.text!)! - 1)"
-            delegate?.minusTouched()
+            quantity -= 1
+            number.text = "\(quantity)"
+            delegate?.minusTouched(count: quantity)
         } else { return }
     }
     
 
     
     private func setupUI() {
+        
+        number.text = "\(quantity)"
+        
         self.backgroundColor = Colors.mainBlue
         self.layer.cornerRadius = 8
         

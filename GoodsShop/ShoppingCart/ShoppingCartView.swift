@@ -11,10 +11,7 @@ import UIKit
 class ShoppingCartView: UIView {
     
     var selectedGoodsArray: [GoodsInfo] = []
-    var priceArray: [Int] = []
     var priceByArray: Int = 0
-    var priceByChanged: Int = 0
-
     
     private let brandLabel: UILabel = {
         let label = UILabel()
@@ -58,8 +55,6 @@ class ShoppingCartView: UIView {
         self.shoppingListTableView.delegate = self
         self.shoppingListTableView.dataSource = self
         
-        
-        
         setupUI()
     }
     
@@ -68,9 +63,7 @@ class ShoppingCartView: UIView {
     }
     
     private func setupUI() {
-        
-
-
+    
         self.backgroundColor = Colors.background
         
         for ui in [brandLabel, lineView, shoppingListTableView, subtotalView, buyButton] {
@@ -111,10 +104,8 @@ class ShoppingCartView: UIView {
     }
     
     func calculateSubtotal() {
-        priceArray = selectedGoodsArray.map {$0.price}
-        priceByArray = priceArray.reduce(0, +)
-        subtotalView.subtotalPriceLabel.text = "\(priceByArray + priceByChanged)"
-        
+        priceByArray = selectedGoodsArray.map{$0.price * $0.count!}.reduce(0, +)
+        subtotalView.subtotalPriceLabel.text = "\(priceByArray)"
     }
 }
 
@@ -123,16 +114,14 @@ extension ShoppingCartView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 //        return mok.array.count
         return selectedGoodsArray.count
-
-        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CellID.shoppingCartCellID, for: indexPath) as! ShoppingCartTableCell
         cell.delegate = self
         cell.data = selectedGoodsArray[indexPath.row]
+        cell.changeNumberButton.changeQuantity(newValue: cell.data?.count ?? 0)
 //        cell.data = mok.array[indexPath.row]
-
         return cell
     }
 }
@@ -140,24 +129,20 @@ extension ShoppingCartView: UITableViewDelegate, UITableViewDataSource {
 extension ShoppingCartView: ShoppingCartViewControllerDelegate {
     
     func getSelectedGoods(array: [GoodsInfo]) {
-        selectedGoodsArray = array
+        selectedGoodsArray = array.filter{$0.selected == true}        
         calculateSubtotal()
-//        print(selectedGoodsArray)
         shoppingListTableView.reloadData()
-        
     }
 }
 
 extension ShoppingCartView: ShoppingCartTableCellDelegate {
-    
-    func plusTouched(id: String) {
-        priceByChanged += selectedGoodsArray.first(where: {$0.id == id})!.price
-        
+    func plusTouched(id: String, number: Int) {
+        selectedGoodsArray.first(where: {$0.id == id})!.count = number
         calculateSubtotal()
     }
     
-    func minusTouched(id: String) {
-        priceByChanged -= selectedGoodsArray.first(where: {$0.id == id})!.price
+    func minusTouched(id: String, number: Int) {
+        selectedGoodsArray.first(where: {$0.id == id})!.count = number
         calculateSubtotal()
     }
 }

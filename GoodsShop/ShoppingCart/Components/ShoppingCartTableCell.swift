@@ -10,8 +10,8 @@ import UIKit
 import Kingfisher
 
 protocol ShoppingCartTableCellDelegate {
-    func plusTouched(id: String)
-    func minusTouched(id: String)
+    func plusTouched(id: String, number: Int)
+    func minusTouched(id: String, number: Int)
 }
 
 class ShoppingCartTableCell: UITableViewCell {
@@ -23,7 +23,6 @@ class ShoppingCartTableCell: UITableViewCell {
             imageV.kf.setImage(with: imageURL)
             nameLabel.text = data.name
             priceLabel.text = "\(data.price)₽"
-            
             
             if data.name.count == 7 {
                 let text = String(data.desc.replacingOccurrences(of: "<h3>Товар 1<h3><p>", with: "").dropLast(4))
@@ -69,7 +68,7 @@ class ShoppingCartTableCell: UITableViewCell {
         return label
     }()
     
-    private let changeNumberButton = CartChangeNumberButton()
+    let changeNumberButton = CartChangeNumberButton()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -82,8 +81,6 @@ class ShoppingCartTableCell: UITableViewCell {
     }
     
     private func setupContraints() {
-        
-        
         
         changeNumberButton.delegate = self
         self.backgroundColor = Colors.background
@@ -124,20 +121,16 @@ class ShoppingCartTableCell: UITableViewCell {
             $0.bottom.equalToSuperview().inset(12)
             $0.width.equalTo(85)
             $0.height.equalTo(25)
-            
         }
     }
 }
 
 extension ShoppingCartTableCell: CartChangeNumberButtonDelegate {
-    
-    func plusTouched() {
-        delegate?.plusTouched(id: data?.id ?? "")
+    func plusTouched(count: Int) {
+        delegate?.plusTouched(id: data?.id ?? "", number: count)
     }
     
-    func minusTouched() {
-        delegate?.minusTouched(id: data?.id ?? "")
+    func minusTouched(count: Int) {
+        delegate?.minusTouched(id: data?.id ?? "", number: count)
     }
-    
-    
 }

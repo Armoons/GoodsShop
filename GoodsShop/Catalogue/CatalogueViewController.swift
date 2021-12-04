@@ -11,14 +11,9 @@ protocol CatalogueViewControllerDelegateForView {
     func getGoodsArray(array: [GoodsInfo])
 }
 
-protocol CatalogueViewControllerDelegateForModel {
-    func getSelectedID(id: String) ->  [String:Int]
-    func getDeselectedID(id: String) ->  [String:Int]
-    func cartTouched()
+protocol CatalogueViewControllerDelegateForShopping {
+    func getGoodsArray(array: [GoodsInfo])
 }
-
-//protocol CatalogueViewControllerDelegateForShoppingVC {
-//}
 
 
 class CatalogueViewController: UIViewController {
@@ -27,19 +22,11 @@ class CatalogueViewController: UIViewController {
     private var catalogueView = CatalogueView()
     private var goodsArray: [GoodsInfo] = []
     var viewDelegate: CatalogueViewControllerDelegateForView?
-    var modelDelegate: CatalogueViewControllerDelegateForModel?
-//    var shoppigDelegate: CatalogueViewControllerDelegateForShoppingVC?
-    private var selectedGoodsDict: [String:Int] = [:]
-    
-    private let cartModel = CartModel()
-
+    var shoppingDelegate: CatalogueViewControllerDelegateForShopping?
     private let shoppingCartVC = ShoppingCartViewController()
-//
-
     
     override func loadView() {
         self.view = catalogueView
-        
     }
     
     override func viewDidLoad() {
@@ -47,21 +34,12 @@ class CatalogueViewController: UIViewController {
         
         self.viewDelegate = catalogueView
         catalogueView.delegate = self
-        
-//        loader.delegateCatalogue = self
-//        loader.delegateShopping = shoppingCartVC
-        
+    
         loader.addDelegate(delegate: self)
-        loader.addDelegate(delegate: shoppingCartVC)
-        
         loader.loadInfo()
         
-        cartModel.delegate = shoppingCartVC
-        
-        self.modelDelegate = cartModel
+        self.shoppingDelegate = shoppingCartVC
     }
-    
-    
 }
 
 extension CatalogueViewController: GoodsServiceDelegate {
@@ -77,48 +55,9 @@ extension CatalogueViewController: GoodsServiceDelegate {
 
 extension CatalogueViewController: CatalogueViewDelegate {
     
-    func goodsSelect(id: String) {
-        selectedGoodsDict = (modelDelegate?.getSelectedID(id: id))!
-    }
-    
-    func goodsDeselect(id: String) {
-        selectedGoodsDict = (modelDelegate?.getDeselectedID(id: id))!
-    }
-    
-    func cartTouch() {
+    func cartTouch(array: [GoodsInfo]) {
         show(shoppingCartVC, sender: self)
-        modelDelegate?.cartTouched()
+        shoppingDelegate?.getGoodsArray(array: array)
     }
-    
-   
 }
-
-
-
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//
-//
-//
-//        view.backgroundColor = Colors.background
-
-//
-//        setupContraints()
-//    }
-//
-//    func updateBagQuantityLabel(newValue: Int) {
-//        bagQuantityLabel.text = "\(newValue)"
-//    }
-//
-
-//
-//   
-//
-
-//
-
-//
-
-//
-
 
