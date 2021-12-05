@@ -7,10 +7,16 @@
 
 import UIKit
 
+protocol ShoppingCartViewDelegate{
+    func getChangedGoodsArray(id: String)
+}
+
 class ShoppingCartView: UIView {
     
-    var selectedGoodsArray: [GoodsInfo] = []
-    var priceByArray: Int = 0
+    private var selectedGoodsArray: [GoodsInfo] = []
+    private var priceByArray: Int = 0
+    
+    var delegate: ShoppingCartViewDelegate?
     
     private let brandLabel: UILabel = {
         let label = UILabel()
@@ -110,6 +116,22 @@ class ShoppingCartView: UIView {
 
 extension ShoppingCartView: UITableViewDelegate, UITableViewDataSource {
     
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            selectedGoodsArray[indexPath.row].selected = false
+            delegate?.getChangedGoodsArray(id: selectedGoodsArray[indexPath.row].id )
+ 
+            selectedGoodsArray = selectedGoodsArray.filter{$0.selected == true}
+            calculateSubtotal()
+            shoppingListTableView.reloadData()
+            
+        }
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return selectedGoodsArray.count
     }
@@ -124,7 +146,7 @@ extension ShoppingCartView: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-extension ShoppingCartView: ShoppingCartViewControllerDelegate {
+extension ShoppingCartView: ShoppingCartViewControllerDelegateToView {
     
     func getSelectedGoods(array: [GoodsInfo]) {
         selectedGoodsArray = array.filter{$0.selected == true}        

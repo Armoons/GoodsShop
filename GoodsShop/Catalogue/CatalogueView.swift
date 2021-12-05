@@ -140,7 +140,6 @@ extension CatalogueView: UICollectionViewDelegate, UICollectionViewDataSource, U
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellID.goodsCellID, for: indexPath) as! GoodsCollectionViewCell
         cell.data = goodsInfoArray[indexPath.row]
-        print("CountFromCOllView", goodsInfoArray.filter{$0.selected == true}.count)
 
         if (cell.data?.selected == true) {
             cell.cellSelected(animation: false)
@@ -154,7 +153,6 @@ extension CatalogueView: UICollectionViewDelegate, UICollectionViewDataSource, U
 extension CatalogueView: SortViewDelegate {
     func priceSort(newGoodsArray: [GoodsInfo]) {
         goodsInfoArray = newGoodsArray
-        print("FromViewTakedBySort", goodsInfoArray.filter{$0.selected == true}.count)
         goodsCollectionView.reloadData()
     }
 
@@ -191,6 +189,15 @@ extension CatalogueView: GoodsCollectionViewCellDelegate {
 }
 
 extension CatalogueView: CatalogueViewControllerDelegateForView {
+    func getDeselectedId(id: String) {
+        goodsInfoArray.first(where: {$0.id == id})?.selected = false
+        
+        currentGoodsNumber = goodsInfoArray.filter {$0.selected == true}.count
+        if currentGoodsNumber > 0 {bagQuantityLabel.isHidden = false} else {bagQuantityLabel.isHidden = true}
+        bagQuantityLabel.text = "\(currentGoodsNumber)"
+        
+        goodsCollectionView.reloadData()
+    }
     
     func getGoodsArray(array: [GoodsInfo]) {
         goodsInfoArray = array

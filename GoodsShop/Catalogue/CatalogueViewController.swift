@@ -9,6 +9,7 @@ import UIKit
 
 protocol CatalogueViewControllerDelegateForView {
     func getGoodsArray(array: [GoodsInfo])
+    func getDeselectedId(id: String)
 }
 
 protocol CatalogueViewControllerDelegateForShopping {
@@ -38,6 +39,7 @@ class CatalogueViewController: UIViewController {
         loader.loadInfo()
         
         self.shoppingDelegate = shoppingCartVC
+        shoppingCartVC.delegateVC = self
     }
 }
 
@@ -56,5 +58,17 @@ extension CatalogueViewController: CatalogueViewDelegate {
         show(shoppingCartVC, sender: self)
         shoppingDelegate?.getGoodsArray(array: array)
     }
+}
+
+extension CatalogueViewController: ShoppingCartViewControllerDelegateToVC {
+    func getArray(id: String) {
+        viewDelegate?.getDeselectedId(id: id)
+    }
+    
+    func getArray(array: [GoodsInfo]) {
+        viewDelegate?.getGoodsArray(array: array)
+    }
+    
+    
 }
 

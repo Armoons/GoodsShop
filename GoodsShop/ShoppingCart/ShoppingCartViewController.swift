@@ -7,8 +7,12 @@
 
 import UIKit
 
-protocol ShoppingCartViewControllerDelegate {
+protocol ShoppingCartViewControllerDelegateToView {
     func getSelectedGoods(array: [GoodsInfo])
+}
+
+protocol ShoppingCartViewControllerDelegateToVC {
+    func getArray(id: String)
 }
 
 class ShoppingCartViewController: UIViewController {
@@ -17,7 +21,9 @@ class ShoppingCartViewController: UIViewController {
     private let loader = GoodsService()
     private let cartView = ShoppingCartView()
         
-    var delegate: ShoppingCartViewControllerDelegate?
+    var delegateView: ShoppingCartViewControllerDelegateToView?
+    var delegateVC: ShoppingCartViewControllerDelegateToVC?
+
     
     override func loadView() {
         self.view = cartView
@@ -25,14 +31,22 @@ class ShoppingCartViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.delegate = cartView
+        self.delegateView = cartView
+        cartView.delegate = self
     }
 }
 
 extension ShoppingCartViewController: CatalogueViewControllerDelegateForShopping {
     func getGoodsArray(array: [GoodsInfo]) {
-        delegate?.getSelectedGoods(array: array)
+        delegateView?.getSelectedGoods(array: array)
     }
+}
+
+extension ShoppingCartViewController: ShoppingCartViewDelegate {
+    func getChangedGoodsArray(id: String) {
+        delegateVC?.getArray(id: id)
+    }
+
 }
 
 
