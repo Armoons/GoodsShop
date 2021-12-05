@@ -5,7 +5,6 @@
 //  Created by Stepanyan Arman  on 16.11.2021.
 //
 
-import Foundation
 import UIKit
 import SnapKit
 
@@ -40,7 +39,6 @@ class CartChangeNumberButton: UIButton {
         return label
     }()
     
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
@@ -68,9 +66,7 @@ class CartChangeNumberButton: UIButton {
             delegate?.minusTouched(count: quantity)
         } else { return }
     }
-    
 
-    
     private func setupUI() {
         
         number.text = "\(quantity)"

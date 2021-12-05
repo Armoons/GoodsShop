@@ -5,7 +5,6 @@
 //  Created by Stepanyan Arman  on 17.11.2021.
 //
 
-import Foundation
 import UIKit
 
 class ShoppingSubtotalView: UIView {

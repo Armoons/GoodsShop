@@ -5,7 +5,6 @@
 //  Created by Stepanyan Arman  on 04.11.2021.
 //
 
-import Foundation
 import UIKit
 
 enum SortType {
@@ -36,18 +35,9 @@ struct CellID {
 
 }
 
-
 struct Colors {
     static let mainBlue: UIColor = UIColor(red: 39/255, green: 89/255, blue: 156/255, alpha: 1)
     static let background: UIColor = UIColor(red: 226/255, green: 212/255, blue: 196/255, alpha: 1)
-}
-
-struct loadedInfo {
-    static var array: [GoodsInfo] = []
-}
-
-struct selectedGoods {
-    static var array: [GoodsInfo] = []
 }
 
 struct mok {

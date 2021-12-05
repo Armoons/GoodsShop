@@ -16,9 +16,7 @@ protocol GoodsCollectionViewCellDelegate {
 class GoodsCollectionViewCell: UICollectionViewCell {
     
     var delegate: GoodsCollectionViewCellDelegate?
-    
     private var didPlusTouch: Bool = false
-
     
     var data: GoodsInfo? {
         didSet {
@@ -124,20 +122,14 @@ class GoodsCollectionViewCell: UICollectionViewCell {
 
     
     @objc func plusTouch(){
-        
         if self.priceLabel.textColor == .black {didPlusTouch = false} else {didPlusTouch = true}
-
         if !didPlusTouch {
             delegate?.didSelectNewGoods(id: data!.id)
             cellSelected(animation: true)
-            data?.selected = true
         } else {
             delegate?.didDeselectGoods(id: data!.id)
             cellDeselected(animation: true)
-            data?.selected = false
-
         }
-        
         didPlusTouch = !didPlusTouch
     }
     

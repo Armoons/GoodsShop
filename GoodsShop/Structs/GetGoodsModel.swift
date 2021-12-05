@@ -24,7 +24,5 @@ class GoodsInfo: Decodable{
         self.id = id
         self.desc = desc
     }
-    
-    
 }
 

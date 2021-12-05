@@ -15,7 +15,6 @@ protocol CatalogueViewControllerDelegateForShopping {
     func getGoodsArray(array: [GoodsInfo])
 }
 
-
 class CatalogueViewController: UIViewController {
         
     private let loader = GoodsService()
@@ -48,13 +47,11 @@ extension CatalogueViewController: GoodsServiceDelegate {
     }
     
     func loaded(goodsInfo: [GoodsInfo]) {
-        goodsArray = goodsInfo
-        viewDelegate?.getGoodsArray(array: goodsArray)
+        viewDelegate?.getGoodsArray(array: goodsInfo)
     }
 }
 
 extension CatalogueViewController: CatalogueViewDelegate {
-    
     func cartTouch(array: [GoodsInfo]) {
         show(shoppingCartVC, sender: self)
         shoppingDelegate?.getGoodsArray(array: array)

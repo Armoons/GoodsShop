@@ -43,7 +43,6 @@ class GoodsService {
                 let goodsArray = try JSONDecoder().decode([GoodsInfo].self, from: data)
                 DispatchQueue.main.async {
                     goodsArray.forEach {$0.count = 1}
-//                    goodsArray.forEach {$0.selected = false}
                     delegates.forEach {$0.loaded(goodsInfo: goodsArray)}
                 }
             }  catch {

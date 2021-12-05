@@ -5,7 +5,6 @@
 //  Created by Stepanyan Arman  on 26.11.2021.
 //
 
-import Foundation
 import UIKit
 
 class ShoppingCartView: UIView {
@@ -112,7 +111,6 @@ class ShoppingCartView: UIView {
 extension ShoppingCartView: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return mok.array.count
         return selectedGoodsArray.count
     }
     
@@ -121,7 +119,7 @@ extension ShoppingCartView: UITableViewDelegate, UITableViewDataSource {
         cell.delegate = self
         cell.data = selectedGoodsArray[indexPath.row]
         cell.changeNumberButton.changeQuantity(newValue: cell.data?.count ?? 0)
-//        cell.data = mok.array[indexPath.row]
+        
         return cell
     }
 }

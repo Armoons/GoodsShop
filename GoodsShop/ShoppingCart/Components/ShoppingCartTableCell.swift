@@ -5,7 +5,6 @@
 //  Created by Stepanyan Arman  on 30.11.2021.
 //
 
-import Foundation
 import UIKit
 import Kingfisher
 
@@ -87,7 +86,6 @@ class ShoppingCartTableCell: UITableViewCell {
         for ui in [imageV, nameLabel, descriptionLabel, priceLabel, changeNumberButton] {
             contentView.addSubview(ui)
         }
-        
         
         imageV.snp.makeConstraints{
             $0.centerY.equalToSuperview()

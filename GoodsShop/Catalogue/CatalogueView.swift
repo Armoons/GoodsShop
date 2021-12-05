@@ -5,7 +5,6 @@
 //  Created by Stepanyan Arman  on 24.11.2021.
 //
 
-import Foundation
 import UIKit
 
 protocol CatalogueViewDelegate {
@@ -15,14 +14,10 @@ protocol CatalogueViewDelegate {
 class CatalogueView: UIView {
     
     var delegate: CatalogueViewDelegate?
-    
+    var countOfSelected: Int = 0
     var goodsInfoArray: [GoodsInfo] = []
-//    var selectedGoodsArray: [GoodsInfo] = []
-//    var selectedGoodsIDArray: [String] = []
-
-    
     private var currentGoodsNumber = 0
-    
+
     private let sortView = SortView()
     
     private let brandLabel: UILabel = {
@@ -145,8 +140,9 @@ extension CatalogueView: UICollectionViewDelegate, UICollectionViewDataSource, U
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellID.goodsCellID, for: indexPath) as! GoodsCollectionViewCell
         cell.data = goodsInfoArray[indexPath.row]
+        print("CountFromCOllView", goodsInfoArray.filter{$0.selected == true}.count)
 
-        if ((cell.data?.selected) != nil) {
+        if (cell.data?.selected == true) {
             cell.cellSelected(animation: false)
         } else {cell.cellDeselected(animation: false)}
         
@@ -158,37 +154,42 @@ extension CatalogueView: UICollectionViewDelegate, UICollectionViewDataSource, U
 extension CatalogueView: SortViewDelegate {
     func priceSort(newGoodsArray: [GoodsInfo]) {
         goodsInfoArray = newGoodsArray
+        print("FromViewTakedBySort", goodsInfoArray.filter{$0.selected == true}.count)
         goodsCollectionView.reloadData()
     }
 
     func ratingSort(newGoodsArray: [GoodsInfo]) {
         goodsInfoArray = newGoodsArray
         goodsCollectionView.reloadData()
-
+        
     }
 }
-
 extension CatalogueView: GoodsCollectionViewCellDelegate {
     
     func didSelectNewGoods(id: String) {
-        currentGoodsNumber += 1
-        if currentGoodsNumber > 0 {bagQuantityLabel.isHidden = false}
-        bagQuantityLabel.text = "\(currentGoodsNumber)"
-        
         goodsInfoArray.first(where: {$0.id == id})!.selected = true
         goodsInfoArray.first(where: {$0.id == id})!.count = 1
+        
+        sortView.getGoodsArray(array: goodsInfoArray)
+
+        
+        currentGoodsNumber = goodsInfoArray.filter {$0.selected == true}.count
+        if currentGoodsNumber > 0 {bagQuantityLabel.isHidden = false}
+        bagQuantityLabel.text = "\(currentGoodsNumber)"
     }
     
     func didDeselectGoods(id: String) {
-        currentGoodsNumber -= 1
-        if currentGoodsNumber == 0 {bagQuantityLabel.isHidden = true}
-        bagQuantityLabel.text = "\(currentGoodsNumber)"
-        
         goodsInfoArray.first(where: {$0.id == id})!.selected = false
         goodsInfoArray.first(where: {$0.id == id})!.count = 1
+        
+        sortView.getGoodsArray(array: goodsInfoArray)
+
+        currentGoodsNumber = goodsInfoArray.filter {$0.selected == true}.count
+        if currentGoodsNumber == 0 {bagQuantityLabel.isHidden = true}
+        bagQuantityLabel.text = "\(currentGoodsNumber)"
     }
 }
-    
+
 extension CatalogueView: CatalogueViewControllerDelegateForView {
     
     func getGoodsArray(array: [GoodsInfo]) {

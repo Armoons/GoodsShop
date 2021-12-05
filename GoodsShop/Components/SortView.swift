@@ -5,7 +5,6 @@
 //  Created by Stepanyan Arman  on 15.11.2021.
 //
 
-import Foundation
 import UIKit
 
 protocol SortViewDelegate {
@@ -14,6 +13,8 @@ protocol SortViewDelegate {
 }
 
 class SortView: UIView {
+    
+    var selectedCount: Int = 0
     
     var goodsInfoArray: [GoodsInfo] = []
     var goodsInfoArrayChanged: [GoodsInfo] = []
@@ -77,17 +78,17 @@ class SortView: UIView {
         setupConstraints()
     }
     
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     func getGoodsArray(array: [GoodsInfo]) {
         goodsInfoArray = array
+        selectedCount = goodsInfoArray.filter{$0.selected == true}.count
+        print("selectedCountFromSortView", selectedCount)
     }
     
     func setupConstraints() {
-        
         
         for ui in [filterStackView,sortLabel, priceArrow, ratingArrow] {
             self.addSubview(ui)
@@ -186,11 +187,11 @@ class SortView: UIView {
             
             goodsInfoArrayChanged = goodsInfoArray
         }
-               
     }
     
     @objc func priceTouched() {
         changeSort(sortType: .price, usedStatus: &didPriceSortUsed, unusedStatus: &didRateSortUsed, usedTouchesNumber: &priceSortTouchesNumber, unusedTouchesNumber: &rateSortTouchesNumber, usedButton: priceButton, usedArrow: priceArrow, unusedButton: ratingButton, unusedArrow: ratingArrow)
+        print(goodsInfoArrayChanged.filter{$0.selected == true}.count)
         delegate?.priceSort(newGoodsArray: goodsInfoArrayChanged)
     }
     
