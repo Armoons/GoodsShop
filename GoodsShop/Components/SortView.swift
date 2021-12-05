@@ -15,7 +15,7 @@ protocol SortViewDelegate {
 class SortView: UIView {
     
     var selectedCount: Int = 0
-    
+    var defaultGoodsArray: [GoodsInfo] = []
     var goodsInfoArray: [GoodsInfo] = []
     var goodsInfoArrayChanged: [GoodsInfo] = []
     
@@ -85,7 +85,6 @@ class SortView: UIView {
     func getGoodsArray(array: [GoodsInfo]) {
         goodsInfoArray = array
         selectedCount = goodsInfoArray.filter{$0.selected == true}.count
-        print("selectedCountFromSortView", selectedCount)
     }
     
     func setupConstraints() {
@@ -185,13 +184,12 @@ class SortView: UIView {
             usedTouchesNumber = 0
             usedStatus = false
             
-            goodsInfoArrayChanged = goodsInfoArray
+            goodsInfoArrayChanged = defaultGoodsArray
         }
     }
     
     @objc func priceTouched() {
         changeSort(sortType: .price, usedStatus: &didPriceSortUsed, unusedStatus: &didRateSortUsed, usedTouchesNumber: &priceSortTouchesNumber, unusedTouchesNumber: &rateSortTouchesNumber, usedButton: priceButton, usedArrow: priceArrow, unusedButton: ratingButton, unusedArrow: ratingArrow)
-        print(goodsInfoArrayChanged.filter{$0.selected == true}.count)
         delegate?.priceSort(newGoodsArray: goodsInfoArrayChanged)
     }
     

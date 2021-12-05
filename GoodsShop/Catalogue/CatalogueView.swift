@@ -16,6 +16,7 @@ class CatalogueView: UIView {
     var delegate: CatalogueViewDelegate?
     var countOfSelected: Int = 0
     var goodsInfoArray: [GoodsInfo] = []
+    var defaultGoodsArray: [GoodsInfo] = []
     private var currentGoodsNumber = 0
 
     private let sortView = SortView()
@@ -201,6 +202,7 @@ extension CatalogueView: CatalogueViewControllerDelegateForView {
     
     func getGoodsArray(array: [GoodsInfo]) {
         goodsInfoArray = array
+        sortView.defaultGoodsArray = array
         sortView.getGoodsArray(array: array)
         goodsCollectionView.reloadData()
     }

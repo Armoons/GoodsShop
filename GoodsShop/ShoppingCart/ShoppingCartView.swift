@@ -44,7 +44,7 @@ class ShoppingCartView: UIView {
     private let subtotalView = ShoppingSubtotalView()
     
     private let buyButton: UIButton = {
-        let button = UIButton()
+        let button = UIButton(type: .system)
         button.setTitle("Buy", for: .normal)
         button.setTitleColor(Colors.mainBlue, for: .normal)
         button.backgroundColor = .white
