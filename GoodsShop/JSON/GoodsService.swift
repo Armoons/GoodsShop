@@ -12,10 +12,6 @@ protocol GoodsServiceDelegate {
     var id: String {get}
 }
 
-//protocol GoodsServiceDelegateForShopping {
-//    func loaded(goodsInfo: [GoodsInfo])
-//}
-
 class GoodsService {
 
     static let urlString = "http://94.127.67.113:8099/getGoods"

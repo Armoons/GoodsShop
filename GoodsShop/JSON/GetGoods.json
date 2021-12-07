@@ -1,0 +1,54 @@
+[{"image":"http://94.127.67.113:8099/getImage?filename=11.jpg","price":200.0,"name":"Товар 1","weight":360.0,"id":"e0008cc14546faebab8ef361dc83a55e","desc":"
+Товар 1
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
+
+"},{"image":"http://94.127.67.113:8099/getImage?filename=12.jpg","price":205.0,"name":"Товар 12","weight":310.0,"id":"7969ca63efabb80f6cd188c8529e95e5","desc":"
+
+Товар 2
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
+
+"},{"image":"http://94.127.67.113:8099/getImage?filename=13.jpg","price":220.0,"name":"Товар 13","weight":250.0,"id":"41483691c8cd133fd477ae2432a6992e","desc":"
+
+Товар 3
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
+
+"},{"image":"http://94.127.67.113:8099/getImage?filename=14.jpg","price":300.0,"name":"Товар 14","weight":150.0,"id":"ec3617ebaa216024a279dfeaced26f7b","desc":"
+
+Товар 4
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
+
+"},{"image":"http://94.127.67.113:8099/getImage?filename=15.jpg","price":230.0,"name":"Товар 15","weight":550.0,"id":"dd33405811d33f824674bc33e4c000b8","desc":"
+
+Товар 5
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
+
+"},{"image":"http://94.127.67.113:8099/getImage?filename=16.jpg","price":210.0,"name":"Товар 16","weight":310.0,"id":"6d7efb0b56327adb0263c098de19db70","desc":"
+
+Товар 6
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
+
+"},{"image":"http://94.127.67.113:8099/getImage?filename=17.jpg","price":100.0,"name":"Товар 17","weight":390.0,"id":"982916d3fb6d3d280ec4173bc81d4e24","desc":"
+
+Товар 7
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
+
+"},{"image":"http://94.127.67.113:8099/getImage?filename=18.jpg","price":400.0,"name":"Товар 18","weight":380.0,"id":"133b26addbf256b084571b2dd0160688","desc":"
+
+Товар 8
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
+
+"},{"image":"http://94.127.67.113:8099/getImage?filename=19.jpg","price":2000.0,"name":"Товар 19","weight":155.0,"id":"b249cb24b33e7acf4c88ee692327494f","desc":"
+
+Товар 9
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
+
+"}]

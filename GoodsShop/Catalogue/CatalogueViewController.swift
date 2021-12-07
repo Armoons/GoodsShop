@@ -55,7 +55,8 @@ extension CatalogueViewController: GoodsServiceDelegate {
 
 extension CatalogueViewController: CatalogueViewDelegate {
     func cartTouch(array: [GoodsInfo]) {
-        show(shoppingCartVC, sender: self)
+//        navigationController?.pushViewController(shoppingCartVC, animated: true)
+        present(shoppingCartVC, animated: true)
         shoppingDelegate?.getGoodsArray(array: array)
     }
 }
@@ -68,7 +69,5 @@ extension CatalogueViewController: ShoppingCartViewControllerDelegateToVC {
     func getArray(array: [GoodsInfo]) {
         viewDelegate?.getGoodsArray(array: array)
     }
-    
-    
 }
 

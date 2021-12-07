@@ -36,7 +36,7 @@ class ShoppingCartView: UIView {
         tv.showsVerticalScrollIndicator = false
         tv.register(ShoppingCartTableCell.self, forCellReuseIdentifier: CellID.shoppingCartCellID)
         tv.rowHeight = 150
-        
+        tv.allowsSelection = false
         tv.backgroundColor = Colors.background
         return tv
     }()

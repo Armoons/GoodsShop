@@ -81,6 +81,7 @@ class ShoppingCartTableCell: UITableViewCell {
     
     private func setupContraints() {
         
+        
         changeNumberButton.delegate = self
         self.backgroundColor = Colors.background
         for ui in [imageV, nameLabel, descriptionLabel, priceLabel, changeNumberButton] {
