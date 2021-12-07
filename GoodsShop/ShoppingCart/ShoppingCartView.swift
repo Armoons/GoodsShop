@@ -18,20 +18,9 @@ class ShoppingCartView: UIView {
     
     var delegate: ShoppingCartViewDelegate?
     
-    private let brandLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont(name: Font.sfBold, size: 26)
-        label.text = "Shopping Cart"
-        return label
-    }()
+    private let header = HeaderOfView(headerText: "Shopping Cart")
     
-    private let lineView: LineUnderBrandLabel = {
-        let view = LineUnderBrandLabel()
-        view.backgroundColor = Colors.mainBlue
-        return view
-    }()
-    
-    let shoppingListTableView: UITableView = {
+    private let shoppingListTableView: UITableView = {
         let tv = UITableView()
         tv.showsVerticalScrollIndicator = false
         tv.register(ShoppingCartTableCell.self, forCellReuseIdentifier: CellID.shoppingCartCellID)
@@ -71,24 +60,18 @@ class ShoppingCartView: UIView {
     
         self.backgroundColor = Colors.background
         
-        for ui in [brandLabel, lineView, shoppingListTableView, subtotalView, buyButton] {
+        for ui in [header, shoppingListTableView, subtotalView, buyButton] {
             self.addSubview(ui)
         }
         
-        brandLabel.snp.makeConstraints{
-            $0.centerX.equalToSuperview()
-            $0.topMargin.equalToSuperview().offset(10)
-            $0.height.equalTo(30)
-        }
-        
-        lineView.snp.makeConstraints{
-            $0.top.equalTo(brandLabel.snp.bottom).offset(5)
+        header.snp.makeConstraints{
             $0.left.right.equalToSuperview()
-            $0.height.equalTo(2)
+            $0.top.equalTo(safeAreaLayoutGuide.snp.top).offset(-15)
+            $0.height.equalTo(60)
         }
         
         shoppingListTableView.snp.makeConstraints{
-            $0.top.equalTo(lineView.snp.bottom).offset(10)
+            $0.top.equalTo(header.snp.bottom).offset(10)
             $0.left.right.equalToSuperview()
             $0.bottom.equalTo(subtotalView.snp.top).inset(-10)
         }

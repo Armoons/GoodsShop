@@ -1,8 +1,8 @@
 //
-//  LineUnderBrandLabel.swift
+//  BlueLine.swift
 //  GoodsShop
 //
-//  Created by Stepanyan Arman  on 04.11.2021.
+//  Created by Stepanyan Arman  on 08.12.2021.
 //
 
 import UIKit

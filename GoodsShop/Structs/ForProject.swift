@@ -40,7 +40,7 @@ struct Colors {
     static let background: UIColor = UIColor(red: 226/255, green: 212/255, blue: 196/255, alpha: 1)
 }
 
-struct mok {
+struct Mok {
     static var array: [GoodsInfo] =
     [GoodsInfo(image: "rge", price: 123, name: "efef", weight: 123, id: "efrr", desc: "erwerw"),
      GoodsInfo(image: "rge", price: 1234, name: "ef2ef", weight: 123, id: "e4rr", desc: "erwerw"),

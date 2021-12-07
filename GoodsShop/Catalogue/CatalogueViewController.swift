@@ -35,7 +35,7 @@ class CatalogueViewController: UIViewController {
         self.viewDelegate = catalogueView
         catalogueView.delegate = self
     
-        loader.addDelegate(delegate: self)
+        loader.delegate = self
         loader.loadInfo()
         
         self.shoppingDelegate = shoppingCartVC
@@ -44,10 +44,6 @@ class CatalogueViewController: UIViewController {
 }
 
 extension CatalogueViewController: GoodsServiceDelegate {
-    var id: String {
-        "CatalogueVC"
-    }
-    
     func loaded(goodsInfo: [GoodsInfo]) {
         viewDelegate?.getGoodsArray(array: goodsInfo)
     }

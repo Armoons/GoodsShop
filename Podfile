@@ -8,6 +8,5 @@ target 'GoodsShop' do
   # Pods for GoodsShop
   pod 'SnapKit'
   pod 'Kingfisher', '~> 7.0'
-  #pod 'SDWebImage'
   
 end

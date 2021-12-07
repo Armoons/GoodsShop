@@ -21,12 +21,14 @@ class CatalogueView: UIView {
 
     private let sortView = SortView()
     
-    private let brandLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont(name: Font.sfBold, size: 26)
-        label.text = "GOODS"
-        return label
-    }()
+    private let header = HeaderOfView(headerText: "GOODS")
+    
+//    private let brandLabel: UILabel = {
+//        let label = UILabel()
+//        label.font = UIFont(name: Font.sfBold, size: 26)
+//        label.text = "GOODS"
+//        return label
+//    }()
     
     private let shoppingBagButton: UIButton = {
         let button = UIButton()
@@ -44,11 +46,11 @@ class CatalogueView: UIView {
         return label
     }()
     
-    private let lineView: LineUnderBrandLabel = {
-        let view = LineUnderBrandLabel()
-        view.backgroundColor = Colors.mainBlue
-        return view
-    }()
+//    private let lineView: LineUnderBrandLabel = {
+//        let view = LineUnderBrandLabel()
+//        view.backgroundColor = Colors.mainBlue
+//        return view
+//    }()
     
     private let goodsCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -86,38 +88,32 @@ class CatalogueView: UIView {
         
         self.backgroundColor = Colors.background
         
-        for ui in [brandLabel, lineView, shoppingBagButton, bagQuantityLabel, goodsCollectionView, sortView] {
+        for ui in [header, shoppingBagButton, bagQuantityLabel, goodsCollectionView, sortView] {
             self.addSubview(ui)
         }
         
         sortView.snp.makeConstraints{
-            $0.top.equalTo(lineView).offset(10)
+            $0.top.equalTo(header.snp.bottom)
             $0.left.equalToSuperview()
             $0.right.equalToSuperview()
             $0.height.equalTo(30)
         }
         
-        brandLabel.snp.makeConstraints{
-            $0.centerX.equalToSuperview()
-            $0.topMargin.equalToSuperview().offset(10)
-            $0.height.equalTo(30)
-        }
-        
-        lineView.snp.makeConstraints{
-            $0.top.equalTo(brandLabel.snp.bottom).offset(5)
+        header.snp.makeConstraints{
             $0.left.right.equalToSuperview()
-            $0.height.equalTo(2)
+            $0.top.equalTo(safeAreaLayoutGuide.snp.top).offset(-25)
+            $0.height.equalTo(60)
         }
-        
+
         bagQuantityLabel.snp.makeConstraints{
             $0.right.equalTo(shoppingBagButton.snp.left).offset(-2)
-            $0.bottom.equalTo(lineView).inset(10)
+            $0.bottom.equalTo(shoppingBagButton)
         }
         
         shoppingBagButton.snp.makeConstraints{
             $0.topMargin.equalToSuperview().offset(10)
             $0.right.equalToSuperview().inset(10)
-            $0.bottom.equalTo(lineView).inset(10)
+            $0.bottom.equalTo(header.snp.bottom).inset(10)
             $0.width.equalTo(shoppingBagButton.snp.height).multipliedBy(1.0 / 1.0)
         }
         
