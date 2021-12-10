@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import Kingfisher
 
 protocol GoodsCollectionViewCellDelegate {
     func didSelectNewGoods(id: String)

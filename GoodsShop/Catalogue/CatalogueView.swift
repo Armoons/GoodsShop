@@ -23,6 +23,8 @@ class CatalogueView: UIView {
     
     private let header = HeaderOfView(headerText: "GOODS")
     
+    private let blurView = BlurView()
+    
 //    private let brandLabel: UILabel = {
 //        let label = UILabel()
 //        label.font = UIFont(name: Font.sfBold, size: 26)
@@ -86,10 +88,16 @@ class CatalogueView: UIView {
     
     private func setupUI() {
         
+        
+        
         self.backgroundColor = Colors.background
         
-        for ui in [header, shoppingBagButton, bagQuantityLabel, goodsCollectionView, sortView] {
+        for ui in [header, shoppingBagButton, bagQuantityLabel, goodsCollectionView, sortView, blurView] {
             self.addSubview(ui)
+        }
+        
+        blurView.snp.makeConstraints{
+            $0.edges.equalToSuperview()
         }
         
         sortView.snp.makeConstraints{
