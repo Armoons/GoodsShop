@@ -11,6 +11,7 @@ protocol CatalogueViewDelegate {
     func cartTouch(array: [GoodsInfo])
 }
 
+
 class CatalogueView: UIView {
     
     var delegate: CatalogueViewDelegate?
@@ -24,13 +25,6 @@ class CatalogueView: UIView {
     private let header = HeaderOfView(headerText: "GOODS")
     
     private let blurView = BlurView()
-    
-//    private let brandLabel: UILabel = {
-//        let label = UILabel()
-//        label.font = UIFont(name: Font.sfBold, size: 26)
-//        label.text = "GOODS"
-//        return label
-//    }()
     
     private let shoppingBagButton: UIButton = {
         let button = UIButton()
@@ -70,6 +64,7 @@ class CatalogueView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
 
         self.goodsCollectionView.delegate = self
         self.goodsCollectionView.dataSource = self
@@ -88,16 +83,10 @@ class CatalogueView: UIView {
     
     private func setupUI() {
         
-        
-        
         self.backgroundColor = Colors.background
         
-        for ui in [header, shoppingBagButton, bagQuantityLabel, goodsCollectionView, sortView, blurView] {
+        for ui in [header, shoppingBagButton, bagQuantityLabel, goodsCollectionView, sortView] {
             self.addSubview(ui)
-        }
-        
-        blurView.snp.makeConstraints{
-            $0.edges.equalToSuperview()
         }
         
         sortView.snp.makeConstraints{
@@ -133,6 +122,15 @@ class CatalogueView: UIView {
 }
 
 extension CatalogueView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.addSubview(blurView)
+        blurView.snp.makeConstraints{
+            $0.edges.equalToSuperview()
+        }
+        blurView.showView(indexPath: indexPath, goodsArray: goodsInfoArray)
+        
+    }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: self.frame.width / 2 - 30, height: 210)

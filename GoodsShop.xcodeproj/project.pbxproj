@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		AE05DDE227565D7100147BDA /* ShoppingCartTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE05DDE127565D7100147BDA /* ShoppingCartTableCell.swift */; };
-		AE5BCDF52763B0BC0045E03A /* BlureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5BCDF42763B0BC0045E03A /* BlureView.swift */; };
+		AE5BCDF52763B0BC0045E03A /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5BCDF42763B0BC0045E03A /* BlurView.swift */; };
 		AE5BCDF72763B5A90045E03A /* SelectedGoodsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5BCDF62763B5A90045E03A /* SelectedGoodsView.swift */; };
 		AE5C5AA4274014E7000C319D /* ImageView+Ext..swift in Sources */ = {isa = PBXBuildFile; fileRef = AE5C5AA3274014E7000C319D /* ImageView+Ext..swift */; };
 		AE6BBE22276019A500473BE3 /* BlueLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6BBE21276019A500473BE3 /* BlueLine.swift */; };
@@ -41,7 +41,7 @@
 		2221501935048268D506452F /* Pods-GoodsShop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoodsShop.release.xcconfig"; path = "Target Support Files/Pods-GoodsShop/Pods-GoodsShop.release.xcconfig"; sourceTree = "<group>"; };
 		83F759013D2734A52F08710F /* Pods_GoodsShop.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GoodsShop.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE05DDE127565D7100147BDA /* ShoppingCartTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCartTableCell.swift; sourceTree = "<group>"; };
-		AE5BCDF42763B0BC0045E03A /* BlureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlureView.swift; sourceTree = "<group>"; };
+		AE5BCDF42763B0BC0045E03A /* BlurView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurView.swift; sourceTree = "<group>"; };
 		AE5BCDF62763B5A90045E03A /* SelectedGoodsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedGoodsView.swift; sourceTree = "<group>"; };
 		AE5C5AA3274014E7000C319D /* ImageView+Ext..swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ImageView+Ext..swift"; sourceTree = "<group>"; };
 		AE6BBE21276019A500473BE3 /* BlueLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlueLine.swift; sourceTree = "<group>"; };
@@ -156,7 +156,7 @@
 		AE941B4E274ECF920013D620 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				AE5BCDF42763B0BC0045E03A /* BlureView.swift */,
+				AE5BCDF42763B0BC0045E03A /* BlurView.swift */,
 				AEDF8E562734203D00F5D977 /* SortButton.swift */,
 				AEDF5BE02742928E004D165D /* SortView.swift */,
 				AE39200827621EF9005F5774 /* Cells */,
@@ -368,7 +368,7 @@
 				AECF1C3A274517AE00B2FA41 /* ShoppingSubtotalView.swift in Sources */,
 				AEC7DBF827442022006F8427 /* CartChangeNumberButton.swift in Sources */,
 				AEC7C22827514376002E7ADB /* ShoppingCartView.swift in Sources */,
-				AE5BCDF52763B0BC0045E03A /* BlureView.swift in Sources */,
+				AE5BCDF52763B0BC0045E03A /* BlurView.swift in Sources */,
 				AEDF8E55273411AF00F5D977 /* HeaderOfView.swift in Sources */,
 				AEDF8E572734203D00F5D977 /* SortButton.swift in Sources */,
 				AE5BCDF72763B5A90045E03A /* SelectedGoodsView.swift in Sources */,

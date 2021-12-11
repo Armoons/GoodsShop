@@ -14,6 +14,8 @@ protocol GoodsCollectionViewCellDelegate {
 
 class GoodsCollectionViewCell: UICollectionViewCell {
     
+    var forBlur: Bool = false
+    
     var delegate: GoodsCollectionViewCellDelegate?
     private var didPlusTouch: Bool = false
     
@@ -27,10 +29,10 @@ class GoodsCollectionViewCell: UICollectionViewCell {
             priceLabel.text = "\(data.price)₽"
             
             if data.name.count == 7 {
-                let text = String(data.desc.replacingOccurrences(of: "<h3>Товар 1<h3><p>", with: "").dropLast(2))
+                let text = String(data.desc.replacingOccurrences(of: "<h3>Товар 1<h3><p>", with: "").dropLast(4))
                 descriptionLabel.text = text
             } else {
-                let text = String(data.desc.dropFirst(data.name.count + 10).dropLast(2))
+                let text = String(data.desc.dropFirst(data.name.count + 10).dropLast(4))
                 descriptionLabel.text = text
             }
         }
@@ -55,7 +57,9 @@ class GoodsCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.font = UIFont(name: Font.sfLight, size: 13)
         label.textColor = .black
-        label.numberOfLines = 1
+        label.numberOfLines = 0
+        label.textAlignment = .center
+        
         return label
     }()
     
@@ -103,6 +107,17 @@ class GoodsCollectionViewCell: UICollectionViewCell {
             self.priceLabel.textColor = .white
         }
     }
+    
+    
+    func cellForBlurView() {
+        
+        let h = self.frame.height
+        descriptionLabel.snp.updateConstraints{
+            $0.height.equalTo(h / 3)
+        }
+    }
+    
+    
     
     func cellDeselected(animation: Bool) {
         if animation {

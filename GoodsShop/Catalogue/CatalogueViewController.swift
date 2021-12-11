@@ -47,6 +47,7 @@ extension CatalogueViewController: GoodsServiceDelegate {
     func loaded(goodsInfo: [GoodsInfo]) {
         viewDelegate?.getGoodsArray(array: goodsInfo)
     }
+
 }
 
 extension CatalogueViewController: CatalogueViewDelegate {
