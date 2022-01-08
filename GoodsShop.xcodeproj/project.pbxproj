@@ -111,8 +111,8 @@
 		AE05E054273AE67C007F9E35 /* XcodeFiles */ = {
 			isa = PBXGroup;
 			children = (
-				AEDF8E322734009000F5D977 /* SceneDelegate.swift */,
 				AEDF8E302734009000F5D977 /* AppDelegate.swift */,
+				AEDF8E322734009000F5D977 /* SceneDelegate.swift */,
 			);
 			path = XcodeFiles;
 			sourceTree = "<group>";

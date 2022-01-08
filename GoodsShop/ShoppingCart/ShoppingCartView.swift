@@ -111,7 +111,6 @@ extension ShoppingCartView: UITableViewDelegate, UITableViewDataSource {
             selectedGoodsArray = selectedGoodsArray.filter{$0.selected == true}
             calculateSubtotal()
             shoppingListTableView.reloadData()
-            
         }
     }
     

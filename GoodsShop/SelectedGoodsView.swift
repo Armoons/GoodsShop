@@ -21,7 +21,7 @@ class SelectedGoodsView: UIView {
         
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.showsVerticalScrollIndicator = false
-        cv.register(GoodsCollectionViewCell.self, forCellWithReuseIdentifier: CellID.goodsCellID)
+        cv.register(CatalogueCell.self, forCellWithReuseIdentifier: CellID.goodsCellID)
         cv.backgroundColor = Colors.background
         return cv
     }()
@@ -54,7 +54,7 @@ extension SelectedGoodsView: UICollectionViewDelegate, UICollectionViewDataSourc
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellID.goodsCellID, for: indexPath) as! GoodsCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellID.goodsCellID, for: indexPath) as! CatalogueCell
         return cell
     }
     

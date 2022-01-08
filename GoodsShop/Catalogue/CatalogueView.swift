@@ -57,7 +57,7 @@ class CatalogueView: UIView {
         
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.showsVerticalScrollIndicator = false
-        cv.register(GoodsCollectionViewCell.self, forCellWithReuseIdentifier: CellID.goodsCellID)
+        cv.register(CatalogueCell.self, forCellWithReuseIdentifier: CellID.goodsCellID)
         cv.backgroundColor = Colors.background
         return cv
     }()
@@ -69,7 +69,7 @@ class CatalogueView: UIView {
         self.goodsCollectionView.delegate = self
         self.goodsCollectionView.dataSource = self
         sortView.delegate = self
-
+        blurView.delegate = self
         setupUI()
     }
     
@@ -79,6 +79,12 @@ class CatalogueView: UIView {
     
     @objc func shoppingBagTouched() {
         delegate?.cartTouch(array: goodsInfoArray)
+    }
+    
+    func updateQuantity() {
+        currentGoodsNumber = goodsInfoArray.filter {$0.selected == true}.count
+        if currentGoodsNumber > 0 {bagQuantityLabel.isHidden = false}
+        bagQuantityLabel.text = "\(currentGoodsNumber)"
     }
     
     private func setupUI() {
@@ -124,11 +130,11 @@ class CatalogueView: UIView {
 extension CatalogueView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        blurView.showView(indexPath: indexPath, goodsArray: goodsInfoArray)
         self.addSubview(blurView)
         blurView.snp.makeConstraints{
             $0.edges.equalToSuperview()
         }
-        blurView.showView(indexPath: indexPath, goodsArray: goodsInfoArray)
         
     }
 
@@ -141,7 +147,7 @@ extension CatalogueView: UICollectionViewDelegate, UICollectionViewDataSource, U
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellID.goodsCellID, for: indexPath) as! GoodsCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellID.goodsCellID, for: indexPath) as! CatalogueCell
         cell.data = goodsInfoArray[indexPath.row]
 
         if (cell.data?.selected == true) {
@@ -165,6 +171,7 @@ extension CatalogueView: SortViewDelegate {
         
     }
 }
+
 extension CatalogueView: GoodsCollectionViewCellDelegate {
     
     func didSelectNewGoods(id: String) {
@@ -173,10 +180,7 @@ extension CatalogueView: GoodsCollectionViewCellDelegate {
         
         sortView.getGoodsArray(array: goodsInfoArray)
 
-        
-        currentGoodsNumber = goodsInfoArray.filter {$0.selected == true}.count
-        if currentGoodsNumber > 0 {bagQuantityLabel.isHidden = false}
-        bagQuantityLabel.text = "\(currentGoodsNumber)"
+        updateQuantity()
     }
     
     func didDeselectGoods(id: String) {
@@ -185,9 +189,7 @@ extension CatalogueView: GoodsCollectionViewCellDelegate {
         
         sortView.getGoodsArray(array: goodsInfoArray)
 
-        currentGoodsNumber = goodsInfoArray.filter {$0.selected == true}.count
-        if currentGoodsNumber == 0 {bagQuantityLabel.isHidden = true}
-        bagQuantityLabel.text = "\(currentGoodsNumber)"
+        updateQuantity()
     }
 }
 
@@ -208,5 +210,15 @@ extension CatalogueView: CatalogueViewControllerDelegateForView {
         sortView.getGoodsArray(array: array)
         goodsCollectionView.reloadData()
     }
+}
+
+extension CatalogueView: BlurViewDelegate {
+    func closedBlurView(array: [GoodsInfo]) {
+        goodsInfoArray = array
+        goodsCollectionView.reloadData()
+        updateQuantity()
+    }
+    
+    
 }
     

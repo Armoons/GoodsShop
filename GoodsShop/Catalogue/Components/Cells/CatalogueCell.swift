@@ -12,9 +12,9 @@ protocol GoodsCollectionViewCellDelegate {
     func didDeselectGoods(id: String)
 }
 
-class GoodsCollectionViewCell: UICollectionViewCell {
+class CatalogueCell: UICollectionViewCell {
     
-    var forBlur: Bool = false
+//    var forBlur: Bool = false
     
     var delegate: GoodsCollectionViewCellDelegate?
     private var didPlusTouch: Bool = false
@@ -87,6 +87,7 @@ class GoodsCollectionViewCell: UICollectionViewCell {
         super.init(frame: frame)
         
         setupContraints()
+        setupView()
     }
     
     required init?(coder: NSCoder) {
@@ -108,17 +109,6 @@ class GoodsCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    
-    func cellForBlurView() {
-        
-        let h = self.frame.height
-        descriptionLabel.snp.updateConstraints{
-            $0.height.equalTo(h / 3)
-        }
-    }
-    
-    
-    
     func cellDeselected(animation: Bool) {
         if animation {
             UIView.animate(withDuration: 0.3, delay: 0){
@@ -133,14 +123,29 @@ class GoodsCollectionViewCell: UICollectionViewCell {
         }
     }
     
-
+    func cellForBlurView() {
+        descriptionLabel.snp.updateConstraints{
+            $0.height.equalTo(self.frame.height / 3)
+        }
+    }
+    
+    
+    func setupView() {
+        if data?.selected == true {
+            cellSelected(animation: false)
+        } else { cellDeselected(animation: false)}
+    }
+    
+    
     
     @objc func plusTouch(){
         if self.priceLabel.textColor == .black {didPlusTouch = false} else {didPlusTouch = true}
         if !didPlusTouch {
+            data?.selected = true
             delegate?.didSelectNewGoods(id: data!.id)
             cellSelected(animation: true)
         } else {
+            data?.selected = false
             delegate?.didDeselectGoods(id: data!.id)
             cellDeselected(animation: true)
         }

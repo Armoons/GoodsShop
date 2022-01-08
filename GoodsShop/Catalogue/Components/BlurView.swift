@@ -8,7 +8,13 @@
 import Foundation
 import UIKit
 
+protocol BlurViewDelegate {
+    func closedBlurView(array: [GoodsInfo])
+}
+
 class BlurView: UIView {
+    
+    var delegate: BlurViewDelegate?
         
     private let blurEffect = UIBlurEffect(style: .light)
     private let blurEffectView = UIVisualEffectView()
@@ -21,17 +27,19 @@ class BlurView: UIView {
 
         return button
     }()
-    private var indexPath: IndexPath?
+    private var indexPathValue: IndexPath?
     private var goodsArray: [GoodsInfo] = []
     
     private let goodsCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
+        
                 
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.showsVerticalScrollIndicator = false
         cv.backgroundColor = .clear
-        cv.register(GoodsCollectionViewCell.self, forCellWithReuseIdentifier: CellID.goodsCellID)
+        cv.isScrollEnabled = true
+        cv.register(CatalogueCell.self, forCellWithReuseIdentifier: CellID.goodsCellID)
         cv.isPagingEnabled = true
         return cv
     }()
@@ -47,21 +55,25 @@ class BlurView: UIView {
     }
     
     @objc func closeTouch() {
+        delegate?.closedBlurView(array: goodsArray)
         self.removeFromSuperview()
+        
     }
     
     func showView(indexPath: IndexPath, goodsArray: [GoodsInfo]) {
-        self.indexPath = indexPath
+        self.indexPathValue = indexPath
         self.goodsArray = goodsArray
         goodsCollectionView.reloadData()
-        goodsCollectionView.scrollToItem(at: indexPath, at: .right, animated: false)
-        
+//
+        goodsCollectionView.selectItem(at: indexPathValue, animated: false, scrollPosition: .right)
     }
     
-    func setup() {
+    private func setup() {
         
         goodsCollectionView.delegate = self
         goodsCollectionView.dataSource = self
+        
+        
         
         blurEffectView.effect = blurEffect
         blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
@@ -109,9 +121,14 @@ extension BlurView: UICollectionViewDelegate, UICollectionViewDataSource, UIColl
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellID.goodsCellID, for: indexPath) as! GoodsCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CellID.goodsCellID, for: indexPath) as! CatalogueCell
         cell.data = goodsArray[indexPath.row]
         cell.cellForBlurView()
+        if (cell.data?.selected == true) {
+            cell.cellSelected(animation: false)
+        } else {cell.cellDeselected(animation: false)}
+        
+
         
         return cell
     }
